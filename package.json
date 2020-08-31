@@ -1,7 +1,7 @@
 {
   "name": "@readme/syntax-highlighter",
   "description": "ReadMe's React-based syntax highlighter",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "main": "src/index.js",
   "dependencies": {
     "@readme/variable": "^7.1.0",
@@ -14,23 +14,38 @@
     "lint": "eslint . --ext .jsx --ext .js",
     "pretest": "npm run lint && npm run prettier && npm run inspect",
     "prettier": "prettier --list-different --write \"./**/**.{js,jsx}\"",
-    "test": "jest --coverage --runInBand"
+    "test": "jest --coverage --runInBand",
+    "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
   "license": "ISC",
   "repository": "https://github.com/readmeio/syntax-highlighter",
   "devDependencies": {
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
     "@readme/eslint-config": "^3.2.0",
     "babel-jest": "^26.3.0",
     "babel-polyfill": "^6.26.0",
+    "conventional-changelog-cli": "^2.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
     "eslint": "^7.0.0",
     "glob": "^7.1.6",
+    "husky": "^4.2.5",
     "jest": "^26.0.1",
     "jsinspect": "^0.12.6",
     "prettier": "^2.0.1"
   },
-  "prettier": "@readme/eslint-config/prettier"
+  "prettier": "@readme/eslint-config/prettier",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
 }
