@@ -3,9 +3,9 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs').promises;
 
-const syntaxHighlighter = require('..');
-const uppercase = require('../uppercase');
-const canoncial = require('../canonical');
+const syntaxHighlighter = require('../src');
+const uppercase = require('../src/uppercase');
+const canoncial = require('../src/canonical');
 
 const fixtures = glob.sync(path.join(__dirname, '/__fixtures__/*'));
 

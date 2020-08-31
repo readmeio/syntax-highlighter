@@ -1,4 +1,4 @@
-const { uppercase } = require('..');
+const { uppercase } = require('../src');
 
 test('should uppercase known languages', () => {
   expect(uppercase('http')).toBe('HTTP');

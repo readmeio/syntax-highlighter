@@ -2,13 +2,7 @@ const path = require('path');
 
 module.exports = {
   coveragePathIgnorePatterns: ['<rootDir>/__tests__/__fixtures__/'],
-  collectCoverageFrom: [
-    '**/*.{js,jsx}',
-    '!lib/*.js',
-    '!**/node_modules/**',
-    '!jest.config.js',
-    '!**/coverage/lcov-report/**',
-  ],
+  collectCoverageFrom: ['src/*.{js,jsx}'],
   setupFiles: [path.join(__dirname, '/lib/enzyme')],
   testPathIgnorePatterns: ['<rootDir>/__tests__/__fixtures__/'],
   transform: {
