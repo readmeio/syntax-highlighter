@@ -15,7 +15,7 @@
     "pretest": "npm run lint && npm run prettier && npm run inspect",
     "prettier": "prettier --list-different --write \"./**/**.{js,jsx}\"",
     "test": "jest --coverage --runInBand",
-    "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+    "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "license": "ISC",
   "repository": "https://github.com/readmeio/syntax-highlighter",
