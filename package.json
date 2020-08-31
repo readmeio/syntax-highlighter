@@ -5,7 +5,8 @@
   "dependencies": {
     "@readme/variable": "^7.1.0",
     "codemirror": "^5.48.2",
-    "react": "^16.4.2"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "scripts": {
     "inspect": "jsinspect",
@@ -17,7 +18,13 @@
   "license": "ISC",
   "repository": "https://github.com/readmeio/syntax-highlighter",
   "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
     "@readme/eslint-config": "^3.2.0",
+    "babel-jest": "^26.3.0",
+    "babel-polyfill": "^6.26.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.4",
     "eslint": "^7.0.0",
     "glob": "^7.1.6",
     "jest": "^26.0.1",
