@@ -1,5 +1,5 @@
 const React = require('react');
-const codemirror = require('./codemirror.jsx');
+const codemirror = require('./codeMirror/index.jsx');
 
 // eslint-disable-next-line react/display-name
 module.exports = (code, lang, opts = { dark: false, tokenizeVariables: false }) =>
@@ -11,4 +11,5 @@ module.exports = (code, lang, opts = { dark: false, tokenizeVariables: false }) 
     codemirror(typeof code === 'string' ? code : '', lang, opts)
   );
 
-module.exports.uppercase = require('./uppercase');
+module.exports.CodeEditor = require('./codeEditor/index.jsx');
+module.exports.uppercase = require('./utils/uppercase');

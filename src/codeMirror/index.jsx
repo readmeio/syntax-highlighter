@@ -1,7 +1,7 @@
 const CodeMirror = require('codemirror');
 const React = require('react');
 const Variable = require('@readme/variable');
-const modes = require('./modes');
+const modes = require('../utils/modes');
 
 const { VARIABLE_REGEXP } = Variable;
 
