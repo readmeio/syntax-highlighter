@@ -1,3 +1,9 @@
+## <small>8.0.1 (2020-09-01)</small>
+
+* feat: setting up webpack (#4) ([fa651fc](https://github.com/readmeio/syntax-highlighter/commit/fa651fc)), closes [#4](https://github.com/readmeio/syntax-highlighter/issues/4)
+
+
+
 ## 8.0.0 (2020-08-31)
 
 > No breaking changes in this release, the package has just moved a new home at https://github.com/readmeio/syntax-highlighter!
