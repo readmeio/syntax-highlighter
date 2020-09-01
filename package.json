@@ -15,7 +15,10 @@
     "pretest": "npm run lint && npm run prettier && npm run inspect",
     "prettier": "prettier --list-different --write \"./**/**.{js,jsx}\"",
     "test": "jest --coverage --runInBand",
-    "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "build": "webpack --config ./webpack.config.js",
+    "start": "webpack-dev-server --open --config ./webpack.config.dev.js",
+    "watch": "webpack -w --progress"
   },
   "license": "ISC",
   "repository": "https://github.com/readmeio/syntax-highlighter",
@@ -26,16 +29,22 @@
     "@commitlint/config-conventional": "^9.1.2",
     "@readme/eslint-config": "^3.2.0",
     "babel-jest": "^26.3.0",
+    "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
     "conventional-changelog-cli": "^2.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
     "eslint": "^7.0.0",
     "glob": "^7.1.6",
+    "html-webpack-plugin": "^4.4.1",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "jsinspect": "^0.12.6",
-    "prettier": "^2.0.1"
+    "prettier": "^2.0.1",
+    "terser-webpack-plugin": "^4.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "prettier": "@readme/eslint-config/prettier",
   "husky": {
