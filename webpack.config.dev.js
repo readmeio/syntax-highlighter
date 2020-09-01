@@ -25,10 +25,10 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
-     new HtmlWebPackPlugin({
-        template: path.resolve( __dirname, 'public/index.html' ),
-        filename: 'index.html'
-     })
+    new HtmlWebPackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+      filename: 'index.html',
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
@@ -36,5 +36,5 @@ module.exports = {
     port: 3400,
     hot: true,
     watchContentBase: true,
-  }
+  },
 };
