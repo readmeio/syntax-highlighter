@@ -1,3 +1,9 @@
+## <small>8.0.3 (2020-09-02)</small>
+
+* chore(deps): upgrading @readme/variable to 7.2.1 ([7ec28f3](https://github.com/readmeio/syntax-highlighter/commit/7ec28f3))
+
+
+
 ## <small>8.0.2 (2020-09-02)</small>
 
 * docs: updating a link in the contributing docs ([c539940](https://github.com/readmeio/syntax-highlighter/commit/c539940))
