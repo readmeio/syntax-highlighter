@@ -9,7 +9,31 @@
 // `htmlmixed`, but `java`, needs to be rendered using the `clike` mode.
 //
 // We also have the mimeType to potentially in future load in new types dynamically.
-module.exports = {
+require('codemirror/mode/clike/clike');
+require('codemirror/mode/clojure/clojure');
+require('codemirror/mode/d/d');
+require('codemirror/mode/dart/dart');
+require('codemirror/mode/diff/diff');
+require('codemirror/mode/dockerfile/dockerfile');
+require('codemirror/mode/erlang/erlang');
+require('codemirror/mode/go/go');
+require('codemirror/mode/groovy/groovy');
+require('codemirror/mode/htmlmixed/htmlmixed');
+require('codemirror/mode/http/http');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/julia/julia');
+require('codemirror/mode/perl/perl');
+require('codemirror/mode/php/php');
+require('codemirror/mode/powershell/powershell');
+require('codemirror/mode/python/python');
+require('codemirror/mode/ruby/ruby');
+require('codemirror/mode/rust/rust');
+require('codemirror/mode/shell/shell');
+require('codemirror/mode/sql/sql');
+require('codemirror/mode/swift/swift');
+require('codemirror/mode/yaml/yaml');
+
+const modes = {
   asp: 'clike',
   aspx: 'clike',
   bash: 'shell',
@@ -82,3 +106,17 @@ module.exports = {
   yml: 'yaml',
   zsh: 'shell',
 };
+
+function getMode(lang) {
+  let mode = lang;
+  if (mode in modes) {
+    mode = modes[mode];
+    if (Array.isArray(mode)) {
+      [, mode] = mode;
+    }
+  }
+
+  return mode;
+}
+
+module.exports = { modes, getMode };

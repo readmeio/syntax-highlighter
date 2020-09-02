@@ -1,51 +1,12 @@
 const CodeMirror = require('codemirror');
 const React = require('react');
 const Variable = require('@readme/variable');
-const modes = require('../utils/modes');
+const { modes, getMode } = require('../utils/modes');
 
 const { VARIABLE_REGEXP } = Variable;
 
 require('codemirror/addon/runmode/runmode');
 require('codemirror/mode/meta.js');
-
-require('codemirror/mode/clike/clike');
-require('codemirror/mode/clojure/clojure');
-require('codemirror/mode/d/d');
-require('codemirror/mode/dart/dart');
-require('codemirror/mode/diff/diff');
-require('codemirror/mode/dockerfile/dockerfile');
-require('codemirror/mode/erlang/erlang');
-require('codemirror/mode/go/go');
-require('codemirror/mode/groovy/groovy');
-require('codemirror/mode/htmlmixed/htmlmixed');
-require('codemirror/mode/http/http');
-require('codemirror/mode/javascript/javascript');
-require('codemirror/mode/julia/julia');
-require('codemirror/mode/perl/perl');
-require('codemirror/mode/php/php');
-require('codemirror/mode/powershell/powershell');
-require('codemirror/mode/python/python');
-require('codemirror/mode/ruby/ruby');
-require('codemirror/mode/rust/rust');
-require('codemirror/mode/shell/shell');
-require('codemirror/mode/sql/sql');
-require('codemirror/mode/swift/swift');
-require('codemirror/mode/yaml/yaml');
-
-function getMode(lang) {
-  let mode = lang;
-
-  if (mode in modes) {
-    mode = modes[mode];
-    // lang = mode;
-    if (Array.isArray(mode)) {
-      // lang = mode[0];
-      [, mode] = mode;
-    }
-  }
-
-  return mode;
-}
 
 module.exports = (code, lang, opts = { tokenizeVariables: false }) => {
   const output = [];
