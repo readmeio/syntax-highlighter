@@ -8,7 +8,7 @@ require('./style.scss');
 
 const { useEffect, useState } = React;
 
-const CodeEditor = ({ className, code = '', lang, options = {}, children, ...attr }) => {
+const CodeEditor = ({ className, code, lang, options = {}, children, ...attr }) => {
   const [value, setValue] = useState(children && typeof children === 'string' ? children : code);
   const [mode, setMode] = useState(getMode(lang));
 
@@ -55,6 +55,8 @@ CodeEditor.propTypes = {
 };
 
 CodeEditor.defaultProps = {
+  className: '',
+  code: '',
   options: {},
   theme: 'dark',
 };
