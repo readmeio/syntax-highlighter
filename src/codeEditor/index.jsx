@@ -42,6 +42,7 @@ CodeEditor.propTypes = {
   /** Code to show in the editor.
    */
   code: PropTypes.string,
+  children: PropTypes.oneOf([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   /** CodeMirror language mode to use.
    */
   lang: PropTypes.string,
