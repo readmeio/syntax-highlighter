@@ -4,7 +4,7 @@
   "version": "8.0.2",
   "main": "dist/index.js",
   "dependencies": {
-    "@readme/variable": "^7.1.0",
+    "@readme/variable": "^7.2.1",
     "codemirror": "^5.48.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
