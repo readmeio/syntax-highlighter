@@ -1,5 +1,5 @@
 # Contributing
-For general contributing guidelines for this repository, consult the root [contributing guide](https://github.com/readmeio/api-explorer/blob/master/CONTRIBUTING.md).
+For general contributing guidelines for this repository, consult the root [contributing guide](https://github.com/readmeio/syntax-highlighter/blob/master/CONTRIBUTING.md).
 
 ## Adding support for a new language
 
