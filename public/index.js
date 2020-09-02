@@ -9,7 +9,6 @@ ReactDOM.render(
     <hr />
     <h1>Code Editor</h1>
     <CodeEditor />
-  </div>
-  ,
+  </div>,
   document.getElementById('root')
 );
