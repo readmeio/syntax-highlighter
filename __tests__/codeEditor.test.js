@@ -1,6 +1,6 @@
 const React = require('react');
 const { mount } = require('enzyme');
-const { CodeEditor } = require('../src');
+const CodeEditor = require('../src/codeEditor/index.jsx');
 
 describe('<CodeEditor/>', () => {
   const getClientRectSpy = jest.fn(() => ({ width: 100 }));

@@ -1,11 +1,18 @@
 .cm-lineNumber {
-  left: 0px;
-  width: 21px;
   display: inline;
   line-height: inherit;
   margin-right: 10px;
+
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+}
+
+.cm-overlay {
+  transition: opacity 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(#242e34, 0.5);
+  width: 100%;
+  // position: fixed;
+  pointer-events: none;
 }

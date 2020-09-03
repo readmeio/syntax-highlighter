@@ -38,7 +38,7 @@ const CodeEditor = ({ className, code, lang, options = {}, children, ...attr }) 
 };
 
 CodeEditor.propTypes = {
-  children: PropTypes.oneOf([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  children: PropTypes.string,
   className: PropTypes.string,
   /** Code to show in the editor.
    */

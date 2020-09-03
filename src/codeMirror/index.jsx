@@ -12,7 +12,13 @@ module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: 
   let key = 0;
   let lineNumber = 1;
   const mode = getMode(lang);
-  const output = opts.highlightMode ? [<p key={`ln-${lineNumber}`} className="cm-lineNumber">{lineNumber}</p>] : [];
+  const output = opts.highlightMode
+    ? [
+        <p key={`ln-${lineNumber}`} className="cm-lineNumber cm-overlay">
+          {lineNumber}
+        </p>,
+      ]
+    : [];
 
   function tokenizeVariable(value) {
     // Modifies the regular expression to match anything
@@ -42,8 +48,12 @@ module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: 
 
       const lineBreakRegex = /\n/g;
       if (opts.highlightMode && lineBreakRegex.test(accum)) {
-        lineNumber++;
-        output.push(<p key={`ln-${lineNumber}`} className="cm-lineNumber">{lineNumber}</p>);
+        lineNumber += 1;
+        output.push(
+          <p key={`ln-${lineNumber}`} className={['cm-lineNumber', lineNumber !== 2 ? 'cm-overlay' : ''].join(' ')}>
+            {lineNumber}
+          </p>
+        );
       }
     }
   }
@@ -58,5 +68,6 @@ module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: 
     }
   });
   flush();
+  console.log(output);
   return output;
 };
