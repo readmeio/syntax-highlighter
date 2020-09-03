@@ -18,7 +18,7 @@ module.exports = (code, lang, opts = { dark: false, tokenizeVariables: false, ed
   return React.createElement(
     'span',
     { className: opts.dark ? 'cm-s-tomorrow-night' : 'cm-s-neo' },
-    codemirror(typeof code === 'string' ? code : '', lang, opts)
+    codemirror(typeof code === 'string' ? code : '', lang, { ...opts, highlightMode: true })
   );
 };
 

@@ -4,14 +4,15 @@ const Variable = require('@readme/variable');
 const { getMode } = require('../utils/modes');
 
 const { VARIABLE_REGEXP } = Variable;
-
+require('./style.scss');
 require('codemirror/addon/runmode/runmode');
 require('codemirror/mode/meta.js');
 
-module.exports = (code, lang, opts = { tokenizeVariables: false }) => {
-  const output = [];
+module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
   let key = 0;
+  let lineNumber = 1;
   const mode = getMode(lang);
+  const output = opts.highlightMode ? [<p key={`ln-${lineNumber}`} className="cm-lineNumber">{lineNumber}</p>] : [];
 
   function tokenizeVariable(value) {
     // Modifies the regular expression to match anything
@@ -26,6 +27,7 @@ module.exports = (code, lang, opts = { tokenizeVariables: false }) => {
 
   let curStyle = null;
   let accum = '';
+
   function flush() {
     accum = opts.tokenizeVariables ? tokenizeVariable(accum) : accum;
     if (curStyle) {
@@ -37,6 +39,12 @@ module.exports = (code, lang, opts = { tokenizeVariables: false }) => {
       );
     } else {
       output.push(accum);
+
+      const lineBreakRegex = /\n/g;
+      if (opts.highlightMode && lineBreakRegex.test(accum)) {
+        lineNumber++;
+        output.push(<p key={`ln-${lineNumber}`} className="cm-lineNumber">{lineNumber}</p>);
+      }
     }
   }
 
@@ -50,6 +58,5 @@ module.exports = (code, lang, opts = { tokenizeVariables: false }) => {
     }
   });
   flush();
-
   return output;
 };
