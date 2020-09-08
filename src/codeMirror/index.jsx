@@ -69,5 +69,5 @@ module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: 
   });
   flush();
   console.log(output);
-  return output;
+  return <div className="CodeMirror cm-s-material-palenight">{output}</div>;
 };

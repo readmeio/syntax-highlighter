@@ -26,14 +26,13 @@ const CodeEditor = ({ className, code, lang, options = {}, children, ...attr }) 
   }, [lang]);
 
   return (
-    <div className="CodeEditor">
-      <CodeMirror
-        {...attr}
-        onBeforeChange={(editor, data, updatedCode) => setValue(updatedCode)}
-        options={{ ...defaults, ...options, mode }}
-        value={value}
-      />
-    </div>
+    <CodeMirror
+      {...attr}
+      className="CodeEditor"
+      onBeforeChange={(editor, data, updatedCode) => setValue(updatedCode)}
+      options={{ ...defaults, ...options, mode }}
+      value={value}
+    />
   );
 };
 
@@ -51,7 +50,7 @@ CodeEditor.propTypes = {
   options: PropTypes.object,
   /** Syntax highlighting theme.
    */
-  theme: PropTypes.oneOf(['light', 'dark']),
+  theme: PropTypes.oneOf(['light', 'dark'])
 };
 
 CodeEditor.defaultProps = {
