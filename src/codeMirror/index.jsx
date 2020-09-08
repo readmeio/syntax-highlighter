@@ -8,17 +8,17 @@ require('./style.scss');
 require('codemirror/addon/runmode/runmode');
 require('codemirror/mode/meta.js');
 
+const defaultLineJsx = line => (
+  <p key={`ln-${line}`} className="cm-lineNumber cm-overlay">
+    {line}
+  </p>
+);
+
 module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
   let key = 0;
   let lineNumber = 1;
   const mode = getMode(lang);
-  const output = opts.highlightMode
-    ? [
-        <p key={`ln-${lineNumber}`} className="cm-lineNumber cm-overlay">
-          {lineNumber}
-        </p>,
-      ]
-    : [];
+  const output = opts.highlightMode ? [defaultLineJsx(lineNumber)] : [];
 
   function tokenizeVariable(value) {
     // Modifies the regular expression to match anything
@@ -45,16 +45,6 @@ module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: 
       );
     } else {
       output.push(accum);
-
-      const lineBreakRegex = /\n/g;
-      if (opts.highlightMode && lineBreakRegex.test(accum)) {
-        lineNumber += 1;
-        output.push(
-          <p key={`ln-${lineNumber}`} className={['cm-lineNumber', lineNumber !== 2 ? 'cm-overlay' : ''].join(' ')}>
-            {lineNumber}
-          </p>
-        );
-      }
     }
   }
 
@@ -68,6 +58,24 @@ module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: 
     }
   });
   flush();
-  console.log(output);
-  return output;
+
+  if (!opts.highlightMode) return output;
+
+  const wrappedOutput = [];
+  let bucket = [];
+
+  output.forEach((o, idx) => {
+    const lineBreakRegex = /\n/g;
+    if (idx === output.length - 1) {
+      bucket.push(o);
+      wrappedOutput.push(bucket);
+    } else if (!lineBreakRegex.test(o)) bucket.push(o);
+    else {
+      wrappedOutput.push(bucket);
+      lineNumber += 1;
+      bucket = [defaultLineJsx(lineNumber)];
+    }
+  });
+
+  return wrappedOutput.map((ac, idx) => <div key={idx}>{ac}</div>);
 };
