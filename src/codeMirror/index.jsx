@@ -14,7 +14,7 @@ const defaultLineJsx = line => (
   </p>
 );
 
-module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
+const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
   let key = 0;
   let lineNumber = 1;
   const mode = getMode(lang);
@@ -77,5 +77,13 @@ module.exports = (code, lang, opts = { tokenizeVariables: false, highlightMode: 
     }
   });
 
-  return wrappedOutput.map((ac, idx) => <div key={idx}>{ac}</div>);
+  return (
+    <div className="CodeMirror cm-s-material-palenight">
+      {wrappedOutput.map((ac, idx) => (
+        <div key={idx}>{ac}</div>
+      ))}
+    </div>
+  );
 };
+
+module.exports = ReadmeCodeMirror;

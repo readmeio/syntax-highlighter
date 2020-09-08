@@ -12,7 +12,7 @@ ReactDOM.render(
         --header 'authorization: Bearer 123'
         --header 'content-type: application/json'`,
         'curl',
-        { dark: true, highlightMode: true }
+        { dark: true, highlightMode: false }
       )}
     </pre>
     <hr />
