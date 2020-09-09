@@ -2,7 +2,7 @@ $gutterWidth: 43px; // enough for 3 chars
 
 .CodeEditor {
   &:not(:hover):not(:active):not(:focus) .cm-linerow {
-    &:not(.cm-overlay) {
+    &.cm-overlay {
       color: rgba(255, 255, 255, 0.5);
       opacity: 0.75;
 
@@ -16,7 +16,7 @@ $gutterWidth: 43px; // enough for 3 chars
       }
     }
 
-    &.cm-overlay {
+    &.cm-highlight {
       background: rgba(0, 0, 0, 0.25);
     }
   }
