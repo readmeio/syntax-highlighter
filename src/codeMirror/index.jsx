@@ -38,7 +38,6 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     accum = opts.tokenizeVariables ? tokenizeVariable(accum) : accum;
     if (curStyle) {
       output.push(
-        // Attempting to add the highlight class to this span only highlights certain text in the line, not everything
         // eslint-disable-next-line no-plusplus
         <span key={++key} className={`${curStyle.replace(/(^|\s+)/g, '$1cm-')}`}>
           {accum}
@@ -65,7 +64,6 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   const wrappedOutput = [];
   let bucket = [];
 
-  // Could try to move the conditonal for highlighting here - when I did I either missed out on highlighting the first or last line though
   output.forEach((o, idx) => {
     const lineBreakRegex = /\n/g;
     if (idx === output.length - 1) {
@@ -79,27 +77,29 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     }
   });
 
-  // Tried to grab the '.CodeMirror' element or assign an id/classname to query the specific divs
-  // Thought by doing that I could get each div and change their className but no luck. Also would have similar out of index issue as below
+  const createLineDiv = () => {
+    return wrappedOutput.map((ac, idx) => {
+      let div = <div key={idx}>{ac}</div>;
 
-  // indexing into wrappedOutput using the anchor and head causes issues due to the anchor possibly being 0 but then the head being out of index (5)
-
-  if (opts.highlightMode && opts.ranges) {
-    opts.ranges.forEach(([anchor, head]) => {
-      for (let i = anchor.line; i <= head.line; i += 1) {
-        // apply highlight to specific lines here - see Index.js for what the ranges input looks like
+      if (opts.highlightMode && opts.ranges) {
+        opts.ranges.forEach(([anchor, head]) => {
+          for (let i = anchor.line; i <= head.line; i += 1) {
+            if (idx + 1 === i) {
+              div = (
+                <div key={idx} className="cm-overlay">
+                  {ac}
+                </div>
+              );
+            }
+          }
+        });
       }
-    });
-  }
 
-  // the cm-overlay class name needs to go on the div we're making in {wrappedOutput}
-  return (
-    <div className="CodeMirror cm-s-material-palenight">
-      {wrappedOutput.map((ac, idx) => (
-        <div key={idx}>{ac}</div>
-      ))}
-    </div>
-  );
+      return div;
+    });
+  };
+
+  return <div className="CodeMirror cm-s-material-palenight">{createLineDiv()}</div>;
 };
 
 module.exports = ReadmeCodeMirror;
