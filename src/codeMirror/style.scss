@@ -1,18 +1,49 @@
-.cm-lineNumber {
-  display: inline;
-  line-height: inherit;
-  margin-right: 10px;
+$gutterWidth: 43px; // enough for 3 chars
 
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
+.CodeEditor {
+  &:not(:hover):not(:active):not(:focus) .cm-linerow {
+    &:not(.cm-overlay) {
+      color: rgba(255, 255, 255, 0.5);
+      opacity: 0.75;
+
+      > span,
+      > p {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .cm-lineNumber {
+        opacity: 0.75;
+      }
+    }
+
+    &.cm-overlay {
+      background: rgba(0, 0, 0, 0.25);
+    }
+  }
 }
 
-.cm-overlay {
-  transition: opacity 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  background: rgba(#242e34, 0.5);
-  width: 100%;
-  // position: fixed;
-  pointer-events: none;
+.cm-linerow {
+  position: relative;
+  text-indent: $gutterWidth + 4px;
+  transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+  > span,
+  > p {
+    transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+.cm-lineNumber {
+  color: #676e95;
+  display: inline-block;
+  left: 0;
+  margin: 0;
+  min-width: $gutterWidth;
+  padding: 0 6px 0 10px;
+  position: absolute;
+  right: auto;
+  text-align: right;
+  text-indent: 0;
+  top: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }

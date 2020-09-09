@@ -12,7 +12,7 @@ ReactDOM.render(
         --header 'authorization: Bearer 123'
         --header 'content-type: application/json'`,
         'curl',
-        { dark: true, highlightMode: false }
+        { dark: true, highlightMode: true }
       )}
     </pre>
     <hr />
@@ -23,7 +23,7 @@ ReactDOM.render(
         --url http://petstore.swagger.io/v2/pet
         --header 'authorization: Bearer 123'
         --header 'content-type: application/json'`,
-        'javascript',
+        'curl',
         { editable: true, dark: true }
       )}
     </pre>

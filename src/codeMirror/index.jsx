@@ -80,7 +80,9 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   return (
     <div className="CodeMirror cm-s-material-palenight">
       {wrappedOutput.map((ac, idx) => (
-        <div key={idx}>{ac}</div>
+        <div key={idx} className="cm-linerow">
+          {ac}
+        </div>
       ))}
     </div>
   );
