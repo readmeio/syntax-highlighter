@@ -9,12 +9,16 @@ require('./style.scss');
 require('codemirror/addon/runmode/runmode');
 require('codemirror/mode/meta.js');
 
+// Pre output conversion
+// CodeMirror "Gutter" -> Apply line numbers to styled lines
 const defaultLineJsx = line => (
   <p key={`ln-${line}`} className="cm-lineNumber">
     {line}
   </p>
 );
 
+// Wrap children elements, seperated by line into divs
+// Simple styling wrapper
 const WrappedLine = ({ className, child }) => <div className={className}>{child}</div>;
 
 WrappedLine.propTypes = {
@@ -22,6 +26,8 @@ WrappedLine.propTypes = {
   className: PropTypes.string,
 };
 
+// Final Styled Output
+// Includes Highlighted | Overlayed | null styled lines
 const StructuredOutput = ({ gutteredInput, highlights = [] }) =>
   gutteredInput.map((ac, idx) => (
     <WrappedLine
@@ -36,6 +42,12 @@ StructuredOutput.propTypes = {
   highlights: PropTypes.arrayOf(PropTypes.string),
 };
 
+/**
+ * Generate an array of classNames
+ *
+ * @arg {[][]{line: Int}} ranges
+ * @return {[String]} Consumable classNames
+ */
 const highlightedLines = ranges => {
   const highlights = [];
 
@@ -56,6 +68,13 @@ const highlightedLines = ranges => {
   return highlights;
 };
 
+/**
+ * Core Syntax Highlighter
+ * @arg {String} code
+ * @arg {String} lang
+ * @arg {{}} opts
+ * @return {[Element]} Array of DOM Elements
+ */
 const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
   let key = 0;
   let lineNumber = 1;
