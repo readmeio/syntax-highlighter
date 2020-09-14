@@ -10,7 +10,7 @@ require('codemirror/addon/runmode/runmode');
 require('codemirror/mode/meta.js');
 
 const defaultLineJsx = line => (
-  <p key={`ln-${line}`} className="cm-lineNumber cm-overlay">
+  <p key={`ln-${line}`} className="cm-lineNumber">
     {line}
   </p>
 );
