@@ -50,7 +50,7 @@ CodeEditor.propTypes = {
   options: PropTypes.object,
   /** Syntax highlighting theme.
    */
-  theme: PropTypes.oneOf(['light', 'dark'])
+  theme: PropTypes.oneOf(['light', 'dark']),
 };
 
 CodeEditor.defaultProps = {
