@@ -31,4 +31,4 @@ module.exports = (code, lang, opts = { dark: false, tokenizeVariables: false, ed
 };
 
 module.exports.uppercase = require('./utils/uppercase');
-module.exports.uppercase = require('./utils/canonical');
+module.exports.canonical = require('./utils/canonical');
