@@ -49,6 +49,10 @@ const highlightedLines = ranges => {
     }
   });
 
+  for (let i = 0; i < highlights.length; i += 1) {
+    if (!highlights[i]) highlights[i] = 'cm-overlay';
+  }
+
   return highlights;
 };
 
