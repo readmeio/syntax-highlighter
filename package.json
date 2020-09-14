@@ -24,6 +24,7 @@
   },
   "license": "ISC",
   "repository": "https://github.com/readmeio/syntax-highlighter",
+  "homepage": "https://readmeio.github.io/syntax-highlighter/",
   "devDependencies": {
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
