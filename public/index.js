@@ -8,13 +8,14 @@ ReactDOM.render(
     <pre id="hub-reference">
       {syntaxHighlighter(
         `curl --request POST
-        --url http://petstore.swagger.io/v2/pet
+        --url <<url>>
         --header 'authorization: Bearer 123'
         --header 'content-type: application/json'`,
         'curl',
         {
           dark: true,
           highlightMode: true,
+          tokenizeVariables: true,
           ranges: [
             [
               { ch: 0, line: 0 },
