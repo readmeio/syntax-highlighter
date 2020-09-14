@@ -15,6 +15,43 @@ const defaultLineJsx = line => (
   </p>
 );
 
+const WrappedLine = ({ className, child }) => <div className={className}>{child}</div>;
+
+WrappedLine.propTypes = {
+  child: PropTypes.any,
+  className: PropTypes.string,
+};
+
+const StructuredOutput = ({ gutteredInput, highlights = [] }) =>
+  gutteredInput.map((ac, idx) => (
+    <WrappedLine
+      key={`cm-wrapped-${idx}`}
+      child={ac}
+      className={['cm-linerow', highlights.length ? highlights[idx] : ''].join(' ')}
+    />
+  ));
+
+StructuredOutput.propTypes = {
+  gutteredInput: PropTypes.any,
+  highlights: PropTypes.arrayOf(PropTypes.string),
+};
+
+const highlightedLines = ranges => {
+  const highlights = [];
+
+  ranges.forEach(([anchor, head]) => {
+    const end = head.line;
+    let position = anchor.line;
+
+    while (position <= end) {
+      highlights[position] = 'cm-highlight';
+      position += 1;
+    }
+  });
+
+  return highlights;
+};
+
 const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
   let key = 0;
   let lineNumber = 1;
@@ -67,52 +104,23 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
 
   output.forEach((o, idx) => {
     const lineBreakRegex = /\n/g;
+
     if (idx === output.length - 1) {
       bucket.push(o);
       gutteredOutput.push(bucket);
-    } else if (!lineBreakRegex.test(o)) bucket.push(o);
-    else {
+    } else if (!lineBreakRegex.test(o)) {
+      bucket.push(o);
+    } else {
       gutteredOutput.push(bucket);
       lineNumber += 1;
       bucket = [defaultLineJsx(lineNumber)];
     }
   });
 
-  const WrappedLine = ({ className, child }) => <div className={className}>{child}</div>;
-
-  WrappedLine.propTypes = {
-    child: PropTypes.any,
-    className: PropTypes.string,
-  };
-
-  const StructuredOutput = ({ highlights }) =>
-    gutteredOutput.map((ac, idx) => (
-      <WrappedLine
-        key={`cm-wrapped-${idx}`}
-        child={ac}
-        className={['cm-linerow', highlights ? highlights[idx] : ''].join(' ')}
-      />
-    ));
-
-  const HighlightedOutput = () => {
-    const highlights = [];
-
-    opts.ranges.forEach(([anchor, head]) => {
-      const end = head.line;
-      let position = anchor.line;
-
-      while (position <= end) {
-        highlights[position] = 'cm-highlight';
-        position += 1;
-      }
-    });
-
-    return <StructuredOutput highlights={highlights} />;
-  };
-
+  const highlights = opts.ranges && opts.ranges.length ? highlightedLines(opts.ranges) : [];
   return (
     <div className="CodeMirror cm-s-material-palenight">
-      {opts.ranges && opts.ranges.length ? <HighlightedOutput /> : <StructuredOutput />}
+      <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
     </div>
   );
 };
