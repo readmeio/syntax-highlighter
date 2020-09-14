@@ -62,17 +62,17 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
 
   if (!opts.highlightMode) return output;
 
-  const wrappedOutput = [];
+  const gutteredOutput = [];
   let bucket = [];
 
   output.forEach((o, idx) => {
     const lineBreakRegex = /\n/g;
     if (idx === output.length - 1) {
       bucket.push(o);
-      wrappedOutput.push(bucket);
+      gutteredOutput.push(bucket);
     } else if (!lineBreakRegex.test(o)) bucket.push(o);
     else {
-      wrappedOutput.push(bucket);
+      gutteredOutput.push(bucket);
       lineNumber += 1;
       bucket = [defaultLineJsx(lineNumber)];
     }
@@ -85,30 +85,34 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     className: PropTypes.string,
   };
 
-  const HighlightedLineView = () => {
-    const styleArr = [];
+  const StructuredOutput = ({ highlights }) =>
+    gutteredOutput.map((ac, idx) => (
+      <WrappedLine
+        key={`cm-wrapped-${idx}`}
+        child={ac}
+        className={['cm-linerow', highlights ? highlights[idx] : ''].join(' ')}
+      />
+    ));
+
+  const HighlightedOutput = () => {
+    const highlights = [];
+
     opts.ranges.forEach(([anchor, head]) => {
-      let position = anchor.line;
       const end = head.line;
+      let position = anchor.line;
 
       while (position <= end) {
-        styleArr[position] = 'cm-highlight';
+        highlights[position] = 'cm-highlight';
         position += 1;
       }
     });
 
-    return wrappedOutput.map((ac, idx) => (
-      <WrappedLine key={`cm-wrapped-${idx}`} child={ac} className={['cm-linerow', styleArr[idx]].join(' ')} />
-    ));
+    return <StructuredOutput highlights={highlights} />;
   };
 
   return (
     <div className="CodeMirror cm-s-material-palenight">
-      {opts.ranges && opts.ranges.length ? (
-        <HighlightedLineView />
-      ) : (
-        wrappedOutput.map((ac, idx) => <WrappedLine key={`cm-wrapped-${idx}`} child={ac} className="cm-linerow" />)
-      )}
+      {opts.ranges && opts.ranges.length ? <HighlightedOutput /> : <StructuredOutput />}
     </div>
   );
 };
