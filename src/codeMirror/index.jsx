@@ -1,5 +1,6 @@
 const CodeMirror = require('codemirror');
 const React = require('react');
+const PropTypes = require('prop-types');
 const Variable = require('@readme/variable');
 const { getMode } = require('../utils/modes');
 
@@ -77,29 +78,39 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     }
   });
 
-  const createLineDiv = () => {
-    return wrappedOutput.map((ac, idx) => {
-      let div = <div key={idx}>{ac}</div>;
+  const WrappedLine = ({ className, child }) => <div className={className}>{child}</div>;
 
-      if (opts.highlightMode && opts.ranges) {
-        opts.ranges.forEach(([anchor, head]) => {
-          for (let i = anchor.line; i <= head.line; i += 1) {
-            if (idx + 1 === i) {
-              div = (
-                <div key={idx} className="cm-overlay">
-                  {ac}
-                </div>
-              );
-            }
-          }
-        });
-      }
-
-      return div;
-    });
+  WrappedLine.propTypes = {
+    child: PropTypes.any,
+    className: PropTypes.string,
   };
 
-  return <div className="CodeMirror cm-s-material-palenight">{createLineDiv()}</div>;
+  const HighlightedLineView = () => {
+    const styleArr = [];
+    opts.ranges.forEach(([anchor, head]) => {
+      let position = anchor.line;
+      const end = head.line;
+
+      while (position <= end) {
+        styleArr[position] = 'cm-highlight';
+        position += 1;
+      }
+    });
+
+    return wrappedOutput.map((ac, idx) => (
+      <WrappedLine key={`cm-wrapped-${idx}`} child={ac} className={['cm-linerow', styleArr[idx]].join(' ')} />
+    ));
+  };
+
+  return (
+    <div className="CodeMirror cm-s-material-palenight">
+      {opts.ranges && opts.ranges.length ? (
+        <HighlightedLineView />
+      ) : (
+        wrappedOutput.map((ac, idx) => <WrappedLine key={`cm-wrapped-${idx}`} child={ac} className="cm-linerow" />)
+      )}
+    </div>
+  );
 };
 
 module.exports = ReadmeCodeMirror;

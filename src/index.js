@@ -15,9 +15,17 @@ module.exports = (code, lang, opts = { dark: false, tokenizeVariables: false, ed
       null
     );
   }
+
+  let classes = '';
+  if (opts.highlightMode) {
+    classes = 'CodeEditor cm-s-material-palenight';
+  } else {
+    classes = opts.dark ? 'cm-s-tomorrow-night' : 'cm-s-neo';
+  }
+
   return React.createElement(
     'div',
-    { className: 'CodeEditor' },
+    { className: classes },
     codemirror(typeof code === 'string' ? code : '', lang, opts)
   );
 };

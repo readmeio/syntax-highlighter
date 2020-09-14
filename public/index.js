@@ -10,8 +10,7 @@ ReactDOM.render(
         `curl --request POST
         --url http://petstore.swagger.io/v2/pet
         --header 'authorization: Bearer 123'
-        --header 'content-type: application/json'
-        I needed a fifth line to test something`,
+        --header 'content-type: application/json'`,
         'curl',
         {
           dark: true,
@@ -37,7 +36,7 @@ ReactDOM.render(
         --url http://petstore.swagger.io/v2/pet
         --header 'authorization: Bearer 123'
         --header 'content-type: application/json'`,
-        'javascript',
+        'curl',
         { editable: true, dark: true }
       )}
     </pre>
