@@ -32,7 +32,6 @@ describe('<CodeEditor/>', () => {
     expect(node.props().lang).toBe('kotlin');
 
     setTimeout(() => {
-      console.log(cm.props());
       expect(cm.props().options.mode).toBe('clike');
     });
   });
