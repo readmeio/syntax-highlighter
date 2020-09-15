@@ -1,3 +1,10 @@
+## 9.0.0 (2020-09-15)
+
+* feat: code editor export (#5) ([3c2baa0](https://github.com/readmeio/syntax-highlighter/commit/3c2baa0)), closes [#5](https://github.com/readmeio/syntax-highlighter/issues/5) [#6](https://github.com/readmeio/syntax-highlighter/issues/6)
+* docs: adding a line break in the readme ([6819099](https://github.com/readmeio/syntax-highlighter/commit/6819099))
+
+
+
 ## <small>8.0.3 (2020-09-02)</small>
 
 * chore(deps): upgrading @readme/variable to 7.2.1 ([7ec28f3](https://github.com/readmeio/syntax-highlighter/commit/7ec28f3))
