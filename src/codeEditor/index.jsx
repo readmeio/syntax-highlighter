@@ -42,7 +42,7 @@ CodeEditor.propTypes = {
   /** CodeMirror language mode to use.
    */
   lang: PropTypes.string,
-  /** Custom CodeMirror  configuration.
+  /** Custom CodeMirror configuration.
    */
   options: PropTypes.object,
   /** Syntax highlighting theme.

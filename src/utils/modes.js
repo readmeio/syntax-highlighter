@@ -1,5 +1,5 @@
 // This is a mapping of languages that we support, but aren't directly loading the mode extension
-// for within `/src/codeMirror/index.jsx` and /src/codeEditor.index.jsx
+// Within `/src/codeMirror/index.jsx` and /src/codeEditor.index.jsx
 //
 // This list also includes a number of language aliases, as because of the way we're using
 // `CodeMirror.runMode` we can't take advantage of its known aliases in the mode extensions that

@@ -67,6 +67,41 @@ const highlightedLines = ranges => {
   return highlights;
 };
 
+const StyledSyntaxHighlighter = ({ output, ranges }) => {
+  const gutteredOutput = [];
+  let bucket = [];
+  let lineNumber = 1;
+
+  output.unshift(defaultLineJsx(1));
+  output.forEach((o, idx) => {
+    const lineBreakRegex = /\n/g;
+
+    if (idx === output.length - 1) {
+      bucket.push(o);
+      gutteredOutput.push(bucket);
+    } else if (!lineBreakRegex.test(o)) {
+      bucket.push(o);
+    } else {
+      gutteredOutput.push(bucket);
+      lineNumber += 1;
+      bucket = [defaultLineJsx(lineNumber)];
+    }
+  });
+
+  const highlights = ranges && ranges.length ? highlightedLines(ranges) : [];
+  //
+  return (
+    <div className="CodeMirror cm-s-material-palenight">
+      <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
+    </div>
+  );
+};
+
+StyledSyntaxHighlighter.propTypes = {
+  output: PropTypes.arrayOf(PropTypes.any),
+  ranges: PropTypes.arrayOf(PropTypes.any),
+};
+
 /**
  * Core Syntax Highlighter
  * @arg {String} code
@@ -76,9 +111,8 @@ const highlightedLines = ranges => {
  */
 const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
   let key = 0;
-  let lineNumber = 1;
   const mode = getMode(lang);
-  const output = opts.highlightMode ? [defaultLineJsx(lineNumber)] : [];
+  const output = [];
 
   function tokenizeVariable(value) {
     // Modifies the regular expression to match anything
@@ -119,32 +153,12 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   });
   flush();
 
+  // Return legacy DOM structure
+  // Array of <span /> elements
   if (!opts.highlightMode) return output;
-
-  const gutteredOutput = [];
-  let bucket = [];
-
-  output.forEach((o, idx) => {
-    const lineBreakRegex = /\n/g;
-
-    if (idx === output.length - 1) {
-      bucket.push(o);
-      gutteredOutput.push(bucket);
-    } else if (!lineBreakRegex.test(o)) {
-      bucket.push(o);
-    } else {
-      gutteredOutput.push(bucket);
-      lineNumber += 1;
-      bucket = [defaultLineJsx(lineNumber)];
-    }
-  });
-
-  const highlights = opts.ranges && opts.ranges.length ? highlightedLines(opts.ranges) : [];
-  return (
-    <div className="CodeMirror cm-s-material-palenight">
-      <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
-    </div>
-  );
+  // Return Codemirror-Styled DOM structure
+  // Includes line numbers, styling, optional highlighting
+  return <StyledSyntaxHighlighter output={output} ranges={opts.ranges} />;
 };
 
 export default ReadmeCodeMirror;
