@@ -1,7 +1,7 @@
 {
   "threshold": 30,
   "identifiers": true,
-  "ignore": "test",
+  "ignore": "test|dist|webpack",
   "reporter": "default",
   "suppress": 100
 }

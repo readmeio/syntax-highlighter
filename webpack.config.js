@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: ['./src/index.js'],
+  mode: 'production',
   module: {
     rules: [
       {
@@ -14,11 +15,31 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.s?css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
+  },
+  externals: {
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+      umd: 'react',
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom',
+      umd: 'react-dom',
+    },
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

@@ -1,11 +1,8 @@
-const { mount, shallow } = require('enzyme');
-const path = require('path');
-const glob = require('glob');
-const fs = require('fs').promises;
-
-const syntaxHighlighter = require('../src');
-const uppercase = require('../src/uppercase');
-const canoncial = require('../src/canonical');
+import { mount, shallow } from 'enzyme';
+import path from 'path';
+import glob from 'glob';
+import { promises as fs } from 'fs';
+import syntaxHighlighter, { uppercase, canonical } from '../src';
 
 const fixtures = glob.sync(path.join(__dirname, '/__fixtures__/*'));
 
@@ -14,7 +11,7 @@ test('should highlight a block of code', () => {
 
   expect(code.hasClass('cm-s-neo')).toBe(true);
   expect(code.html()).toBe(
-    '<span class="cm-s-neo"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</span>'
+    '<div class="cm-s-neo"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>'
   );
 });
 
@@ -38,7 +35,7 @@ test('should concat the same style items', () => {
 
 test('should work with modes', () => {
   expect(shallow(syntaxHighlighter('{ "a": 1 }', 'json')).html()).toBe(
-    '<span class="cm-s-neo">{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</span>'
+    '<div class="cm-s-neo">{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</div>'
   );
 });
 
@@ -109,11 +106,11 @@ describe('Supported languages', () => {
 
           if ('canonical' in instructions.mode) {
             it('should have a canonical directive set up', () => {
-              expect(canoncial(alias)).toBe(instructions.mode.canonical);
+              expect(canonical(alias)).toBe(instructions.mode.canonical);
             });
           } else {
             it('should have a canonical directive set up off the primary mode', () => {
-              expect(canoncial(alias)).toBe(instructions.mode.primary);
+              expect(canonical(alias)).toBe(instructions.mode.primary);
             });
           }
         });
@@ -130,5 +127,37 @@ describe('Supported languages', () => {
         expect(shallow(syntaxHighlighter('echo "Hello World";', 'php')).html()).toContain('cm-keyword');
       });
     }
+  });
+});
+
+describe('highlight mode', () => {
+  let node;
+  const code = `curl --request POST
+  --url <<url>>
+  --header 'authorization: Bearer 123'
+  --header 'content-type: application/json'`;
+
+  beforeEach(() => {
+    node = mount(
+      syntaxHighlighter(code, 'curl', {
+        dark: true,
+        highlightMode: true,
+        tokenizeVariables: true,
+        ranges: [
+          [
+            { ch: 0, line: 0 },
+            { ch: 0, line: 1 },
+          ],
+        ],
+      })
+    );
+  });
+
+  it('should return line numbers by default', () => {
+    expect(node.find('p').first().hasClass('cm-lineNumber')).toBe(true);
+  });
+
+  it('should highlight based on range input', () => {
+    expect(node.find('.cm-linerow.cm-highlight')).toHaveLength(4);
   });
 });

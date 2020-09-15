@@ -1,14 +1,36 @@
-const React = require('react');
-const codemirror = require('./codemirror.jsx');
+import React from 'react';
+import codemirror from './codeMirror';
+import codeEditor from './codeEditor';
+import uppercase from './utils/uppercase';
+import canonical from './utils/canonical';
 
-// eslint-disable-next-line react/display-name
-module.exports = (code, lang, opts = { dark: false, tokenizeVariables: false }) =>
-  React.createElement(
-    'span',
-    {
-      className: opts.dark ? 'cm-s-tomorrow-night' : 'cm-s-neo',
-    },
+const SyntaxHighlighter = (
+  code,
+  lang,
+  opts = { dark: false, tokenizeVariables: false, editable: false },
+  editorProps = {}
+) => {
+  if (opts.editable) {
+    return React.createElement(codeEditor, {
+      ...editorProps,
+      code,
+      lang,
+    });
+  }
+
+  let classes = '';
+  if (opts.highlightMode) {
+    classes = 'CodeEditor cm-s-material-palenight';
+  } else {
+    classes = opts.dark ? 'cm-s-tomorrow-night' : 'cm-s-neo';
+  }
+
+  return React.createElement(
+    'div',
+    { className: classes },
     codemirror(typeof code === 'string' ? code : '', lang, opts)
   );
+};
 
-module.exports.uppercase = require('./uppercase');
+export default SyntaxHighlighter;
+export { uppercase, canonical };

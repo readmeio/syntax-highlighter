@@ -1,6 +1,6 @@
 # @readme/syntax-highlighter
 
-ReadMe's React-based syntax highlighter
+ReadMe's React-based syntax highlighter based on [CodeMirror](https://github.com/codemirror/CodeMirror) and [react-codemirror2](https://github.com/scniro/react-codemirror2).
 
 [![npm](https://img.shields.io/npm/v/@readme/syntax-highlighter)](https://npm.im/@readme/syntax-highlighter) [![Build](https://github.com/readmeio/syntax-highlighter/workflows/CI/badge.svg)](https://github.com/readmeio/syntax-highlighter)
 
@@ -13,11 +13,49 @@ npm install --save @readme/syntax-highlighter
 ```
 
 ## Usage
+### Read Only Mode
+```js
+const syntaxHighlighter = require('@readme/syntax-highlighter');
+const ele = syntaxHighlighter('console.log("Hello, world!");', 'js');
+```
+
+### Read Only with Line Numbers
+```js
+const syntaxHighlighter = require('@readme/syntax-highlighter');
+const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, highlightMode: true });
+```
+
+### Read Only with Line Numbers and Highlighted Ranges
+```js
+const syntaxHighlighter = require('@readme/syntax-highlighter');
+const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', {
+  ...opts,
+  highlightMode: true,
+  ranges: [
+    [
+      { ch: 0, line: 0 },
+      { ch: 0, line: 1 },
+    ],
+  ],
+});
+```
+
+### Full CodeMirror
+Access to a full code Mirror instance. See configuration settings in the [react-codemirror2 library](https://github.com/scniro/react-codemirror2#props)
 
 ```js
 const syntaxHighlighter = require('@readme/syntax-highlighter');
-console.log(syntaxHighlighter('console.log("Hello, world!");', 'js'));
+const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, editable: true }, { ...editorProps });
 ```
+
+### Available Options
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| dark | boolean | Enable Dark Mode? |
+| highlightMode | boolean | Enable line number display and ability to set highlighted line css |
+| tokenizeVariables | boolean | Apply [Variable Component](https://github.com/readmeio/api-explorer/tree/next/packages/variable) to matched Regex |
+| ranges | array | Ranges of line numbers to apply highlighting to. Requires `highlightMode` enabled |
+| editable | boolean | Enable full CodeMirror Instance |
 
 ## Languages Supported
 
