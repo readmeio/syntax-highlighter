@@ -23,12 +23,7 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        sourceMap: true,
-        parallel: true,
-      }),
-    ],
+    minimizer: [new TerserPlugin()],
   },
   externals: {
     react: {
