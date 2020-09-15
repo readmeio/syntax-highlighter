@@ -3,6 +3,7 @@
   "description": "ReadMe's React-based syntax highlighter",
   "version": "8.0.3",
   "main": "dist/index.js",
+  "type": "module",
   "dependencies": {
     "@readme/variable": "^7.2.1",
     "codemirror": "^5.48.2",
@@ -12,7 +13,7 @@
     "react-dom": "^16.13.1"
   },
   "scripts": {
-    "build": "webpack --config ./webpack.config.js",
+    "build": "webpack --config ./webpack.config.js -p",
     "inspect": "jsinspect",
     "lint": "eslint . --ext .jsx --ext .js",
     "pretest": "npm run lint && npm run prettier && npm run inspect",
@@ -33,6 +34,7 @@
     "@readme/eslint-config": "^3.2.0",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "babel-polyfill": "^6.26.0",
     "conventional-changelog-cli": "^2.1.0",
     "css-loader": "^3.4.2",

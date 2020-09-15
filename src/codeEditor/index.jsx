@@ -1,12 +1,9 @@
-const React = require('react');
-const PropTypes = require('prop-types');
-const { Controlled: CodeMirror } = require('react-codemirror2');
-
-const { getMode } = require('../utils/modes');
-const defaults = require('./cm.options');
-require('./style.scss');
-
-const { useEffect, useState } = React;
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Controlled as CodeMirror } from 'react-codemirror2';
+import { getMode } from '../utils/modes';
+import defaults from './cm.options';
+import './style.scss';
 
 const CodeEditor = ({ className, code, lang, options, children, ...attr }) => {
   const [value, setValue] = useState(children && typeof children === 'string' ? children : code);
@@ -60,4 +57,4 @@ CodeEditor.defaultProps = {
   theme: 'dark',
 };
 
-module.exports = CodeEditor;
+export default CodeEditor;

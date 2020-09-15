@@ -1,13 +1,12 @@
-const CodeMirror = require('codemirror');
-const React = require('react');
-const PropTypes = require('prop-types');
-const Variable = require('@readme/variable');
-const { getMode } = require('../utils/modes');
+import CodeMirror from 'codemirror';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Variable, { VARIABLE_REGEXP } from '@readme/variable';
+import { getMode } from '../utils/modes';
 
-const { VARIABLE_REGEXP } = Variable;
-require('./style.scss');
-require('codemirror/addon/runmode/runmode');
-require('codemirror/mode/meta.js');
+import './style.scss';
+import 'codemirror/addon/runmode/runmode';
+import 'codemirror/mode/meta';
 
 // Pre output conversion
 // CodeMirror "Gutter" -> Apply line numbers to styled lines
@@ -148,4 +147,4 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   );
 };
 
-module.exports = ReadmeCodeMirror;
+export default ReadmeCodeMirror;

@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: ['./src/index.js'],
+  mode: 'production',
   module: {
     rules: [
       {
@@ -22,7 +23,12 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new TerserPlugin({
+        sourceMap: true,
+        parallel: true,
+      }),
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
