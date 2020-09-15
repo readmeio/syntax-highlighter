@@ -13,7 +13,7 @@
     "react-dom": "^16.13.1"
   },
   "scripts": {
-    "build": "webpack --config ./webpack.config.js -p",
+    "build": "webpack",
     "inspect": "jsinspect",
     "lint": "eslint . --ext .jsx --ext .js",
     "pretest": "npm run lint && npm run prettier && npm run inspect",
