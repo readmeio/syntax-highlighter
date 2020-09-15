@@ -20,6 +20,7 @@ console.log(syntaxHighlighter('console.log("Hello, world!");', 'js'));
 ```
 
 ## Languages Supported
+
 | Language | Available language mode(s) |
 | :--- | :--- |
 | ASP.NET | `asp`, `aspx` |
