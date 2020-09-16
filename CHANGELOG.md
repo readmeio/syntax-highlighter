@@ -1,3 +1,10 @@
+## <small>9.0.1 (2020-09-16)</small>
+
+* chore: line number dom elements updated to use span (#8) ([85aeb0e](https://github.com/readmeio/syntax-highlighter/commit/85aeb0e)), closes [#8](https://github.com/readmeio/syntax-highlighter/issues/8)
+* fix(highlighting): fixing an issue where overlay was not applied correctly (#7) ([df2236e](https://github.com/readmeio/syntax-highlighter/commit/df2236e)), closes [#7](https://github.com/readmeio/syntax-highlighter/issues/7)
+
+
+
 ## 9.0.0 (2020-09-15)
 
 * feat: code editor export (#5) ([3c2baa0](https://github.com/readmeio/syntax-highlighter/commit/3c2baa0)), closes [#5](https://github.com/readmeio/syntax-highlighter/issues/5) [#6](https://github.com/readmeio/syntax-highlighter/issues/6)
