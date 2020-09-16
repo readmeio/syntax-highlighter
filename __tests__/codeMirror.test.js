@@ -155,7 +155,7 @@ describe('highlight mode', () => {
   });
 
   it('should return line numbers by default', () => {
-    expect(node.find('p').first().hasClass('cm-lineNumber')).toBe(true);
+    expect(node.find('span').first().hasClass('cm-lineNumber')).toBe(true);
   });
 
   it('should convert variable regex matches to a component instance', () => {

@@ -11,9 +11,9 @@ import 'codemirror/mode/meta';
 // Pre output conversion
 // CodeMirror "Gutter" -> Apply line numbers to styled lines
 const defaultLineJsx = line => (
-  <p key={`ln-${line}`} className="cm-lineNumber">
+  <span key={`ln-${line}`} className="cm-lineNumber">
     {line}
-  </p>
+  </span>
 );
 
 // Wrap children elements, seperated by line into divs
