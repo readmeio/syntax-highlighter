@@ -2,6 +2,7 @@ import { mount, shallow } from 'enzyme';
 import path from 'path';
 import glob from 'glob';
 import { promises as fs } from 'fs';
+import Variable from '@readme/variable';
 import syntaxHighlighter, { uppercase, canonical } from '../src';
 
 const fixtures = glob.sync(path.join(__dirname, '/__fixtures__/*'));
@@ -157,7 +158,15 @@ describe('highlight mode', () => {
     expect(node.find('p').first().hasClass('cm-lineNumber')).toBe(true);
   });
 
+  it('should convert variable regex matches to a component instance', () => {
+    expect(node.find(Variable)).toHaveLength(1);
+  });
+
   it('should highlight based on range input', () => {
-    expect(node.find('.cm-linerow.cm-highlight')).toHaveLength(4);
+    expect(node.find('.cm-linerow.cm-highlight')).toHaveLength(2);
+  });
+
+  it('should add an overlay to non-highlighted in lines when ranges are applied', () => {
+    expect(node.find('.cm-linerow.cm-overlay')).toHaveLength(6);
   });
 });
