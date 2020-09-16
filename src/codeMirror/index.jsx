@@ -47,20 +47,19 @@ StructuredOutput.propTypes = {
  * @arg {[][]{line: Int}} ranges
  * @return {[String]} Consumable classNames
  */
-const highlightedLines = ranges => {
+const highlightedLines = (ranges, totalLength) => {
   const highlights = [];
 
   ranges.forEach(([anchor, head]) => {
     const end = head.line;
     let position = anchor.line;
-
-    while (position <= end) {
+    while (position < end) {
       highlights[position] = 'cm-highlight';
       position += 1;
     }
   });
 
-  for (let i = 0; i < highlights.length; i += 1) {
+  for (let i = 0; i < totalLength; i += 1) {
     if (!highlights[i]) highlights[i] = 'cm-overlay';
   }
 
@@ -88,7 +87,7 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
     }
   });
 
-  const highlights = ranges && ranges.length ? highlightedLines(ranges) : [];
+  const highlights = ranges && ranges.length ? highlightedLines(ranges, gutteredOutput.length) : [];
   return (
     <div className="CodeMirror cm-s-material-palenight">
       <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
