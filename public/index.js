@@ -7,11 +7,8 @@ ReactDOM.render(
     <h1>Core Syntax Highlighter</h1>
     <pre id="hub-reference">
       {syntaxHighlighter(
-        `curl --request POST
-        --url <<url>>
-        --header 'authorization: Bearer 123'
-        --header 'content-type: application/json'`,
-        'curl',
+        `const request = require('request');\n\n\nconst options = {\n  method: 'GET',\n  url: 'http://petstore.swagger.io/api/pets',\n  headers: {accept: 'application/json'}\n\n};\n\nrequest(options, function (error, response, body) {\n  if (error) throw new Error(error);\n\n  console.log(body);\n});`,
+        'javascript',
         {
           dark: true,
           highlightMode: true,

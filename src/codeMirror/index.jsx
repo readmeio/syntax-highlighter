@@ -66,14 +66,27 @@ const highlightedLines = (ranges, totalLength) => {
   return highlights;
 };
 
+// const retrieveNewlines = string => {
+//   if (!string.length) return string;
+//   const match = lineBreakRegex.exec(string);
+//   if match()
+//   return string;
+// };
+
 const StyledSyntaxHighlighter = ({ output, ranges }) => {
   const gutteredOutput = [];
   let bucket = [];
   let lineNumber = 1;
 
+  const incrementLine = () => {
+    gutteredOutput.push(bucket);
+    lineNumber += 1;
+    bucket = [defaultLineJsx(lineNumber)];
+  };
+
   output.unshift(defaultLineJsx(1));
   output.forEach((o, idx) => {
-    const lineBreakRegex = /\n/g;
+    const lineBreakRegex = /\r?\n/;
 
     if (idx === output.length - 1) {
       bucket.push(o);
@@ -81,16 +94,28 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
     } else if (!lineBreakRegex.test(o)) {
       bucket.push(o);
     } else {
-      gutteredOutput.push(bucket);
-      lineNumber += 1;
-      bucket = [defaultLineJsx(lineNumber)];
+      const matches = o.split(lineBreakRegex);
+      console.log(matches);
+      matches.forEach((m, index) => {
+        if (m.length) {
+          bucket.push(m);
+        } else if (!m.length && matches[index + 1]) {
+          bucket.push('\n');
+          // incrementLine();
+        } else {
+        // } else if (!m.length && typeof matches[index + 1] !== 'undefined' && !matches[index + 1].length) {
+          incrementLine();
+          // bucket.push('\n');
+        }
+      });
+      incrementLine();
     }
   });
 
   const highlights = ranges && ranges.length ? highlightedLines(ranges, gutteredOutput.length) : [];
   return (
     <div className="CodeMirror cm-s-material-palenight">
-      <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
+      {output}
     </div>
   );
 };
