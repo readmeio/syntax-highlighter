@@ -1,3 +1,20 @@
+## 10.0.0 (2020-10-05)
+
+* fix(bundle): client and server compatibility (#20) ([bd4362b](https://github.com/readmeio/syntax-highlighter/commit/bd4362b)), closes [#20](https://github.com/readmeio/syntax-highlighter/issues/20)
+* chore(deps-dev): bump @commitlint/cli from 9.1.2 to 11.0.0 (#10) ([c466e8d](https://github.com/readmeio/syntax-highlighter/commit/c466e8d)), closes [#10](https://github.com/readmeio/syntax-highlighter/issues/10)
+* chore(deps-dev): bump @commitlint/config-conventional (#19) ([b700798](https://github.com/readmeio/syntax-highlighter/commit/b700798)), closes [#19](https://github.com/readmeio/syntax-highlighter/issues/19)
+* chore(deps-dev): bump css-loader from 3.6.0 to 4.3.0 (#16) ([e3c0c67](https://github.com/readmeio/syntax-highlighter/commit/e3c0c67)), closes [#16](https://github.com/readmeio/syntax-highlighter/issues/16)
+* chore(deps-dev): bump eslint from 7.8.0 to 7.10.0 (#11) ([d5e30e0](https://github.com/readmeio/syntax-highlighter/commit/d5e30e0)), closes [#11](https://github.com/readmeio/syntax-highlighter/issues/11)
+* chore(deps-dev): bump husky from 4.2.5 to 4.3.0 (#18) ([7e437fe](https://github.com/readmeio/syntax-highlighter/commit/7e437fe)), closes [#18](https://github.com/readmeio/syntax-highlighter/issues/18)
+* chore(deps-dev): bump prettier from 2.1.1 to 2.1.2 (#14) ([f3c572f](https://github.com/readmeio/syntax-highlighter/commit/f3c572f)), closes [#14](https://github.com/readmeio/syntax-highlighter/issues/14)
+* chore(deps-dev): bump sass-loader from 10.0.1 to 10.0.2 (#12) ([2e9a2e9](https://github.com/readmeio/syntax-highlighter/commit/2e9a2e9)), closes [#12](https://github.com/readmeio/syntax-highlighter/issues/12)
+* chore(deps-dev): bump terser-webpack-plugin from 4.1.0 to 4.2.2 (#15) ([9c0d3dc](https://github.com/readmeio/syntax-highlighter/commit/9c0d3dc)), closes [#15](https://github.com/readmeio/syntax-highlighter/issues/15)
+* chore(deps-dev): bump webpack from 4.44.1 to 4.44.2 (#17) ([828adca](https://github.com/readmeio/syntax-highlighter/commit/828adca)), closes [#17](https://github.com/readmeio/syntax-highlighter/issues/17)
+* chore(deps): bump actions/checkout from v2.3.2 to v2.3.3 (#9) ([6f1fda0](https://github.com/readmeio/syntax-highlighter/commit/6f1fda0)), closes [#9](https://github.com/readmeio/syntax-highlighter/issues/9)
+* chore(deps): bump codemirror from 5.57.0 to 5.58.1 (#13) ([7d7c7b3](https://github.com/readmeio/syntax-highlighter/commit/7d7c7b3)), closes [#13](https://github.com/readmeio/syntax-highlighter/issues/13)
+
+
+
 ## <small>9.0.1 (2020-09-16)</small>
 
 * chore: line number dom elements updated to use span (#8) ([85aeb0e](https://github.com/readmeio/syntax-highlighter/commit/85aeb0e)), closes [#8](https://github.com/readmeio/syntax-highlighter/issues/8)
