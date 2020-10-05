@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import { getMode } from '../utils/modes';
 import defaults from './cm.options';
+import '../utils/cm-mode-imports';
 import './style.scss';
 
 const CodeEditor = ({ className, code, lang, options, children, ...attr }) => {

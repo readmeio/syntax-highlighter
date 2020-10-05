@@ -1,8 +1,7 @@
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
-module.exports = {
-  entry: ['./src/index.js'],
+const base = {
   mode: 'production',
   module: {
     rules: [
@@ -41,12 +40,31 @@ module.exports = {
       umd: 'react-dom',
     },
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+};
+
+const serverConfig = {
+  ...base,
+  target: 'node',
+  entry: ['./src/index.node.js'],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.node.js',
+    libraryTarget: 'commonjs2',
+  },
+};
+
+const clientConfig = {
+  ...base,
+  target: 'web',
+  entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
     libraryTarget: 'commonjs2',
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
 };
+
+module.exports = [serverConfig, clientConfig];
