@@ -28,13 +28,16 @@ WrappedLine.propTypes = {
 // Final Styled Output
 // Includes Highlighted | Overlayed | null styled lines
 const StructuredOutput = ({ gutteredInput, highlights = [] }) =>
-  gutteredInput.map((ac, idx) => (
-    <WrappedLine
-      key={`cm-wrapped-${idx}`}
-      child={ac}
-      className={['cm-linerow', highlights.length ? highlights[idx] : ''].join(' ')}
-    />
-  ));
+  gutteredInput.map((ac, idx) => {
+    console.log(ac);
+    return (
+      <WrappedLine
+        key={`cm-wrapped-${idx}`}
+        child={ac}
+        className={['cm-linerow', highlights.length ? highlights[idx] : ''].join(' ')}
+      />
+    );
+  });
 
 StructuredOutput.propTypes = {
   gutteredInput: PropTypes.any,
@@ -95,27 +98,22 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
       bucket.push(o);
     } else {
       const matches = o.split(lineBreakRegex);
-      console.log(matches);
-      matches.forEach((m, index) => {
+      matches.forEach(m => {
         if (m.length) {
           bucket.push(m);
-        } else if (!m.length && matches[index + 1]) {
-          bucket.push('\n');
-          // incrementLine();
         } else {
-        // } else if (!m.length && typeof matches[index + 1] !== 'undefined' && !matches[index + 1].length) {
+          bucket.push('\n');
           incrementLine();
-          // bucket.push('\n');
         }
       });
-      incrementLine();
     }
   });
 
   const highlights = ranges && ranges.length ? highlightedLines(ranges, gutteredOutput.length) : [];
   return (
     <div className="CodeMirror cm-s-material-palenight">
-      {output}
+      <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
+      {/* {output} */}
     </div>
   );
 };
