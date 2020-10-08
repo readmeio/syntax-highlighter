@@ -74,23 +74,34 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
   let bucket = [];
   let lineNumber = 1;
 
-  const incrementLine = () => {
+  const incrementLine = newLine => {
+    // If new line, we'll manually add it to a bucket
+    if (newLine) bucket.push('\n');
+    // Regardless, we'll add the bucket to our larger output and start a new numbered div
     gutteredOutput.push(bucket);
     lineNumber += 1;
     bucket = [defaultLineJsx(lineNumber)];
   };
 
   const enumerateMatches = (o, final) => {
-    const matches = o.split(lineBreakRegex);
-    matches.forEach(m => {
-      if (m.length) {
-        bucket.push(m);
+    if (typeof o === 'string') {
+      // Case where a single line break
+      if (o.length === 1) {
+        incrementLine(true);
+        // Case with multiple consecutive line breaks
       } else {
-        bucket.push('\n');
-        incrementLine();
+        const matches = o.split(lineBreakRegex);
+        matches.forEach(m => {
+          if (m.length) {
+            bucket.push(m);
+          } else {
+            incrementLine(true);
+          }
+          // If we've found a match right before the end of our output, we pad it
+          if (final) incrementLine();
+        });
       }
-      if (final) incrementLine();
-    });
+    }
   };
 
   output.unshift(defaultLineJsx(1));
