@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Variable, { VARIABLE_REGEXP } from '@readme/variable';
 import { getMode } from '../utils/modes';
 
+import '../utils/cm-mode-imports';
 import './style.scss';
 import 'codemirror/addon/runmode/runmode';
 import 'codemirror/mode/meta';

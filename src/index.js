@@ -3,6 +3,7 @@ import codemirror from './codeMirror';
 import codeEditor from './codeEditor';
 import uppercase from './utils/uppercase';
 import canonical from './utils/canonical';
+import { modes } from './utils/modes';
 
 const SyntaxHighlighter = (
   code,
@@ -33,4 +34,4 @@ const SyntaxHighlighter = (
 };
 
 export default SyntaxHighlighter;
-export { uppercase, canonical };
+export { uppercase, canonical, modes };
