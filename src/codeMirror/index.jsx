@@ -29,7 +29,6 @@ WrappedLine.propTypes = {
 // Includes Highlighted | Overlayed | null styled lines
 const StructuredOutput = ({ gutteredInput, highlights = [] }) =>
   gutteredInput.map((ac, idx) => {
-    console.log(ac);
     return (
       <WrappedLine
         key={`cm-wrapped-${idx}`}
@@ -69,14 +68,8 @@ const highlightedLines = (ranges, totalLength) => {
   return highlights;
 };
 
-// const retrieveNewlines = string => {
-//   if (!string.length) return string;
-//   const match = lineBreakRegex.exec(string);
-//   if match()
-//   return string;
-// };
-
 const StyledSyntaxHighlighter = ({ output, ranges }) => {
+  const lineBreakRegex = /\r?\n/;
   const gutteredOutput = [];
   let bucket = [];
   let lineNumber = 1;
@@ -87,25 +80,28 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
     bucket = [defaultLineJsx(lineNumber)];
   };
 
+  const enumerateMatches = (o, final) => {
+    const matches = o.split(lineBreakRegex);
+    matches.forEach(m => {
+      if (m.length) {
+        bucket.push(m);
+      } else {
+        bucket.push('\n');
+        incrementLine();
+      }
+      if (final) incrementLine();
+    });
+  };
+
   output.unshift(defaultLineJsx(1));
   output.forEach((o, idx) => {
-    const lineBreakRegex = /\r?\n/;
-
     if (idx === output.length - 1) {
-      bucket.push(o);
+      enumerateMatches(o, true);
       gutteredOutput.push(bucket);
     } else if (!lineBreakRegex.test(o)) {
       bucket.push(o);
     } else {
-      const matches = o.split(lineBreakRegex);
-      matches.forEach(m => {
-        if (m.length) {
-          bucket.push(m);
-        } else {
-          bucket.push('\n');
-          incrementLine();
-        }
-      });
+      enumerateMatches(o);
     }
   });
 
@@ -113,7 +109,6 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
   return (
     <div className="CodeMirror cm-s-material-palenight">
       <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
-      {/* {output} */}
     </div>
   );
 };
