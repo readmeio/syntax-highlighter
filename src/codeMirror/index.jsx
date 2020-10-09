@@ -85,34 +85,35 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
   };
 
   const enumerateMatches = (o, final) => {
-    if (typeof o === 'string') {
-      // Case where a single line break
-      if (o.length === 1) {
-        incrementLine(true);
-        // Case with multiple consecutive line breaks
-      } else {
-        const matches = o.split(lineBreakRegex);
-        matches.forEach(m => {
-          if (m.length) {
-            bucket.push(m);
-          } else {
-            incrementLine(true);
-          }
+    // Case where a single line break
+    if (o.length === 1) {
+      incrementLine(true);
+      // Case with multiple consecutive line breaks
+    } else {
+      const matches = o.split(lineBreakRegex);
+      matches.forEach(m => {
+        if (m.length) {
+          bucket.push(m);
           // If we've found a match right before the end of our output, we pad it
           if (final) incrementLine();
-        });
-      }
+        } else {
+          incrementLine(true);
+        }
+      });
     }
   };
 
   output.unshift(defaultLineJsx(1));
   output.forEach((o, idx) => {
     if (idx === output.length - 1) {
-      enumerateMatches(o, true);
-      gutteredOutput.push(bucket);
+      if (typeof o === 'string') enumerateMatches(o, true);
+      else {
+        bucket.push(o);
+        gutteredOutput.push(bucket);
+      }
     } else if (!lineBreakRegex.test(o)) {
       bucket.push(o);
-    } else {
+    } else if (typeof o === 'string') {
       enumerateMatches(o);
     }
   });
