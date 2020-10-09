@@ -22,8 +22,8 @@ ReactDOM.render(
               { ch: 0, line: 1 },
             ],
             [
-              { ch: 0, line: 2 },
-              { ch: 0, line: 3 },
+              { ch: 0, line: 4 },
+              { ch: 0, line: 5 },
             ],
           ],
         }

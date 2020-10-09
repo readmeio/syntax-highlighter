@@ -29,13 +29,15 @@ WrappedLine.propTypes = {
 // Final Styled Output
 // Includes Highlighted | Overlayed | null styled lines
 const StructuredOutput = ({ gutteredInput, highlights = [] }) =>
-  gutteredInput.map((ac, idx) => (
-    <WrappedLine
-      key={`cm-wrapped-${idx}`}
-      child={ac}
-      className={['cm-linerow', highlights.length ? highlights[idx] : ''].join(' ')}
-    />
-  ));
+  gutteredInput.map((ac, idx) => {
+    return (
+      <WrappedLine
+        key={`cm-wrapped-${idx}`}
+        child={ac}
+        className={['cm-linerow', highlights.length ? highlights[idx] : ''].join(' ')}
+      />
+    );
+  });
 
 StructuredOutput.propTypes = {
   gutteredInput: PropTypes.any,
@@ -68,23 +70,51 @@ const highlightedLines = (ranges, totalLength) => {
 };
 
 const StyledSyntaxHighlighter = ({ output, ranges }) => {
+  const lineBreakRegex = /\r?\n/;
   const gutteredOutput = [];
   let bucket = [];
   let lineNumber = 1;
 
+  const incrementLine = newLine => {
+    // If new line, we'll manually add it to a bucket
+    if (newLine) bucket.push('\n');
+    // Regardless, we'll add the bucket to our larger output and start a new numbered div
+    gutteredOutput.push(bucket);
+    lineNumber += 1;
+    bucket = [defaultLineJsx(lineNumber)];
+  };
+
+  const enumerateMatches = (o, final) => {
+    // Case where a single line break
+    if (o.length === 1) {
+      incrementLine(true);
+      // Case with multiple consecutive line breaks
+    } else {
+      const matches = o.split(lineBreakRegex);
+      matches.forEach(m => {
+        if (m.length) {
+          bucket.push(m);
+          // If we've found a match right before the end of our output, we pad it
+          if (final) incrementLine();
+        } else {
+          incrementLine(true);
+        }
+      });
+    }
+  };
+
   output.unshift(defaultLineJsx(1));
   output.forEach((o, idx) => {
-    const lineBreakRegex = /\n/g;
-
     if (idx === output.length - 1) {
-      bucket.push(o);
-      gutteredOutput.push(bucket);
+      if (typeof o === 'string') enumerateMatches(o, true);
+      else {
+        bucket.push(o);
+        gutteredOutput.push(bucket);
+      }
     } else if (!lineBreakRegex.test(o)) {
       bucket.push(o);
-    } else {
-      gutteredOutput.push(bucket);
-      lineNumber += 1;
-      bucket = [defaultLineJsx(lineNumber)];
+    } else if (typeof o === 'string') {
+      enumerateMatches(o);
     }
   });
 
