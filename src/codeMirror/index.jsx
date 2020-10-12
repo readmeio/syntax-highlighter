@@ -1,7 +1,7 @@
 import CodeMirror from 'codemirror';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Variable, { VARIABLE_REGEXP } from '@readme/variable';
+import Variable, { VARIABLE_REGEXP, VariablesContext } from '@readme/variable';
 import { getMode } from '../utils/modes';
 
 import '../utils/cm-mode-imports';
@@ -191,3 +191,4 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
 };
 
 export default ReadmeCodeMirror;
+export { VariablesContext };
