@@ -1,3 +1,10 @@
+## <small>10.0.1 (2020-10-12)</small>
+
+* feat(context): exporting context provider (#22) ([1dc67c0](https://github.com/readmeio/syntax-highlighter/commit/1dc67c0)), closes [#22](https://github.com/readmeio/syntax-highlighter/issues/22)
+* fix(readonly): wip styled output (#21) ([82b99ab](https://github.com/readmeio/syntax-highlighter/commit/82b99ab)), closes [#21](https://github.com/readmeio/syntax-highlighter/issues/21)
+
+
+
 ## 10.0.0 (2020-10-05)
 
 * fix(bundle): client and server compatibility (#20) ([bd4362b](https://github.com/readmeio/syntax-highlighter/commit/bd4362b)), closes [#20](https://github.com/readmeio/syntax-highlighter/issues/20)
