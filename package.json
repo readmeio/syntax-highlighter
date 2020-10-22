@@ -4,14 +4,12 @@
   "version": "10.0.1",
   "main": "dist/index.node.js",
   "browser": "dist/index.js",
-  "dependencies": {
-    "@readme/variable": "^7.2.1",
-    "codemirror": "^5.48.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-codemirror2": "^7.2.1",
-    "react-dom": "^16.13.1"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/readmeio/syntax-highlighter.git"
   },
+  "homepage": "https://readmeio.github.io/syntax-highlighter/",
   "scripts": {
     "build": "webpack",
     "inspect": "jsinspect",
@@ -24,9 +22,16 @@
     "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md",
     "watch": "webpack -w --progress"
   },
-  "license": "ISC",
-  "repository": "https://github.com/readmeio/syntax-highlighter",
-  "homepage": "https://readmeio.github.io/syntax-highlighter/",
+  "dependencies": {
+    "@readme/variable": "^7.2.1",
+    "codemirror": "^5.48.2",
+    "prop-types": "^15.7.2",
+    "react-codemirror2": "^7.2.1"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
@@ -50,6 +55,8 @@
     "jsinspect": "^0.12.6",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "sass-loader": "^10.0.1",
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^4.1.0",
