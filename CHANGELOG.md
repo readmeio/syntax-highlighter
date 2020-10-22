@@ -1,3 +1,9 @@
+## 10.1.0 (2020-10-22)
+
+* chore: moving react and react-dom into being peerdeps (#24) ([d1826d7](https://github.com/readmeio/syntax-highlighter/commit/d1826d7)), closes [#24](https://github.com/readmeio/syntax-highlighter/issues/24)
+
+
+
 ## <small>10.0.1 (2020-10-12)</small>
 
 * feat(context): exporting context provider (#22) ([1dc67c0](https://github.com/readmeio/syntax-highlighter/commit/1dc67c0)), closes [#22](https://github.com/readmeio/syntax-highlighter/issues/22)
