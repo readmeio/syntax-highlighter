@@ -170,3 +170,31 @@ describe('highlight mode', () => {
     expect(node.find('.cm-linerow.cm-overlay')).toHaveLength(6);
   });
 });
+
+describe('runmode', () => {
+  let node;
+  const code = `CURL *hnd = curl_easy_init();\n\nurl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");\n\ncurl_easy_setopt(hnd, CURLOPT_URL, "http://httpbin.orgpet/");`;
+
+  beforeEach(() => {
+    node = mount(
+      syntaxHighlighter(code, 'c', {
+        dark: true,
+        highlightMode: true,
+        tokenizeVariables: true,
+        ranges: [
+          [
+            { ch: 0, line: 0 },
+            { ch: 0, line: 1 },
+          ],
+        ],
+      })
+    );
+  });
+
+  it('should display the correct number of lines with multiple linebreaks', () => {
+    const checkLineBreaks = parseInt(node.find('.cm-linerow').last().find('.cm-lineNumber').text(), 10);
+    const totalLines = code.split('\n');
+
+    expect(checkLineBreaks).toStrictEqual(totalLines.length);
+  });
+});

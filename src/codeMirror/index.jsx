@@ -172,7 +172,8 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   }
 
   CodeMirror.runMode(code, mode, (text, style) => {
-    if (style !== curStyle) {
+    const lineBreakRegex = /\r?\n/;
+    if (style !== curStyle || lineBreakRegex.test(text)) {
       flush();
       curStyle = style;
       accum = text;
