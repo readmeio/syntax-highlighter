@@ -1,3 +1,9 @@
+## <small>10.1.2 (2020-10-26)</small>
+
+* fix: isolating regex check to highlightmode option (#25) ([aec7c81](https://github.com/readmeio/syntax-highlighter/commit/aec7c81)), closes [#25](https://github.com/readmeio/syntax-highlighter/issues/25)
+
+
+
 ## <small>10.1.1 (2020-10-23)</small>
 
 * fix: check for \n in CodeMirror runmode (#23) ([66444f4](https://github.com/readmeio/syntax-highlighter/commit/66444f4)), closes [#23](https://github.com/readmeio/syntax-highlighter/issues/23)
