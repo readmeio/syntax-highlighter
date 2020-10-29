@@ -287,6 +287,43 @@ exports[`Supported languages Swift should syntax highlight an example 1`] = `
 </div>"
 `;
 
+exports[`Supported languages TOML should syntax highlight an example 1`] = `
+"<div class=\\"cm-s-neo\\"><span class=\\"cm-comment\\"># This is a TOML document.</span>
+
+<span class=\\"cm-property\\">title</span> = <span class=\\"cm-string\\">&quot;TOML Example&quot;</span>
+
+<span class=\\"cm-atom\\">[owner]</span>
+<span class=\\"cm-property\\">name</span> = <span class=\\"cm-string\\">&quot;Tom Preston-Werner&quot;</span>
+<span class=\\"cm-property\\">dob</span> = <span class=\\"cm-number\\">1979-05-27</span>T<span class=\\"cm-number\\">07</span>:<span class=\\"cm-number\\">32</span>:<span class=\\"cm-number\\">00-08</span>:<span class=\\"cm-number\\">00</span> <span class=\\"cm-comment\\"># First class dates</span>
+
+<span class=\\"cm-atom\\">[database]</span>
+<span class=\\"cm-property\\">server</span> = <span class=\\"cm-string\\">&quot;192.168.1.1&quot;</span>
+<span class=\\"cm-property\\">ports</span> = <span class=\\"cm-bracket\\">[</span> <span class=\\"cm-number\\">8000</span>, <span class=\\"cm-number\\">8001</span>, <span class=\\"cm-number\\">8002</span> <span class=\\"cm-bracket\\">]</span>
+<span class=\\"cm-property\\">connection_max</span> = <span class=\\"cm-number\\">5000</span>
+<span class=\\"cm-property\\">enabled</span> = <span class=\\"cm-atom\\">true</span>
+
+<span class=\\"cm-atom\\">[servers]</span>
+
+  <span class=\\"cm-comment\\"># Indentation (tabs and/or spaces) is allowed but not required</span>
+  <span class=\\"cm-atom\\">[servers.alpha]</span>
+  <span class=\\"cm-property\\">ip</span> = <span class=\\"cm-string\\">&quot;10.0.0.1&quot;</span>
+  <span class=\\"cm-property\\">dc</span> = <span class=\\"cm-string\\">&quot;eqdc10&quot;</span>
+
+  <span class=\\"cm-atom\\">[servers.beta]</span>
+  <span class=\\"cm-property\\">ip</span> = <span class=\\"cm-string\\">&quot;10.0.0.2&quot;</span>
+  <span class=\\"cm-property\\">dc</span> = <span class=\\"cm-string\\">&quot;eqdc10&quot;</span>
+
+<span class=\\"cm-atom\\">[clients]</span>
+<span class=\\"cm-property\\">data</span> = <span class=\\"cm-bracket\\">[</span> <span class=\\"cm-bracket\\">[</span><span class=\\"cm-string\\">&quot;gamma&quot;</span>, <span class=\\"cm-string\\">&quot;delta&quot;</span><span class=\\"cm-bracket\\">]</span>, <span class=\\"cm-bracket\\">[</span><span class=\\"cm-number\\">1</span>, <span class=\\"cm-number\\">2</span><span class=\\"cm-bracket\\">]</span> <span class=\\"cm-bracket\\">]</span>
+
+<span class=\\"cm-comment\\"># Line breaks are OK when inside arrays</span>
+<span class=\\"cm-property\\">hosts</span> = <span class=\\"cm-bracket\\">[</span>
+  <span class=\\"cm-string\\">&quot;alpha&quot;</span>,
+  <span class=\\"cm-string\\">&quot;omega&quot;</span>
+<span class=\\"cm-bracket\\">]</span>
+</div>"
+`;
+
 exports[`Supported languages TypeScript should syntax highlight an example 1`] = `
 "<div class=\\"cm-s-neo\\"><span class=\\"cm-keyword\\">let</span> { <span class=\\"cm-def\\">a</span>, <span class=\\"cm-def\\">b</span> }: { <span class=\\"cm-property\\">a</span>: <span class=\\"cm-type\\">string</span>, <span class=\\"cm-property\\">b</span>: <span class=\\"cm-type\\">number</span> } <span class=\\"cm-operator\\">=</span> <span class=\\"cm-variable\\">o</span>;
 </div>"
