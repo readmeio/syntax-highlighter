@@ -96,5 +96,6 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, 
 | Shell | `bash`, `sh`, `shell`, `zsh` |
 | SQL | `cql`, `mssql`, `mysql`, `plsql`, `postgres`, `postgresql`, `pgsql`, `sql`, `sqlite` |
 | Swift | `swift` |
+| TOML | `toml` |
 | TypeScript | `ts`, `typescript` |
 | YAML | `yaml`, `yml` |
