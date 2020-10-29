@@ -1,3 +1,9 @@
+## 10.2.0 (2020-10-29)
+
+* feat: adding support for TOML highlighting (#26) ([b2e617b](https://github.com/readmeio/syntax-highlighter/commit/b2e617b)), closes [#26](https://github.com/readmeio/syntax-highlighter/issues/26)
+
+
+
 ## <small>10.1.2 (2020-10-26)</small>
 
 * fix: isolating regex check to highlightmode option (#25) ([aec7c81](https://github.com/readmeio/syntax-highlighter/commit/aec7c81)), closes [#25](https://github.com/readmeio/syntax-highlighter/issues/25)
