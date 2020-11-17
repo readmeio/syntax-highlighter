@@ -48,7 +48,7 @@ CodeEditor.propTypes = {
   options: PropTypes.object,
   /** Syntax highlighting theme.
    */
-  theme: PropTypes.oneOf(['neo', 'material-palenight']),
+  theme: PropTypes.oneOf(['neo', 'material-palenight', 'tomorrow-night']),
 };
 
 CodeEditor.defaultProps = {
