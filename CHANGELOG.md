@@ -1,3 +1,22 @@
+## 10.3.0 (2020-11-17)
+
+* chore: removing .jsinspectrc ([6ede64e](https://github.com/readmeio/syntax-highlighter/commit/6ede64e))
+* chore(deps-dev): bump @babel/preset-env from 7.11.5 to 7.12.1 (#37) ([32691b5](https://github.com/readmeio/syntax-highlighter/commit/32691b5)), closes [#37](https://github.com/readmeio/syntax-highlighter/issues/37)
+* chore(deps-dev): bump babel-jest from 26.3.0 to 26.6.1 (#29) ([8554c65](https://github.com/readmeio/syntax-highlighter/commit/8554c65)), closes [#29](https://github.com/readmeio/syntax-highlighter/issues/29)
+* chore(deps-dev): bump enzyme-adapter-react-16 from 1.15.4 to 1.15.5 (#28) ([97ae806](https://github.com/readmeio/syntax-highlighter/commit/97ae806)), closes [#28](https://github.com/readmeio/syntax-highlighter/issues/28)
+* chore(deps-dev): bump eslint from 7.10.0 to 7.12.1 (#34) ([e8818ff](https://github.com/readmeio/syntax-highlighter/commit/e8818ff)), closes [#34](https://github.com/readmeio/syntax-highlighter/issues/34)
+* chore(deps-dev): bump html-webpack-plugin from 4.4.1 to 4.5.0 (#30) ([66109da](https://github.com/readmeio/syntax-highlighter/commit/66109da)), closes [#30](https://github.com/readmeio/syntax-highlighter/issues/30)
+* chore(deps-dev): bump jest from 26.4.2 to 26.6.1 (#32) ([a5bb650](https://github.com/readmeio/syntax-highlighter/commit/a5bb650)), closes [#32](https://github.com/readmeio/syntax-highlighter/issues/32)
+* chore(deps-dev): bump sass-loader from 10.0.2 to 10.0.4 (#33) ([9a48749](https://github.com/readmeio/syntax-highlighter/commit/9a48749)), closes [#33](https://github.com/readmeio/syntax-highlighter/issues/33)
+* chore(deps-dev): bump terser-webpack-plugin from 4.2.2 to 4.2.3 (#35) ([cdb1d16](https://github.com/readmeio/syntax-highlighter/commit/cdb1d16)), closes [#35](https://github.com/readmeio/syntax-highlighter/issues/35)
+* chore(deps-dev): upgrading @readme/eslint-config ([d5c631b](https://github.com/readmeio/syntax-highlighter/commit/d5c631b))
+* chore(deps): bump actions/setup-node from v2.1.1 to v2.1.2 (#27) ([64f24af](https://github.com/readmeio/syntax-highlighter/commit/64f24af)), closes [#27](https://github.com/readmeio/syntax-highlighter/issues/27)
+* test: fixing some broken tests (#39) ([17e685f](https://github.com/readmeio/syntax-highlighter/commit/17e685f)), closes [#39](https://github.com/readmeio/syntax-highlighter/issues/39)
+* ci: setting up bundlewatch ([4d6cf5c](https://github.com/readmeio/syntax-highlighter/commit/4d6cf5c))
+* feat(themes): add support for a light theme (#38) ([3bdbe1b](https://github.com/readmeio/syntax-highlighter/commit/3bdbe1b)), closes [#38](https://github.com/readmeio/syntax-highlighter/issues/38)
+
+
+
 ## 10.2.0 (2020-10-29)
 
 * feat: adding support for TOML highlighting (#26) ([b2e617b](https://github.com/readmeio/syntax-highlighter/commit/b2e617b)), closes [#26](https://github.com/readmeio/syntax-highlighter/issues/26)
