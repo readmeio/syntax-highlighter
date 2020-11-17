@@ -8,10 +8,19 @@ import { modes } from './utils/modes';
 const SyntaxHighlighter = (
   code,
   lang,
-  opts = { dark: false, tokenizeVariables: false, editable: false },
+  opts = {
+    // If `customTheme` is present, it will override the `dark` option.
+    customTheme: false,
+    dark: false,
+    tokenizeVariables: false,
+    editable: false,
+  },
   editorProps = {}
 ) => {
-  const theme = opts.dark ? 'material-palenight' : 'neo';
+  let theme = opts.dark ? 'material-palenight' : 'neo';
+  if (opts.customTheme) {
+    theme = opts.customTheme;
+  }
 
   if (opts.editable) {
     return React.createElement(codeEditor, {
