@@ -1,3 +1,9 @@
+## <small>10.3.1 (2020-11-17)</small>
+
+* feat: adding support for custom themes (#40) ([a1d5101](https://github.com/readmeio/syntax-highlighter/commit/a1d5101)), closes [#40](https://github.com/readmeio/syntax-highlighter/issues/40)
+
+
+
 ## 10.3.0 (2020-11-17)
 
 * chore: removing .jsinspectrc ([6ede64e](https://github.com/readmeio/syntax-highlighter/commit/6ede64e))
