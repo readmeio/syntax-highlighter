@@ -22,12 +22,14 @@ const SyntaxHighlighter = (
     });
   }
 
-  let classes = '';
-  if (opts.highlightMode) classes = `CodeEditor cm-s-${theme}`;
+  const classes = [`cm-s-${theme}`];
+  if (opts.highlightMode) {
+    classes.push('CodeEditor');
+  }
 
   return React.createElement(
     'div',
-    { className: classes },
+    { className: classes.join(' ') },
     codemirror(typeof code === 'string' ? code : '', lang, opts)
   );
 };

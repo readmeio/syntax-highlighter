@@ -41,7 +41,9 @@ test('should work with modes', () => {
 });
 
 test('should have a dark theme', () => {
-  expect(shallow(syntaxHighlighter('{ "a": 1 }', 'json', { dark: true })).hasClass('cm-s-tomorrow-night')).toBe(true);
+  expect(shallow(syntaxHighlighter('{ "a": 1 }', 'json', { dark: true })).hasClass('cm-s-material-palenight')).toBe(
+    true
+  );
 });
 
 test('should tokenize variables (double quotes)', () => {
