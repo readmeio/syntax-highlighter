@@ -6,7 +6,7 @@ import defaults from './cm.options';
 import '../utils/cm-mode-imports';
 import './style.scss';
 
-const CodeEditor = ({ className, code, lang, options, children, ...attr }) => {
+const CodeEditor = ({ className, code, lang, options, children, theme, ...attr }) => {
   const [value, setValue] = useState(children && typeof children === 'string' ? children : code);
   const [mode, setMode] = useState(getMode(lang));
 
@@ -28,7 +28,7 @@ const CodeEditor = ({ className, code, lang, options, children, ...attr }) => {
       {...attr}
       className="CodeEditor"
       onBeforeChange={(editor, data, updatedCode) => setValue(updatedCode)}
-      options={{ ...defaults, ...options, mode }}
+      options={{ ...defaults, ...options, mode, theme }}
       value={value}
     />
   );
@@ -48,14 +48,14 @@ CodeEditor.propTypes = {
   options: PropTypes.object,
   /** Syntax highlighting theme.
    */
-  theme: PropTypes.oneOf(['light', 'dark']),
+  theme: PropTypes.oneOf(['neo', 'material-palenight']),
 };
 
 CodeEditor.defaultProps = {
   className: '',
   code: '',
   options: {},
-  theme: 'dark',
+  theme: 'material-palenight',
 };
 
 export default CodeEditor;

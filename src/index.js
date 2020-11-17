@@ -11,20 +11,19 @@ const SyntaxHighlighter = (
   opts = { dark: false, tokenizeVariables: false, editable: false },
   editorProps = {}
 ) => {
+  const theme = opts.dark ? 'material-palenight' : 'neo';
+
   if (opts.editable) {
     return React.createElement(codeEditor, {
       ...editorProps,
       code,
       lang,
+      theme,
     });
   }
 
   let classes = '';
-  if (opts.highlightMode) {
-    classes = 'CodeEditor cm-s-material-palenight';
-  } else {
-    classes = opts.dark ? 'cm-s-tomorrow-night' : 'cm-s-neo';
-  }
+  if (opts.highlightMode) classes = `CodeEditor cm-s-${theme}`;
 
   return React.createElement(
     'div',
