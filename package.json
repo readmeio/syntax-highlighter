@@ -74,5 +74,17 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "bundlewatch": {
+    "files": [
+      {
+        "path": "dist/index.js",
+        "maxSize": "500kb"
+      },
+      {
+        "path": "dist/index.node.js",
+        "maxSize": "10kb"
+      }
+    ]
   }
 }
