@@ -1,18 +1,56 @@
 $gutterWidth: 43px; // enough for 3 chars
 
+// dark theme
+$darkBackground: #242e34;
+$darkColor: #fff;
+$darkHightlight: rgba(#000, 0.25);
+
+// light theme
+$lightBackground: #fff;
+$lightColor: #000;
+$lightHighlight: rgba($lightColor, 0.1);
+
 .CodeEditor {
-  &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay {
-    color: rgba(255, 255, 255, 0.5);
+
+  &.cm-s-material-palenight {
+
+    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay,
+    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay > span,
+    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay > p {
+      color: rgba($darkColor, 0.5);
+    }
+
+    .cm-highlight {
+      background: $darkHightlight;
+    }
+
+    .CodeMirror {
+      background: $darkBackground;
+      color: $darkColor;
+    }
+  }
+
+  &.cm-s-neo {
+
+    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay,
+    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay > span,
+    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay > p {
+      color: rgba($lightColor, 0.5);
+    }
+
+    .cm-highlight {
+      background: $lightHighlight;
+    }
+
+    .CodeMirror {
+      background: $lightBackground;
+      color: $lightColor;
+    }
+  }
+
+  &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay,
+  &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay .cm-lineNumber {
     opacity: 0.75;
-
-    > span,
-    > p {
-      color: rgba(255, 255, 255, 0.5);
-    }
-
-    .cm-lineNumber {
-      opacity: 0.75;
-    }
   }
 }
 
@@ -20,11 +58,6 @@ $gutterWidth: 43px; // enough for 3 chars
   position: relative;
   text-indent: $gutterWidth + 4px;
   transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-
-  &.cm-highlight {
-    background: rgba(0, 0, 0, 0.25);
-  }
-
 
   > span,
   > p {
