@@ -60,6 +60,10 @@ test('should keep enclosing characters around the variable', () => {
   expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).text()).toBe("'APIKEY'");
 });
 
+test("should tokenize variables outside of quotes", () => {
+  expect(mount(syntaxHighlighter("<<apiKey>>", 'json', { tokenizeVariables: true })).text()).toBe("APIKEY");
+})
+
 describe('Supported languages', () => {
   const languages = fixtures.map(fixture => {
     return [uppercase(path.basename(fixture)), fixture];

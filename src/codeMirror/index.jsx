@@ -139,36 +139,14 @@ StyledSyntaxHighlighter.propTypes = {
  * @return {[Element]} Array of DOM Elements
  */
 const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
-  let key = 0;
   const mode = getMode(lang);
-  const output = [];
-
-  function tokenizeVariable(value) {
-    // Modifies the regular expression to match anything
-    // before or after like quote characters: ' "
-    const match = new RegExp(`(.*)${VARIABLE_REGEXP}([^]*)`).exec(value);
-
-    if (!match) return value;
-
-    // eslint-disable-next-line no-plusplus
-    return [match[1], <Variable key={++key} variable={match[2]} />, match[3]];
-  }
-
+  let key = 0;
+  let output = [];
   let curStyle = null;
   let accum = '';
 
   function flush() {
-    accum = opts.tokenizeVariables ? tokenizeVariable(accum) : accum;
-    if (curStyle) {
-      output.push(
-        // eslint-disable-next-line no-plusplus
-        <span key={++key} className={`${curStyle.replace(/(^|\s+)/g, '$1cm-')}`}>
-          {accum}
-        </span>
-      );
-    } else {
-      output.push(accum);
-    }
+    output.push([accum, curStyle]);
   }
 
   CodeMirror.runMode(code, mode, (text, style) => {
@@ -182,6 +160,55 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     }
   });
   flush();
+
+  function tokenizeVariable(value) {
+    // Modifies the regular expression to match anything
+    // before or after like quote characters: ' "
+    const match = new RegExp(`(.*)${VARIABLE_REGEXP}([^]*)`).exec(value);
+
+    if (match) {
+      // eslint-disable-next-line no-plusplus
+      return [match[1], <Variable key={++key} variable={match[2]} />, match[3]];
+    }
+  }
+
+  function tokenizeBareVariable(value) {
+    const match = new RegExp(`^${VARIABLE_REGEXP}$`).exec(value);
+
+    if (match) {
+      // eslint-disable-next-line no-plusplus
+      return <Variable key={++key} variable={match[1]} />;
+    }
+  }
+
+  output = output.map(([token, style], i) => {
+    if (opts.tokenizeVariables) {
+      let found;
+
+      if (found = tokenizeVariable(token)) {
+        token = found;
+      } else {
+        const str = output.slice(i, i + 3).map(([s]) => s).join('');
+        found = tokenizeBareVariable(str);
+
+        if (found) {
+          token = found;
+          output.splice(i + 1, 2);
+        }
+      }
+    }
+
+    if (style) {
+      return (
+        // eslint-disable-next-line no-plusplus
+        <span key={++key} className={`${style.replace(/(^|\s+)/g, '$1cm-')}`}>
+          {token}
+        </span>
+      );
+    } else {
+      return token;
+    }
+  });
 
   // Return legacy DOM structure
   // Array of <span /> elements
