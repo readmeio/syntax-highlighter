@@ -62,16 +62,12 @@ test('should keep enclosing characters around the variable', () => {
 
 test('should tokenize variables outside of quotes', () => {
   const codeBlock = `
-\`\`\`
   const foo = <<apiKey>>;
   const bar = <<name>>;
-\`\`\`
 `;
   const expected = `
-\`\`\`
   const foo = APIKEY;
   const bar = NAME;
-\`\`\`
 `;
   expect(mount(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true })).text()).toBe(expected);
   expect(mount(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true })).text()).toBe('APIKEY');

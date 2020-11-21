@@ -131,6 +131,48 @@ StyledSyntaxHighlighter.propTypes = {
   ranges: PropTypes.arrayOf(PropTypes.any),
 };
 
+const extractVariables = (code, opts) => {
+  if (!opts.tokenizeVariables) return [code];
+
+  const variables = [];
+  const replacer = ({ length }, capture, offset) => {
+    variables.push({ length, text: capture, offset });
+    return '';
+  };
+  const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), replacer);
+
+  return [codeWithoutVars, variables];
+};
+
+const insertVariables = (styled, variables, opts) => {
+  if (!opts.tokenizeVariables) return styled;
+
+  let absIndex = 0;
+  let currentVar = 0;
+
+  return styled.map(([text, style], i) => {
+    let interpolated = text;
+
+    const variable = variables[currentVar] || {};
+    const index = variable.offset - absIndex;
+
+    if (index <= text.length) {
+      interpolated = [
+        text.slice(0, index),
+        <Variable key={`variable-${i}`} variable={variable.text} />,
+        text.slice(index),
+      ];
+
+      absIndex += variable.text.length + variable.length;
+      currentVar += 1;
+    }
+
+    absIndex += text.length;
+
+    return [interpolated, style];
+  });
+};
+
 /**
  * Core Syntax Highlighter
  * @arg {String} code
@@ -139,22 +181,16 @@ StyledSyntaxHighlighter.propTypes = {
  * @return {[Element]} Array of DOM Elements
  */
 const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
-  let key = 0;
   const mode = getMode(lang);
-  let output = [];
-  const variablePositions = [];
+  const styled = [];
 
-  const replacer = (_, capture, offset) => {
-    variablePositions.push([offset, capture]);
-    return '';
-  };
-  const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), replacer);
+  const [codeWithoutVars, variables] = extractVariables(code, opts);
 
   let curStyle = null;
   let accum = '';
 
   function flush() {
-    output.push([accum, curStyle]);
+    styled.push([accum, curStyle]);
   }
 
   CodeMirror.runMode(codeWithoutVars, mode, (text, style) => {
@@ -169,33 +205,15 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   });
   flush();
 
-  let absIndex = 0;
-  output = output.map(([text, style]) => {
-    const [variableIndex, variable] = variablePositions[0] || [];
-    const index = variableIndex - absIndex;
-    let interpolated = text;
-
-    if (index <= text.length) {
-      const before = text.slice(0, index);
-      const after = text.slice(index);
-      const variableComponent = <Variable key={++key} variable={variable} />; // eslint-disable-line no-plusplus
-
-      interpolated = [before, variableComponent, after];
-      absIndex += variable.length + 4;
-      variablePositions.shift();
-    }
-
-    absIndex += text.length;
-
-    return style ? (
-      // eslint-disable-next-line no-plusplus
-      <span key={++key} className={`${style.replace(/(^|\s+)/g, '$1cm-')}`}>
-        {interpolated}
+  const output = insertVariables(styled, variables, opts).map(([text, style], i) =>
+    style ? (
+      <span key={i} className={`${style.replace(/(^|\s+)/g, '$1cm-')}`}>
+        {text}
       </span>
     ) : (
-      interpolated
-    );
-  });
+      text
+    )
+  );
 
   // Return legacy DOM structure
   // Array of <span /> elements
