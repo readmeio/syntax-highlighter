@@ -139,9 +139,17 @@ StyledSyntaxHighlighter.propTypes = {
  * @return {[Element]} Array of DOM Elements
  */
 const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
-  const mode = getMode(lang);
   let key = 0;
+  const mode = getMode(lang);
   let output = [];
+  const variablePositions = [];
+
+  const replacer = (_, capture, offset) => {
+    variablePositions.push([offset, capture]);
+    return '';
+  };
+  const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), replacer);
+
   let curStyle = null;
   let accum = '';
 
@@ -149,7 +157,7 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     output.push([accum, curStyle]);
   }
 
-  CodeMirror.runMode(code, mode, (text, style) => {
+  CodeMirror.runMode(codeWithoutVars, mode, (text, style) => {
     const lineBreakRegex = /\r?\n/;
     if (style !== curStyle || (opts.highlightMode && lineBreakRegex.test(text))) {
       flush();
@@ -161,53 +169,32 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   });
   flush();
 
-  function tokenizeVariable(value) {
-    // Modifies the regular expression to match anything
-    // before or after like quote characters: ' "
-    const match = new RegExp(`(.*)${VARIABLE_REGEXP}([^]*)`).exec(value);
+  let absIndex = 0;
+  output = output.map(([text, style]) => {
+    const [variableIndex, variable] = variablePositions[0] || [];
+    const index = variableIndex - absIndex;
+    let interpolated = text;
 
-    if (match) {
+    if (index <= text.length) {
+      const before = text.slice(0, index);
+      const after = text.slice(index);
+      const variableComponent = <Variable key={++key} variable={variable} />; // eslint-disable-line no-plusplus
+
+      interpolated = [before, variableComponent, after];
+      absIndex += variable.length + 4;
+      variablePositions.shift();
+    }
+
+    absIndex += text.length;
+
+    return style ? (
       // eslint-disable-next-line no-plusplus
-      return [match[1], <Variable key={++key} variable={match[2]} />, match[3]];
-    }
-  }
-
-  function tokenizeBareVariable(value) {
-    const match = new RegExp(`^${VARIABLE_REGEXP}$`).exec(value);
-
-    if (match) {
-      // eslint-disable-next-line no-plusplus
-      return <Variable key={++key} variable={match[1]} />;
-    }
-  }
-
-  output = output.map(([token, style], i) => {
-    if (opts.tokenizeVariables) {
-      let found;
-
-      if (found = tokenizeVariable(token)) {
-        token = found;
-      } else {
-        const str = output.slice(i, i + 3).map(([s]) => s).join('');
-        found = tokenizeBareVariable(str);
-
-        if (found) {
-          token = found;
-          output.splice(i + 1, 2);
-        }
-      }
-    }
-
-    if (style) {
-      return (
-        // eslint-disable-next-line no-plusplus
-        <span key={++key} className={`${style.replace(/(^|\s+)/g, '$1cm-')}`}>
-          {token}
-        </span>
-      );
-    } else {
-      return token;
-    }
+      <span key={++key} className={`${style.replace(/(^|\s+)/g, '$1cm-')}`}>
+        {interpolated}
+      </span>
+    ) : (
+      interpolated
+    );
   });
 
   // Return legacy DOM structure
