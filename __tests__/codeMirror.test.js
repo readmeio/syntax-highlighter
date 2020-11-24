@@ -61,16 +61,24 @@ test('should keep enclosing characters around the variable', () => {
 });
 
 test('should tokenize variables outside of quotes', () => {
+  expect(mount(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true })).text()).toBe('APIKEY');
+});
+
+test('should tokenize variables outside of quotes over multple lines', () => {
   const codeBlock = `
   const foo = <<apiKey>>;
   const bar = <<name>>;
+
+  fetch({ foo, bar, baz: <<token>> });
 `;
   const expected = `
   const foo = APIKEY;
   const bar = NAME;
+
+  fetch({ foo, bar, baz: TOKEN });
 `;
+
   expect(mount(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true })).text()).toBe(expected);
-  expect(mount(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true })).text()).toBe('APIKEY');
 });
 
 describe('Supported languages', () => {

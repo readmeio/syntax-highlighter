@@ -126,51 +126,68 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
   );
 };
 
-StyledSyntaxHighlighter.propTypes = {
-  output: PropTypes.arrayOf(PropTypes.any),
-  ranges: PropTypes.arrayOf(PropTypes.any),
-};
-
+/**
+ * Remove variables from a code block. Returns the text with the
+ * variables removed an array of variables and their insert positions.
+ *
+ * @arg {string} code
+ * @arg {object} opts
+ * @return {[string, {length: number, text: string, offset: number }[]]}
+ */
 const extractVariables = (code, opts) => {
   if (!opts.tokenizeVariables) return [code];
 
+  let offsetDelta = 0;
   const variables = [];
   const replacer = ({ length }, capture, offset) => {
-    variables.push({ length, text: capture, offset });
+    variables.push({ length, text: capture, offset: offset - offsetDelta });
+    offsetDelta += length;
+
     return '';
   };
+
   const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), replacer);
 
   return [codeWithoutVars, variables];
 };
 
+/**
+ * Reinsert variables into the styled code tokens.
+ * NOTE: modifies styled in place
+ *
+ * @arg {[string, string][]} styled - code tokens with style
+ * @arg {{length: Number, text: String, offset: Number }[]} variables - variables and their offsets
+ * @arg {object} opts
+ * @return {[string, string][]}
+ */
 const insertVariables = (styled, variables, opts) => {
   if (!opts.tokenizeVariables) return styled;
 
-  let absIndex = 0;
-  let currentVar = 0;
+  let offset = 0;
+  let index = 0;
+  let currentToken = styled[index][0];
 
-  return styled.map(([text, style], i) => {
-    let interpolated = text;
-
-    const variable = variables[currentVar] || {};
-    const index = variable.offset - absIndex;
-
-    if (index <= text.length) {
-      interpolated = [
-        text.slice(0, index),
-        <Variable key={`variable-${i}`} variable={variable.text} />,
-        text.slice(index),
-      ];
-
-      absIndex += variable.text.length + variable.length;
-      currentVar += 1;
+  variables.forEach((variable, i) => {
+    while (!(offset <= variable.offset && variable.offset <= offset + currentToken.length)) {
+      offset += currentToken.length;
+      index += 1;
+      currentToken = styled[index][0];
     }
 
-    absIndex += text.length;
-
-    return [interpolated, style];
+    const tokenOffset = variable.offset - offset;
+    styled[index][0] = [
+      currentToken.slice(0, tokenOffset),
+      <Variable key={`variable-${i}`} variable={variable.text} />,
+      currentToken.slice(tokenOffset),
+    ];
   });
+
+  return styled;
+};
+
+StyledSyntaxHighlighter.propTypes = {
+  output: PropTypes.arrayOf(PropTypes.any),
+  ranges: PropTypes.arrayOf(PropTypes.any),
 };
 
 /**
