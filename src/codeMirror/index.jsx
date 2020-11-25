@@ -130,8 +130,8 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
  * ReadMe user variables are written like <<var>>. Depending on the
  * language parser used by CodeMirror, that could get parsed into
  * multiple tokens, ie ['<<', 'var', '>>']. So, we do a first pass to
- * remove the variables. And once CodeMirror has tokenized them, we can
- * reinsert them/ma.
+ * remove the variables. And reinsert them after CodeMirror has done its
+ * parsing.
  */
 const makeReinserter = variables => {
   let offset = 0;
