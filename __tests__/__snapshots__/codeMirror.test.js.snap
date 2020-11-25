@@ -346,3 +346,12 @@ exports[`Supported languages cURL should syntax highlight an example 1`] = `
   <span class=\\"cm-attribute\\">--header</span> <span class=\\"cm-string\\">&#x27;x-readme-version: v3.0&#x27;</span>
 </div>"
 `;
+
+exports[`should tokenize variables outside of quotes over multple lines 1`] = `
+"
+  const foo = APIKEY;
+  const bar = NAME;
+
+  fetch({ foo, bar, baz: TOKEN });
+"
+`;

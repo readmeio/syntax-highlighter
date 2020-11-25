@@ -126,21 +126,45 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
   );
 };
 
-/**
- * Remove variables from a code block. Returns the text with the
- * variables removed an array of variables and their insert positions.
- *
- * @arg {string} code
- * @arg {object} opts
- * @return {[string, {length: number, text: string, offset: number }[]]}
+/*
+ * ReadMe user variables are written like <<var>>. Depending on the
+ * language parser used by CodeMirror, that could get parsed into
+ * multiple tokens, ie ['<<', 'var', '>>']. So, we do a first pass to
+ * remove the variables. And once CodeMirror has tokenized them, we can
+ * reinsert them/ma.
  */
+const makeReinserter = variables => {
+  let offset = 0;
+  let variable = variables.shift();
+
+  const reinsertVariables = token => {
+    if (!variable) return token;
+
+    if (offset <= variable.offset && variable.offset <= offset + token.length) {
+      const tokenOffset = variable.offset - offset;
+      const [before, after] = [token.slice(0, tokenOffset), token.slice(tokenOffset)];
+      const variableComponent = <Variable key={`variable-${offset}`} variable={variable.text} />;
+
+      offset += tokenOffset;
+      variable = variables.shift();
+
+      return [before, variableComponent, reinsertVariables(after)];
+    }
+
+    offset += token.length;
+    return token;
+  };
+
+  return reinsertVariables;
+};
+
 const extractVariables = (code, opts) => {
-  if (!opts.tokenizeVariables) return [code];
+  if (!opts.tokenizeVariables) return [code, text => text];
 
   let offsetDelta = 0;
   const variables = [];
   const replacer = ({ length }, capture, offset) => {
-    variables.push({ length, text: capture, offset: offset - offsetDelta });
+    variables.push({ text: capture, offset: offset - offsetDelta });
     offsetDelta += length;
 
     return '';
@@ -148,41 +172,7 @@ const extractVariables = (code, opts) => {
 
   const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), replacer);
 
-  return [codeWithoutVars, variables];
-};
-
-/**
- * Reinsert variables into the styled code tokens.
- * NOTE: modifies styled in place
- *
- * @arg {[string, string][]} styled - code tokens with style
- * @arg {{length: Number, text: String, offset: Number }[]} variables - variables and their offsets
- * @arg {object} opts
- * @return {[string, string][]}
- */
-const insertVariables = (styled, variables, opts) => {
-  if (!opts.tokenizeVariables) return styled;
-
-  let offset = 0;
-  let index = 0;
-  let currentToken = styled[index][0];
-
-  variables.forEach((variable, i) => {
-    while (!(offset <= variable.offset && variable.offset <= offset + currentToken.length)) {
-      offset += currentToken.length;
-      index += 1;
-      currentToken = styled[index][0];
-    }
-
-    const tokenOffset = variable.offset - offset;
-    styled[index][0] = [
-      currentToken.slice(0, tokenOffset),
-      <Variable key={`variable-${i}`} variable={variable.text} />,
-      currentToken.slice(tokenOffset),
-    ];
-  });
-
-  return styled;
+  return [codeWithoutVars, makeReinserter(variables)];
 };
 
 StyledSyntaxHighlighter.propTypes = {
@@ -199,15 +189,27 @@ StyledSyntaxHighlighter.propTypes = {
  */
 const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
   const mode = getMode(lang);
-  const styled = [];
+  const output = [];
 
-  const [codeWithoutVars, variables] = extractVariables(code, opts);
+  const [codeWithoutVars, reinsertVariables] = extractVariables(code, opts);
 
   let curStyle = null;
   let accum = '';
+  let key = 0;
 
   function flush() {
-    styled.push([accum, curStyle]);
+    const token = reinsertVariables(accum);
+
+    const styledToken = curStyle ? (
+      // eslint-disable-next-line no-plusplus
+      <span key={key++} className={`${curStyle.replace(/(^|\s+)/g, '$1cm-')}`}>
+        {token}
+      </span>
+    ) : (
+      token
+    );
+
+    output.push(styledToken);
   }
 
   CodeMirror.runMode(codeWithoutVars, mode, (text, style) => {
@@ -221,16 +223,6 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     }
   });
   flush();
-
-  const output = insertVariables(styled, variables, opts).map(([text, style], i) =>
-    style ? (
-      <span key={i} className={`${style.replace(/(^|\s+)/g, '$1cm-')}`}>
-        {text}
-      </span>
-    ) : (
-      text
-    )
-  );
 
   // Return legacy DOM structure
   // Array of <span /> elements

@@ -71,14 +71,14 @@ test('should tokenize variables outside of quotes over multple lines', () => {
 
   fetch({ foo, bar, baz: <<token>> });
 `;
-  const expected = `
-  const foo = APIKEY;
-  const bar = NAME;
 
-  fetch({ foo, bar, baz: TOKEN });
-`;
+  expect(mount(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true })).text()).toMatchSnapshot();
+});
 
-  expect(mount(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true })).text()).toBe(expected);
+test('should tokenize multiple variables per line', () => {
+  expect(mount(syntaxHighlighter('<<apiKey>> <<name>>', 'json', { tokenizeVariables: true })).text()).toBe(
+    'APIKEY NAME'
+  );
 });
 
 describe('Supported languages', () => {
