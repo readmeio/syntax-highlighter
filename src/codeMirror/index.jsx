@@ -120,7 +120,7 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
 
   const highlights = ranges && ranges.length ? highlightedLines(ranges, gutteredOutput.length) : [];
   return (
-    <div className="CodeMirror cm-s-material-palenight">
+    <div className="CodeMirror">
       <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
     </div>
   );
