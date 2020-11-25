@@ -163,14 +163,15 @@ const extractVariables = (code, opts) => {
 
   let offsetDelta = 0;
   const variables = [];
-  const replacer = ({ length }, capture, offset) => {
+
+  const extracter = ({ length }, capture, offset) => {
     variables.push({ text: capture, offset: offset - offsetDelta });
     offsetDelta += length;
 
     return '';
   };
 
-  const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), replacer);
+  const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), extracter);
 
   return [codeWithoutVars, makeReinserter(variables)];
 };
