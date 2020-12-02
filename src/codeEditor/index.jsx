@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import { getMode } from '../utils/modes';
@@ -6,33 +6,39 @@ import defaults from './cm.options';
 import '../utils/cm-mode-imports';
 import './style.scss';
 
-const CodeEditor = ({ className, code, lang, options, children, theme, ...attr }) => {
-  const [value, setValue] = useState(children && typeof children === 'string' ? children : code);
-  const [mode, setMode] = useState(getMode(lang));
+class CodeEditor extends React.Component {
+  constructor(props) {
+    super(props);
 
-  useEffect(() => {
-    const incValue = children && typeof children === 'string' ? children : code;
-    setValue(incValue);
-  }, [code, children]);
+    const { children, code, lang } = this.props;
 
-  useEffect(() => {
-    setMode(prevMode => {
-      const newMode = getMode(lang);
-      if (newMode !== prevMode) return newMode;
-      return prevMode;
+    this.state = {
+      value: children && typeof children === 'string' ? children : code,
+      mode: getMode(lang),
+    };
+  }
+
+  setValue(updatedCode) {
+    this.setState({
+      value: updatedCode,
     });
-  }, [lang]);
+  }
 
-  return (
-    <CodeMirror
-      {...attr}
-      className="CodeEditor"
-      onBeforeChange={(editor, data, updatedCode) => setValue(updatedCode)}
-      options={{ ...defaults, ...options, mode, theme }}
-      value={value}
-    />
-  );
-};
+  render() {
+    const { className, code, lang, options, children, theme, ...attr } = this.props;
+    const { mode, value } = this.state;
+
+    return (
+      <CodeMirror
+        {...attr}
+        className="CodeEditor"
+        onBeforeChange={(editor, data, updatedCode) => this.setValue(updatedCode)}
+        options={{ ...defaults, ...options, mode, theme }}
+        value={value}
+      />
+    );
+  }
+}
 
 CodeEditor.propTypes = {
   children: PropTypes.string,
