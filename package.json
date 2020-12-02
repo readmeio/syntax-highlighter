@@ -12,7 +12,6 @@
   "homepage": "https://readmeio.github.io/syntax-highlighter/",
   "scripts": {
     "build": "webpack",
-    "inspect": "jsinspect",
     "lint": "eslint . --ext .jsx --ext .js",
     "prepublish": "npm run build",
     "pretest": "npm run lint && npm run prettier",
@@ -23,7 +22,7 @@
     "watch": "webpack -w --progress"
   },
   "dependencies": {
-    "@readme/variable": "^7.2.1",
+    "@readme/variable": "^10.0.0",
     "codemirror": "^5.48.2",
     "prop-types": "^15.7.2",
     "react-codemirror2": "^7.2.1"
