@@ -126,6 +126,56 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
   );
 };
 
+/*
+ * ReadMe user variables are written like <<var>>. Depending on the
+ * language parser used by CodeMirror, that could get parsed into
+ * multiple tokens, ie ['<<', 'var', '>>']. So, we do a first pass to
+ * remove the variables. And reinsert them after CodeMirror has done its
+ * parsing.
+ */
+const makeReinserter = variables => {
+  let offset = 0;
+  let variable = variables.shift();
+
+  const reinsertVariables = token => {
+    if (!variable) return token;
+
+    if (offset <= variable.offset && variable.offset <= offset + token.length) {
+      const tokenOffset = variable.offset - offset;
+      const [before, after] = [token.slice(0, tokenOffset), token.slice(tokenOffset)];
+      const variableComponent = <Variable key={`variable-${offset}`} variable={variable.text} />;
+
+      offset += tokenOffset;
+      variable = variables.shift();
+
+      return [before, variableComponent, reinsertVariables(after)];
+    }
+
+    offset += token.length;
+    return token;
+  };
+
+  return reinsertVariables;
+};
+
+const extractVariables = (code, opts) => {
+  if (!opts.tokenizeVariables) return [code, text => text];
+
+  let offsetDelta = 0;
+  const variables = [];
+
+  const extracter = ({ length }, capture, offset) => {
+    variables.push({ text: capture, offset: offset - offsetDelta });
+    offsetDelta += length;
+
+    return '';
+  };
+
+  const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), extracter);
+
+  return [codeWithoutVars, makeReinserter(variables)];
+};
+
 StyledSyntaxHighlighter.propTypes = {
   output: PropTypes.arrayOf(PropTypes.any),
   ranges: PropTypes.arrayOf(PropTypes.any),
@@ -139,39 +189,31 @@ StyledSyntaxHighlighter.propTypes = {
  * @return {[Element]} Array of DOM Elements
  */
 const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
-  let key = 0;
   const mode = getMode(lang);
   const output = [];
 
-  function tokenizeVariable(value) {
-    // Modifies the regular expression to match anything
-    // before or after like quote characters: ' "
-    const match = new RegExp(`(.*)${VARIABLE_REGEXP}([^]*)`).exec(value);
-
-    if (!match) return value;
-
-    // eslint-disable-next-line no-plusplus
-    return [match[1], <Variable key={++key} variable={match[2]} />, match[3]];
-  }
+  const [codeWithoutVars, reinsertVariables] = extractVariables(code, opts);
 
   let curStyle = null;
   let accum = '';
+  let key = 0;
 
   function flush() {
-    accum = opts.tokenizeVariables ? tokenizeVariable(accum) : accum;
-    if (curStyle) {
-      output.push(
-        // eslint-disable-next-line no-plusplus
-        <span key={++key} className={`${curStyle.replace(/(^|\s+)/g, '$1cm-')}`}>
-          {accum}
-        </span>
-      );
-    } else {
-      output.push(accum);
-    }
+    const token = reinsertVariables(accum);
+
+    const styledToken = curStyle ? (
+      // eslint-disable-next-line no-plusplus
+      <span key={key++} className={`${curStyle.replace(/(^|\s+)/g, '$1cm-')}`}>
+        {token}
+      </span>
+    ) : (
+      token
+    );
+
+    output.push(styledToken);
   }
 
-  CodeMirror.runMode(code, mode, (text, style) => {
+  CodeMirror.runMode(codeWithoutVars, mode, (text, style) => {
     const lineBreakRegex = /\r?\n/;
     if (style !== curStyle || (opts.highlightMode && lineBreakRegex.test(text))) {
       flush();

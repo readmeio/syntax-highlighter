@@ -62,6 +62,27 @@ test('should keep enclosing characters around the variable', () => {
   expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).text()).toBe("'APIKEY'");
 });
 
+test('should tokenize variables outside of quotes', () => {
+  expect(mount(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true })).text()).toBe('APIKEY');
+});
+
+test('should tokenize variables outside of quotes over multiple lines', () => {
+  const codeBlock = `
+  const foo = <<apiKey>>;
+  const bar = <<name>>;
+
+  fetch({ foo, bar, baz: <<token>> });
+`;
+
+  expect(mount(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true })).text()).toMatchSnapshot();
+});
+
+test('should tokenize multiple variables per line', () => {
+  expect(mount(syntaxHighlighter('<<apiKey>> <<name>>', 'json', { tokenizeVariables: true })).text()).toBe(
+    'APIKEY NAME'
+  );
+});
+
 describe('Supported languages', () => {
   const languages = fixtures.map(fixture => {
     return [uppercase(path.basename(fixture)), fixture];
