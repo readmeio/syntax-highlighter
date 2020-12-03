@@ -10,12 +10,25 @@ class CodeEditor extends React.Component {
   constructor(props) {
     super(props);
 
-    const { children, code, lang } = this.props;
-
     this.state = {
-      value: children && typeof children === 'string' ? children : code,
-      mode: getMode(lang),
+      value: null,
+      mode: null,
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { children, code, lang } = props;
+    const newMode = getMode(lang);
+
+    const derivedState = {
+      value: children && typeof children === 'string' ? children : code,
+    };
+
+    if (newMode !== state.mode) {
+      derivedState.mode = newMode;
+    }
+
+    return derivedState;
   }
 
   setValue(updatedCode) {

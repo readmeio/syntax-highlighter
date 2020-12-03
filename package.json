@@ -37,6 +37,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@readme/eslint-config": "^3.7.1",
+    "@testing-library/react": "^11.2.2",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
@@ -77,11 +78,11 @@
     "files": [
       {
         "path": "dist/index.js",
-        "maxSize": "500kb"
+        "maxSize": "150kb"
       },
       {
         "path": "dist/index.node.js",
-        "maxSize": "10kb"
+        "maxSize": "5kb"
       }
     ]
   }

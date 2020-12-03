@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import CodeEditor from '../src/codeEditor';
+import { waitFor } from '@testing-library/react';
 
 describe('<CodeEditor/>', () => {
   const getClientRectSpy = jest.fn(() => ({ width: 100 }));
@@ -31,8 +32,8 @@ describe('<CodeEditor/>', () => {
     node.setProps({ lang: 'kotlin' });
     expect(node.props().lang).toBe('kotlin');
 
-    setTimeout(() => {
-      expect(cm.props().options.mode).toBe('clike');
+    return waitFor(() => {
+      expect(node.find('Controlled').props().options.mode).toBe('text/x-kotlin');
     });
   });
 
