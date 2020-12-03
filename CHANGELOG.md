@@ -1,3 +1,18 @@
+## 10.4.0 (2020-12-03)
+
+> `@readme/variable` is now being treated as a peerDependency so you must install it alongside this library!
+
+* chore: removing remaining instances of jsinspect ([b551336](https://github.com/readmeio/syntax-highlighter/commit/b551336))
+* chore(deps-dev): bump @babel/preset-env from 7.12.1 to 7.12.7 (#42) ([9260905](https://github.com/readmeio/syntax-highlighter/commit/9260905)), closes [#42](https://github.com/readmeio/syntax-highlighter/issues/42)
+* chore(deps-dev): bump babel-jest from 26.6.1 to 26.6.3 (#47) ([a470678](https://github.com/readmeio/syntax-highlighter/commit/a470678)), closes [#47](https://github.com/readmeio/syntax-highlighter/issues/47)
+* chore(deps-dev): bump babel-loader from 8.1.0 to 8.2.2 (#45) ([2c3cd67](https://github.com/readmeio/syntax-highlighter/commit/2c3cd67)), closes [#45](https://github.com/readmeio/syntax-highlighter/issues/45)
+* chore(deps-dev): bump jest from 26.6.1 to 26.6.3 (#43) ([5c7f47b](https://github.com/readmeio/syntax-highlighter/commit/5c7f47b)), closes [#43](https://github.com/readmeio/syntax-highlighter/issues/43)
+* chore(deps-dev): bump prettier from 2.1.2 to 2.2.1 (#49) ([a1423f2](https://github.com/readmeio/syntax-highlighter/commit/a1423f2)), closes [#49](https://github.com/readmeio/syntax-highlighter/issues/49)
+* chore(deps): set variable as a peerDep (#51) ([bfca0bf](https://github.com/readmeio/syntax-highlighter/commit/bfca0bf)), closes [#51](https://github.com/readmeio/syntax-highlighter/issues/51)
+* fix: allow for bare variable substitution (#41) ([591c9d0](https://github.com/readmeio/syntax-highlighter/commit/591c9d0)), closes [#41](https://github.com/readmeio/syntax-highlighter/issues/41)
+
+
+
 ## <small>10.3.1 (2020-11-17)</small>
 
 * feat: adding support for custom themes (#40) ([a1d5101](https://github.com/readmeio/syntax-highlighter/commit/a1d5101)), closes [#40](https://github.com/readmeio/syntax-highlighter/issues/40)
