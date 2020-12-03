@@ -2,6 +2,5 @@ __tests__/
 .github/
 coverage/
 .eslint*
-.jsinspectrc
 .prettier*
 jest.config.js
