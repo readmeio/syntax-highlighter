@@ -23,12 +23,12 @@
     "watch": "webpack -w --progress"
   },
   "dependencies": {
-    "@readme/variable": "^7.2.1",
     "codemirror": "^5.48.2",
     "prop-types": "^15.7.2",
     "react-codemirror2": "^7.2.1"
   },
   "peerDependencies": {
+    "@readme/variable": "^10.0.0",
     "react": "16.x",
     "react-dom": "16.x"
   },
@@ -38,6 +38,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@readme/eslint-config": "^3.6.5",
+    "@readme/variable": "^10.0.0",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
