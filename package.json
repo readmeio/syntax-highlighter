@@ -23,16 +23,17 @@
     "watch": "webpack -w --progress"
   },
   "dependencies": {
-    "@readme/variable": "^7.2.1",
     "codemirror": "^5.48.2",
     "prop-types": "^15.7.2",
     "react-codemirror2": "^7.2.1"
   },
   "peerDependencies": {
+    "@readme/variable": "^7.2.1",
     "react": "16.x",
     "react-dom": "16.x"
   },
   "devDependencies": {
+    "@readme/variable": "^7.2.1",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@commitlint/cli": "^11.0.0",
