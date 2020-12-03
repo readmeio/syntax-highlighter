@@ -47,15 +47,11 @@ test('should have a dark theme', () => {
 });
 
 test('should tokenize variables (double quotes)', () => {
-  expect(mount(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true })).find('Variable')).toHaveLength(
-    1
-  );
+  expect(mount(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(1);
 });
 
 test('should tokenize variables (single quotes)', () => {
-  expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).find('Variable')).toHaveLength(
-    1
-  );
+  expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(1);
 });
 
 test('should keep enclosing characters around the variable', () => {
