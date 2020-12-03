@@ -347,7 +347,7 @@ exports[`Supported languages cURL should syntax highlight an example 1`] = `
 </div>"
 `;
 
-exports[`should tokenize variables outside of quotes over multple lines 1`] = `
+exports[`should tokenize variables outside of quotes over multiple lines 1`] = `
 "
   const foo = APIKEY;
   const bar = NAME;

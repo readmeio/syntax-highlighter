@@ -66,7 +66,7 @@ test('should tokenize variables outside of quotes', () => {
   expect(mount(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true })).text()).toBe('APIKEY');
 });
 
-test('should tokenize variables outside of quotes over multple lines', () => {
+test('should tokenize variables outside of quotes over multiple lines', () => {
   const codeBlock = `
   const foo = <<apiKey>>;
   const bar = <<name>>;
