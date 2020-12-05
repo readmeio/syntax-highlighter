@@ -32,7 +32,11 @@ const SyntaxHighlighter = (
     });
   }
 
-  const classes = [`cm-s-${theme} ${opts.className ? opts.className : ''}`];
+  const classes = [`cm-s-${theme}`];
+  if (opts.className) {
+    classes.push(opts.className);
+  }
+
   if (opts.highlightMode) {
     classes.push('CodeEditor');
   }
