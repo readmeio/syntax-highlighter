@@ -1,3 +1,10 @@
+## <small>10.4.1 (2020-12-05)</small>
+
+* chore(deps-dev): removing an unused dependency ([7cb08a0](https://github.com/readmeio/syntax-highlighter/commit/7cb08a0))
+* feat(syntax-highlighter): support classname (#52) ([d5ae061](https://github.com/readmeio/syntax-highlighter/commit/d5ae061)), closes [#52](https://github.com/readmeio/syntax-highlighter/issues/52)
+
+
+
 ## 10.4.0 (2020-12-03)
 
 > `@readme/variable` is now being treated as a peerDependency so you must install it alongside this library!
