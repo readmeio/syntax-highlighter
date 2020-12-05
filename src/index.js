@@ -10,6 +10,7 @@ const SyntaxHighlighter = (
   lang,
   opts = {
     // If `customTheme` is present, it will override the `dark` option.
+    className: '',
     customTheme: false,
     dark: false,
     tokenizeVariables: false,
@@ -31,7 +32,7 @@ const SyntaxHighlighter = (
     });
   }
 
-  const classes = [`cm-s-${theme}`];
+  const classes = [`cm-s-${theme} ${opts.className ? opts.className : ''}`];
   if (opts.highlightMode) {
     classes.push('CodeEditor');
   }
