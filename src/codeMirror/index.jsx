@@ -197,6 +197,8 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   let curStyle = null;
   let accum = '';
   let key = 0;
+  // This will be our array that we add all the regular ol' strings to!
+  const codeWithVars = [];
 
   function flush() {
     const token = reinsertVariables(accum);
@@ -209,6 +211,12 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     ) : (
       token
     );
+
+    // Right now, the variables (e.g. <<url>>) get converted into React objects.
+    // TODO: find a way to parse those pesky React objects into strings that we can use instead of this placeholder!
+    const tokenAsString = typeof token === 'string' ? token : '<INSERT VARIABLE HERE>';
+
+    codeWithVars.push(tokenAsString);
 
     output.push(styledToken);
   }
@@ -224,6 +232,8 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
     }
   });
   flush();
+
+  console.log('codeWithVars:', codeWithVars.join(''));
 
   // Return legacy DOM structure
   // Array of <span /> elements
