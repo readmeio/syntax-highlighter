@@ -40,6 +40,18 @@ test('should work with modes', () => {
   );
 });
 
+test('should keep trailing json bracket if highlightMode is enabled', () => {
+  expect(
+    shallow(
+      syntaxHighlighter('{ "a": 1 }', 'json', {
+        highlightMode: true,
+      })
+    ).html()
+  ).toBe(
+    '<div class="cm-s-neo CodeEditor"><div class="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</div></div></div>'
+  );
+});
+
 test('should have a dark theme', () => {
   expect(shallow(syntaxHighlighter('{ "a": 1 }', 'json', { dark: true })).hasClass('cm-s-material-palenight')).toBe(
     true

@@ -86,7 +86,7 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
 
   const enumerateMatches = (o, final) => {
     // Case where a single line break
-    if (o.length === 1) {
+    if (o.length === 1 && lineBreakRegex.test(o)) {
       incrementLine(true);
       // Case with multiple consecutive line breaks
     } else {
