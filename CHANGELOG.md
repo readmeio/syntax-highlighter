@@ -1,3 +1,21 @@
+## <small>10.4.2 (2021-02-01)</small>
+
+* chore(deps-dev): bump @babel/preset-env from 7.12.7 to 7.12.11 (#58) ([4d3897e](https://github.com/readmeio/syntax-highlighter/commit/4d3897e)), closes [#58](https://github.com/readmeio/syntax-highlighter/issues/58)
+* chore(deps-dev): bump @babel/preset-react from 7.10.4 to 7.12.10 (#64) ([0d7ebea](https://github.com/readmeio/syntax-highlighter/commit/0d7ebea)), closes [#64](https://github.com/readmeio/syntax-highlighter/issues/64)
+* chore(deps-dev): bump @readme/eslint-config from 3.6.5 to 4.1.1 (#67) ([cef3e42](https://github.com/readmeio/syntax-highlighter/commit/cef3e42)), closes [#67](https://github.com/readmeio/syntax-highlighter/issues/67)
+* chore(deps-dev): bump @readme/variable from 10.0.0 to 10.0.9 (#57) ([566e159](https://github.com/readmeio/syntax-highlighter/commit/566e159)), closes [#57](https://github.com/readmeio/syntax-highlighter/issues/57)
+* chore(deps-dev): bump conventional-changelog-cli from 2.1.0 to 2.1.1 (#59) ([88a2cfc](https://github.com/readmeio/syntax-highlighter/commit/88a2cfc)), closes [#59](https://github.com/readmeio/syntax-highlighter/issues/59)
+* chore(deps-dev): bump eslint from 7.12.1 to 7.19.0 (#68) ([1d96324](https://github.com/readmeio/syntax-highlighter/commit/1d96324)), closes [#68](https://github.com/readmeio/syntax-highlighter/issues/68)
+* chore(deps-dev): bump husky from 4.3.0 to 4.3.8 (#69) ([93f0c89](https://github.com/readmeio/syntax-highlighter/commit/93f0c89)), closes [#69](https://github.com/readmeio/syntax-highlighter/issues/69)
+* chore(deps-dev): bump webpack-dev-server from 3.11.0 to 3.11.2 (#71) ([bef19cf](https://github.com/readmeio/syntax-highlighter/commit/bef19cf)), closes [#71](https://github.com/readmeio/syntax-highlighter/issues/71)
+* chore(deps): bump actions/setup-node from v2.1.2 to v2.1.4 (#55) ([0a50cae](https://github.com/readmeio/syntax-highlighter/commit/0a50cae)), closes [#55](https://github.com/readmeio/syntax-highlighter/issues/55)
+* chore(deps): bump ini from 1.3.5 to 1.3.8 (#53) ([0d9d8d4](https://github.com/readmeio/syntax-highlighter/commit/0d9d8d4)), closes [#53](https://github.com/readmeio/syntax-highlighter/issues/53)
+* chore(deps): bump node-notifier from 8.0.0 to 8.0.1 (#54) ([ad4072d](https://github.com/readmeio/syntax-highlighter/commit/ad4072d)), closes [#54](https://github.com/readmeio/syntax-highlighter/issues/54)
+* ci: stop trying to update webpack and webpack-cli ([cf8a244](https://github.com/readmeio/syntax-highlighter/commit/cf8a244))
+* fix: trailing bracket in json with highlightMode enabled (#66) ([4f34ef6](https://github.com/readmeio/syntax-highlighter/commit/4f34ef6)), closes [#66](https://github.com/readmeio/syntax-highlighter/issues/66)
+
+
+
 ## <small>10.4.1 (2020-12-05)</small>
 
 * chore(deps-dev): removing an unused dependency ([7cb08a0](https://github.com/readmeio/syntax-highlighter/commit/7cb08a0))
