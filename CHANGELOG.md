@@ -1,3 +1,9 @@
+## <small>10.4.3 (2021-02-03)</small>
+
+* feat(recipes): don't highlight everything on hover (#77) ([870f074](https://github.com/readmeio/syntax-highlighter/commit/870f074)), closes [#77](https://github.com/readmeio/syntax-highlighter/issues/77)
+
+
+
 ## <small>10.4.2 (2021-02-01)</small>
 
 * chore(deps-dev): bump @babel/preset-env from 7.12.7 to 7.12.11 (#58) ([4d3897e](https://github.com/readmeio/syntax-highlighter/commit/4d3897e)), closes [#58](https://github.com/readmeio/syntax-highlighter/issues/58)
