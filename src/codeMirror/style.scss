@@ -14,9 +14,9 @@ $lightHighlight: rgba($lightColor, 0.1);
 
   &.cm-s-material-palenight {
 
-    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay,
-    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay > span,
-    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay > p {
+    .cm-linerow.cm-overlay,
+    .cm-linerow.cm-overlay > span,
+    .cm-linerow.cm-overlay > p {
       color: rgba($darkColor, 0.5);
     }
 
@@ -32,9 +32,9 @@ $lightHighlight: rgba($lightColor, 0.1);
 
   &.cm-s-neo {
 
-    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay,
-    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay > span,
-    &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay > p {
+    .cm-linerow.cm-overlay,
+    .cm-linerow.cm-overlay > span,
+    .cm-linerow.cm-overlay > p {
       color: rgba($lightColor, 0.5);
     }
 
@@ -48,8 +48,8 @@ $lightHighlight: rgba($lightColor, 0.1);
     }
   }
 
-  &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay,
-  &:not(:hover):not(:active):not(:focus) .cm-linerow.cm-overlay .cm-lineNumber {
+  .cm-linerow.cm-overlay,
+  .cm-linerow.cm-overlay .cm-lineNumber {
     opacity: 0.75;
   }
 }
