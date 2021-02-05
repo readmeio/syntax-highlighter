@@ -14,10 +14,12 @@ $lightHighlight: rgba($lightColor, 0.1);
 
   &.cm-s-material-palenight {
 
-    .cm-linerow.cm-overlay,
-    .cm-linerow.cm-overlay > span,
-    .cm-linerow.cm-overlay > p {
-      color: rgba($darkColor, 0.5);
+    &:not(.CodeEditor-Input_highlight) {
+      .cm-linerow.cm-overlay,
+      .cm-linerow.cm-overlay > span,
+      .cm-linerow.cm-overlay > p {
+        color: rgba($darkColor, 0.5);
+      }
     }
 
     .cm-highlight {
@@ -32,10 +34,12 @@ $lightHighlight: rgba($lightColor, 0.1);
 
   &.cm-s-neo {
 
-    .cm-linerow.cm-overlay,
-    .cm-linerow.cm-overlay > span,
-    .cm-linerow.cm-overlay > p {
-      color: rgba($lightColor, 0.5);
+    &:not(.CodeEditor-Input_highlight) {
+      .cm-linerow.cm-overlay,
+      .cm-linerow.cm-overlay > span,
+      .cm-linerow.cm-overlay > p {
+        color: rgba($lightColor, 0.5);
+      }
     }
 
     .cm-highlight {
