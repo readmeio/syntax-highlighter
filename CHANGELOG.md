@@ -1,3 +1,9 @@
+## <small>10.4.4 (2021-02-05)</small>
+
+* style(codemirror): add highlight class (#78) ([ba8303e](https://github.com/readmeio/syntax-highlighter/commit/ba8303e)), closes [#78](https://github.com/readmeio/syntax-highlighter/issues/78)
+
+
+
 ## <small>10.4.3 (2021-02-03)</small>
 
 * feat(recipes): don't highlight everything on hover (#77) ([870f074](https://github.com/readmeio/syntax-highlighter/commit/870f074)), closes [#77](https://github.com/readmeio/syntax-highlighter/issues/77)
