@@ -1,3 +1,9 @@
+## <small>10.4.5 (2021-02-24)</small>
+
+* fix: loosen up our @readme/variable peerDep requirement (#79) ([5073b55](https://github.com/readmeio/syntax-highlighter/commit/5073b55)), closes [#79](https://github.com/readmeio/syntax-highlighter/issues/79)
+
+
+
 ## <small>10.4.4 (2021-02-05)</small>
 
 * style(codemirror): add highlight class (#78) ([ba8303e](https://github.com/readmeio/syntax-highlighter/commit/ba8303e)), closes [#78](https://github.com/readmeio/syntax-highlighter/issues/78)
