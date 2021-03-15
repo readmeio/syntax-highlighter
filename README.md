@@ -56,6 +56,7 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, 
 | tokenizeVariables | boolean | Apply [Variable Component](https://github.com/readmeio/api-explorer/tree/next/packages/variable) to matched Regex |
 | ranges | array | Ranges of line numbers to apply highlighting to. Requires `highlightMode` enabled |
 | editable | boolean | Enable full CodeMirror Instance |
+| customTheme | string | A styling theme. Will override dark mode. Available options are 'neo', 'material-palenight', or 'tomorrow-night'.
 
 ## Languages Supported
 
