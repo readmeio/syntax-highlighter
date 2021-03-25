@@ -13,8 +13,9 @@ const SyntaxHighlighter = (
     className: '',
     customTheme: false,
     dark: false,
-    tokenizeVariables: false,
     editable: false,
+    inline: false,
+    tokenizeVariables: false,
   },
   editorProps = {}
 ) => {
@@ -41,8 +42,10 @@ const SyntaxHighlighter = (
     classes.push('CodeEditor');
   }
 
+  const wrapper = opts.inline ? 'span' : 'div';
+
   return React.createElement(
-    'div',
+    wrapper,
     { className: classes.join(' ') },
     codemirror(typeof code === 'string' ? code : '', lang, opts)
   );

@@ -1,6 +1,6 @@
 # @readme/syntax-highlighter
 
-ReadMe's React-based syntax highlighter based on [CodeMirror](https://github.com/codemirror/CodeMirror) and [react-codemirror2](https://github.com/scniro/react-codemirror2).
+ReadMe's React-based syntax highlighter based on [CodeMirror][codemirror] and [react-codemirror2][react-codemirror]
 
 [![npm](https://img.shields.io/npm/v/@readme/syntax-highlighter)](https://npm.im/@readme/syntax-highlighter) [![Build](https://github.com/readmeio/syntax-highlighter/workflows/CI/badge.svg)](https://github.com/readmeio/syntax-highlighter)
 
@@ -41,7 +41,7 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', {
 ```
 
 ### Full CodeMirror
-Access to a full code Mirror instance. See configuration settings in the [react-codemirror2 library](https://github.com/scniro/react-codemirror2#props)
+Access to a full code Mirror instance. See configuration settings in the [`react-codemirror2` library][react-codemirror#props]
 
 ```js
 const syntaxHighlighter = require('@readme/syntax-highlighter');
@@ -51,12 +51,13 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, 
 ### Available Options
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| dark | boolean | Enable Dark Mode? |
-| highlightMode | boolean | Enable line number display and ability to set highlighted line css |
-| tokenizeVariables | boolean | Apply [Variable Component](https://github.com/readmeio/api-explorer/tree/next/packages/variable) to matched Regex |
-| ranges | array | Ranges of line numbers to apply highlighting to. Requires `highlightMode` enabled |
-| editable | boolean | Enable full CodeMirror Instance |
-| customTheme | string | A styling theme. Will override dark mode. Available options are 'neo', 'material-palenight', or 'tomorrow-night'.
+| `customTheme` | String | Highlighting theme. One of `neo`, `material-palenight`, or `tomorrow-night`. (Setting this will override the `dark` mode option.)
+| `dark` | Boolean | Enable dark mode. |
+| `editable` | Boolean | Enable the full CodeMirror instance |
+| `highlightMode` | Boolean | Enable line number display. |
+| `inline` | String | Wrap code in a `<span>` tag, instead of a `<div>`. |
+| `ranges` | Array | Ranges of line numbers to apply highlighting to. Requires `highlightMode` enabled |
+| `tokenizeVariables` | Boolean | Match and render [ReadMe variables](rdme-variable) in your markdown. |
 
 ## Languages Supported
 
@@ -100,3 +101,9 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, 
 | TOML | `toml` |
 | TypeScript | `ts`, `typescript` |
 | YAML | `yaml`, `yml` |
+
+
+[rdme-variable]: https://github.com/readmeio/api-explorer/tree/next/packages/variable
+[codemirror]: https://github.com/codemirror/CodeMirror
+[react-codemirror]: https://github.com/scniro/react-codemirror2
+[react-codemirror#props]: https://github.com/scniro/react-codemirror2#props
