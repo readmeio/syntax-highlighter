@@ -1,3 +1,13 @@
+## 10.5.0 (2021-03-29)
+
+* chore(deps-dev): bump @readme/variable from 10.0.9 to 12.0.0 (#84) ([aac9f6f](https://github.com/readmeio/syntax-highlighter/commit/aac9f6f)), closes [#84](https://github.com/readmeio/syntax-highlighter/issues/84)
+* chore(deps-dev): bump html-webpack-plugin from 4.5.0 to 4.5.2 (#83) ([f0424cc](https://github.com/readmeio/syntax-highlighter/commit/f0424cc)), closes [#83](https://github.com/readmeio/syntax-highlighter/issues/83)
+* chore(deps): bump actions/setup-node from v2.1.4 to v2.1.5 (#81) ([1ced5bb](https://github.com/readmeio/syntax-highlighter/commit/1ced5bb)), closes [#81](https://github.com/readmeio/syntax-highlighter/issues/81)
+* chore(options): add a new inline toggle (#94) ([65b6328](https://github.com/readmeio/syntax-highlighter/commit/65b6328)), closes [#94](https://github.com/readmeio/syntax-highlighter/issues/94)
+* docs: add custom theme to available option docs (#92) ([5c8164e](https://github.com/readmeio/syntax-highlighter/commit/5c8164e)), closes [#92](https://github.com/readmeio/syntax-highlighter/issues/92)
+
+
+
 ## <small>10.4.5 (2021-02-24)</small>
 
 * fix: loosen up our @readme/variable peerDep requirement (#79) ([5073b55](https://github.com/readmeio/syntax-highlighter/commit/5073b55)), closes [#79](https://github.com/readmeio/syntax-highlighter/issues/79)
