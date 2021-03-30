@@ -24,12 +24,21 @@ const SyntaxHighlighter = (
     theme = opts.customTheme;
   }
 
+  if (opts.foldGutter) {
+    // `foldGutter` does not work with runmode and has to be done with the codeEditor component
+    // NOTE: To disable editing, to still allow folding, `readOnly` must be `true`.
+    opts.editable = true;
+    // Default CSS classes
+    opts.gutters = ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'];
+  }
+
   if (opts.editable) {
     return React.createElement(codeEditor, {
       ...editorProps,
       code,
       lang,
       theme,
+      options: opts,
     });
   }
 

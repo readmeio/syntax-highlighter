@@ -347,6 +347,22 @@ exports[`Supported languages cURL should syntax highlight an example 1`] = `
 </div>"
 `;
 
+exports[`code folding relevant options in the props matches snapshot 1`] = `
+Object {
+  "editable": true,
+  "foldGutter": true,
+  "gutters": Array [
+    "CodeMirror-linenumbers",
+    "CodeMirror-foldgutter",
+  ],
+  "lineNumbers": true,
+  "mode": "application/ld+json",
+  "readOnly": true,
+  "tabSize": 2,
+  "theme": "neo",
+}
+`;
+
 exports[`should tokenize variables outside of quotes over multiple lines 1`] = `
 "
   const foo = APIKEY;

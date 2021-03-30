@@ -6,6 +6,8 @@ import { getMode } from '../utils/modes';
 
 import '../utils/cm-mode-imports';
 import './style.scss';
+import 'codemirror/addon/fold/brace-fold';
+import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/runmode/runmode';
 import 'codemirror/mode/meta';
 
