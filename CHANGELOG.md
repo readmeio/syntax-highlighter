@@ -1,3 +1,14 @@
+## 10.6.0 (2021-03-30)
+
+* chore: removing an unnecessary prettier step in the pretest script ([5d63737](https://github.com/readmeio/syntax-highlighter/commit/5d63737))
+* chore(deps-dev): bump @babel/preset-env from 7.12.11 to 7.13.8 (#91) ([b5d7503](https://github.com/readmeio/syntax-highlighter/commit/b5d7503)), closes [#91](https://github.com/readmeio/syntax-highlighter/issues/91)
+* chore(deps-dev): bump @babel/preset-react from 7.12.10 to 7.12.13 (#90) ([1e8a065](https://github.com/readmeio/syntax-highlighter/commit/1e8a065)), closes [#90](https://github.com/readmeio/syntax-highlighter/issues/90)
+* chore(deps-dev): bump @readme/eslint-config from 4.1.1 to 5.0.0 (#88) ([b604651](https://github.com/readmeio/syntax-highlighter/commit/b604651)), closes [#88](https://github.com/readmeio/syntax-highlighter/issues/88)
+* chore(deps-dev): bump eslint from 7.19.0 to 7.21.0 (#89) ([0ac8e57](https://github.com/readmeio/syntax-highlighter/commit/0ac8e57)), closes [#89](https://github.com/readmeio/syntax-highlighter/issues/89)
+* feat: enable code folding (#95) ([a1e53c2](https://github.com/readmeio/syntax-highlighter/commit/a1e53c2)), closes [#95](https://github.com/readmeio/syntax-highlighter/issues/95)
+
+
+
 ## 10.5.0 (2021-03-29)
 
 * chore(deps-dev): bump @readme/variable from 10.0.9 to 12.0.0 (#84) ([aac9f6f](https://github.com/readmeio/syntax-highlighter/commit/aac9f6f)), closes [#84](https://github.com/readmeio/syntax-highlighter/issues/84)
