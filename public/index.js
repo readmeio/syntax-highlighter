@@ -7,6 +7,32 @@ const exampleCode = `curl --request POST
   --header 'authorization: Bearer 123'
   --header 'content-type: application/json'`;
 
+const exampleJson = `{
+    "key": "value",
+    "array": [1, 2, 3],
+    "a": {
+      "b": {
+        "c": {
+          "d": "ok",
+          "e": "err"
+        },
+        "f": {
+          "g": "ok"
+        },
+        "h": {
+          "i": "ok"
+        }
+      },
+      "j": {
+        "k": {
+          "l": "ok"
+        }
+      }
+    },
+    "isThing": true
+  }
+  `;
+
 ReactDOM.render(
   <div>
     <h1>Core Syntax Highlighter</h1>
@@ -115,6 +141,23 @@ ReactDOM.render(
     <h2>Custom Theme: tomorrow-night</h2>
     <pre id="hub-reference">
       {syntaxHighlighter(exampleCode, 'curl', { editable: true, customTheme: 'tomorrow-night' })}
+    </pre>
+
+    <hr />
+    <h1>Code Folding</h1>
+    <h2>Dark Theme</h2>
+    <pre id="hub-reference">
+      {syntaxHighlighter(exampleJson, 'json', { foldGutter: true, readOnly: true, dark: true })}
+    </pre>
+
+    <h2>Light Theme</h2>
+    <pre id="hub-reference">
+      {syntaxHighlighter(exampleJson, 'json', { foldGutter: true, readOnly: true, dark: false })}
+    </pre>
+
+    <h2>Custom Theme: tomorrow-night</h2>
+    <pre id="hub-reference">
+      {syntaxHighlighter(exampleJson, 'json', { foldGutter: true, readOnly: true, customTheme: 'tomorrow-night' })}
     </pre>
   </div>,
   document.getElementById('root')
