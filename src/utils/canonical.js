@@ -23,6 +23,7 @@ const modeAliases = {
   less: 'css',
   macruby: 'ruby',
   md: 'markdown',
+  ml: 'ocaml',
   mssql: 'sql',
   mysql: 'sql',
   node: 'javascript',
