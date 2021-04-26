@@ -1,3 +1,16 @@
+## 10.7.0 (2021-04-26)
+
+* chore(deps-dev): bump @babel/preset-env from 7.13.8 to 7.13.12 (#99) ([2e72f76](https://github.com/readmeio/syntax-highlighter/commit/2e72f76)), closes [#99](https://github.com/readmeio/syntax-highlighter/issues/99)
+* chore(deps-dev): bump @babel/preset-react from 7.12.13 to 7.13.13 (#103) ([2395923](https://github.com/readmeio/syntax-highlighter/commit/2395923)), closes [#103](https://github.com/readmeio/syntax-highlighter/issues/103)
+* chore(deps-dev): bump @readme/eslint-config from 5.0.0 to 5.0.3 (#96) ([2678996](https://github.com/readmeio/syntax-highlighter/commit/2678996)), closes [#96](https://github.com/readmeio/syntax-highlighter/issues/96)
+* chore(deps-dev): bump @readme/variable from 12.0.0 to 13.2.1 (#106) ([687678a](https://github.com/readmeio/syntax-highlighter/commit/687678a)), closes [#106](https://github.com/readmeio/syntax-highlighter/issues/106)
+* chore(deps-dev): bump eslint from 7.21.0 to 7.23.0 (#102) ([81e641b](https://github.com/readmeio/syntax-highlighter/commit/81e641b)), closes [#102](https://github.com/readmeio/syntax-highlighter/issues/102)
+* chore(deps): bump y18n from 4.0.0 to 4.0.1 (#104) ([8f0c6c3](https://github.com/readmeio/syntax-highlighter/commit/8f0c6c3)), closes [#104](https://github.com/readmeio/syntax-highlighter/issues/104)
+* feat: adding support for OCaml and R (#105) ([06b71c5](https://github.com/readmeio/syntax-highlighter/commit/06b71c5)), closes [#105](https://github.com/readmeio/syntax-highlighter/issues/105)
+* ci: stop trying to update husky past v4 ([458cedb](https://github.com/readmeio/syntax-highlighter/commit/458cedb))
+
+
+
 ## 10.6.0 (2021-03-30)
 
 * chore: removing an unnecessary prettier step in the pretest script ([5d63737](https://github.com/readmeio/syntax-highlighter/commit/5d63737))
