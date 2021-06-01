@@ -38,7 +38,7 @@
     "@commitlint/config-conventional": "^12.1.1",
     "@readme/eslint-config": "^5.0.0",
     "@readme/variable": "^13.2.1",
-    "babel-jest": "^26.3.0",
+    "babel-jest": "^27.0.2",
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
     "conventional-changelog-cli": "^2.1.0",
