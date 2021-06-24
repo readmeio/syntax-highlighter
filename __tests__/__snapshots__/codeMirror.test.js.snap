@@ -151,6 +151,13 @@ exports[`Supported languages JSON should syntax highlight an example 1`] = `
 </div>"
 `;
 
+exports[`Supported languages JSX should syntax highlight an example 1`] = `
+"<div class=\\"cm-s-neo\\"><span class=\\"cm-tag cm-bracket\\">&lt;</span><span class=\\"cm-tag\\">Component</span><span class=\\"cm-tag cm-bracket\\">&gt;</span>
+  <span class=\\"cm-tag cm-bracket\\">&lt;</span><span class=\\"cm-tag\\">strong</span><span class=\\"cm-tag cm-bracket\\">&gt;</span>Hello, world<span class=\\"cm-tag cm-bracket\\">&lt;/</span><span class=\\"cm-tag\\">strong</span><span class=\\"cm-tag cm-bracket\\">&gt;</span>
+<span class=\\"cm-tag cm-bracket\\">&lt;/</span><span class=\\"cm-tag\\">Component</span><span class=\\"cm-tag cm-bracket\\">&gt;</span>
+</div>"
+`;
+
 exports[`Supported languages Java should syntax highlight an example 1`] = `
 "<div class=\\"cm-s-neo\\"><span class=\\"cm-keyword\\">public</span> <span class=\\"cm-keyword\\">class</span> <span class=\\"cm-def\\">Java</span> {
   <span class=\\"cm-keyword\\">public</span> <span class=\\"cm-keyword\\">static</span> <span class=\\"cm-type\\">void</span> <span class=\\"cm-variable\\">main</span>(<span class=\\"cm-type\\">String</span>[] <span class=\\"cm-variable\\">args</span>) {

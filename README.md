@@ -82,6 +82,7 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, 
 | Java | `java` |
 | JavaScript | `coffeescript`, `ecmascript`, `javascript`, `js`, `node` |
 | JSON | `json` |
+| JSX | `jsx` |
 | Julia | `jl`, `julia` |
 | Kotlin | `kotlin`, `kt` |
 | Liquid | `liquid` |

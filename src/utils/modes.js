@@ -37,6 +37,7 @@ const modes = {
   java: ['clike', 'text/x-java'],
   jl: 'julia',
   js: 'javascript',
+  jsx: 'jsx',
   json: ['javascript', 'application/ld+json'],
   jruby: 'ruby',
   kotlin: ['clike', 'text/x-kotlin'],
