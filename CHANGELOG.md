@@ -1,3 +1,30 @@
+## 10.8.0 (2021-06-24)
+
+* chore(deps-dev): bump @babel/preset-env from 7.13.12 to 7.13.15 (#108) ([0462a05](https://github.com/readmeio/syntax-highlighter/commit/0462a05)), closes [#108](https://github.com/readmeio/syntax-highlighter/issues/108)
+* chore(deps-dev): bump @babel/preset-env from 7.13.15 to 7.14.0 (#113) ([6909bd9](https://github.com/readmeio/syntax-highlighter/commit/6909bd9)), closes [#113](https://github.com/readmeio/syntax-highlighter/issues/113)
+* chore(deps-dev): bump @babel/preset-env from 7.14.0 to 7.14.4 (#129) ([cab7498](https://github.com/readmeio/syntax-highlighter/commit/cab7498)), closes [#129](https://github.com/readmeio/syntax-highlighter/issues/129)
+* chore(deps-dev): bump @commitlint/cli from 11.0.0 to 12.1.1 (#112) ([1533beb](https://github.com/readmeio/syntax-highlighter/commit/1533beb)), closes [#112](https://github.com/readmeio/syntax-highlighter/issues/112)
+* chore(deps-dev): bump @commitlint/cli from 12.1.1 to 12.1.4 (#121) ([25afefe](https://github.com/readmeio/syntax-highlighter/commit/25afefe)), closes [#121](https://github.com/readmeio/syntax-highlighter/issues/121)
+* chore(deps-dev): bump @commitlint/config-conventional (#109) ([8e6e2f3](https://github.com/readmeio/syntax-highlighter/commit/8e6e2f3)), closes [#109](https://github.com/readmeio/syntax-highlighter/issues/109)
+* chore(deps-dev): bump @commitlint/config-conventional (#132) ([d898198](https://github.com/readmeio/syntax-highlighter/commit/d898198)), closes [#132](https://github.com/readmeio/syntax-highlighter/issues/132)
+* chore(deps-dev): bump @readme/eslint-config from 5.0.3 to 5.0.4 (#114) ([add4b48](https://github.com/readmeio/syntax-highlighter/commit/add4b48)), closes [#114](https://github.com/readmeio/syntax-highlighter/issues/114)
+* chore(deps-dev): bump @readme/eslint-config from 5.0.4 to 5.0.5 (#124) ([50225bb](https://github.com/readmeio/syntax-highlighter/commit/50225bb)), closes [#124](https://github.com/readmeio/syntax-highlighter/issues/124)
+* chore(deps-dev): bump @readme/variable from 13.2.1 to 13.4.6 (#131) ([a1f9b28](https://github.com/readmeio/syntax-highlighter/commit/a1f9b28)), closes [#131](https://github.com/readmeio/syntax-highlighter/issues/131)
+* chore(deps-dev): bump css-loader from 4.3.0 to 5.2.4 (#111) ([ee99deb](https://github.com/readmeio/syntax-highlighter/commit/ee99deb)), closes [#111](https://github.com/readmeio/syntax-highlighter/issues/111)
+* chore(deps-dev): bump css-loader from 5.2.4 to 5.2.6 (#125) ([9cc233a](https://github.com/readmeio/syntax-highlighter/commit/9cc233a)), closes [#125](https://github.com/readmeio/syntax-highlighter/issues/125)
+* chore(deps-dev): bump eslint from 7.23.0 to 7.25.0 (#110) ([a02d458](https://github.com/readmeio/syntax-highlighter/commit/a02d458)), closes [#110](https://github.com/readmeio/syntax-highlighter/issues/110)
+* chore(deps-dev): bump eslint from 7.25.0 to 7.27.0 (#130) ([1d1b2bd](https://github.com/readmeio/syntax-highlighter/commit/1d1b2bd)), closes [#130](https://github.com/readmeio/syntax-highlighter/issues/130)
+* chore(deps-dev): bump glob from 7.1.6 to 7.1.7 (#126) ([13051fc](https://github.com/readmeio/syntax-highlighter/commit/13051fc)), closes [#126](https://github.com/readmeio/syntax-highlighter/issues/126)
+* chore(deps-dev): bump prettier from 2.2.1 to 2.3.0 (#123) ([b41c14c](https://github.com/readmeio/syntax-highlighter/commit/b41c14c)), closes [#123](https://github.com/readmeio/syntax-highlighter/issues/123)
+* chore(deps): bump browserslist from 4.16.3 to 4.16.6 (#119) ([a761a7e](https://github.com/readmeio/syntax-highlighter/commit/a761a7e)), closes [#119](https://github.com/readmeio/syntax-highlighter/issues/119)
+* chore(deps): bump codemirror from 5.58.1 to 5.61.1 (#128) ([1c8057e](https://github.com/readmeio/syntax-highlighter/commit/1c8057e)), closes [#128](https://github.com/readmeio/syntax-highlighter/issues/128)
+* chore(deps): bump handlebars from 4.7.6 to 4.7.7 (#115) ([504ebc2](https://github.com/readmeio/syntax-highlighter/commit/504ebc2)), closes [#115](https://github.com/readmeio/syntax-highlighter/issues/115)
+* chore(deps): bump hosted-git-info from 2.8.8 to 2.8.9 (#117) ([f3f30fc](https://github.com/readmeio/syntax-highlighter/commit/f3f30fc)), closes [#117](https://github.com/readmeio/syntax-highlighter/issues/117)
+* chore(deps): bump lodash from 4.17.19 to 4.17.21 (#116) ([786dd16](https://github.com/readmeio/syntax-highlighter/commit/786dd16)), closes [#116](https://github.com/readmeio/syntax-highlighter/issues/116)
+* chore(deps): bump ws from 6.2.1 to 6.2.2 (#133) ([e60f427](https://github.com/readmeio/syntax-highlighter/commit/e60f427)), closes [#133](https://github.com/readmeio/syntax-highlighter/issues/133)
+
+
+
 ## 10.7.0 (2021-04-26)
 
 * chore(deps-dev): bump @babel/preset-env from 7.13.8 to 7.13.12 (#99) ([2e72f76](https://github.com/readmeio/syntax-highlighter/commit/2e72f76)), closes [#99](https://github.com/readmeio/syntax-highlighter/issues/99)
