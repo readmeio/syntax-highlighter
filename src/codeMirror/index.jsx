@@ -1,7 +1,7 @@
 import CodeMirror from 'codemirror';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Variable, VARIABLE_REGEXP, VariablesContext } from '@readme/markdown';
+import { utils as markdownUtils } from '@readme/markdown';
 import { getMode } from '../utils/modes';
 
 import '../utils/cm-mode-imports';
@@ -10,6 +10,8 @@ import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/runmode/runmode';
 import 'codemirror/mode/meta';
+
+const { Variable, VARIABLE_REGEXP, VariablesContext } = markdownUtils;
 
 // Pre output conversion
 // CodeMirror "Gutter" -> Apply line numbers to styled lines
