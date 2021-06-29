@@ -60,37 +60,43 @@ test('should have a dark theme', () => {
   );
 });
 
-test('should tokenize variables (double quotes)', () => {
-  expect(mount(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(1);
-});
+describe('variable substitution', () => {
+  it('should tokenize variables (double quotes)', () => {
+    expect(mount(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(
+      1
+    );
+  });
 
-test('should tokenize variables (single quotes)', () => {
-  expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(1);
-});
+  it('should tokenize variables (single quotes)', () => {
+    expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(
+      1
+    );
+  });
 
-test('should keep enclosing characters around the variable', () => {
-  expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).text()).toBe("'APIKEY'");
-});
+  it('should keep enclosing characters around the variable', () => {
+    expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).text()).toBe("'APIKEY'");
+  });
 
-test('should tokenize variables outside of quotes', () => {
-  expect(mount(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true })).text()).toBe('APIKEY');
-});
+  it('should tokenize variables outside of quotes', () => {
+    expect(mount(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true })).text()).toBe('APIKEY');
+  });
 
-test('should tokenize variables outside of quotes over multiple lines', () => {
-  const codeBlock = `
-  const foo = <<apiKey>>;
-  const bar = <<name>>;
+  it('should tokenize variables outside of quotes over multiple lines', () => {
+    const codeBlock = `
+    const foo = <<apiKey>>;
+    const bar = <<name>>;
 
-  fetch({ foo, bar, baz: <<token>> });
-`;
+    fetch({ foo, bar, baz: <<token>> });
+  `;
 
-  expect(mount(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true })).text()).toMatchSnapshot();
-});
+    expect(mount(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true })).text()).toMatchSnapshot();
+  });
 
-test('should tokenize multiple variables per line', () => {
-  expect(mount(syntaxHighlighter('<<apiKey>> <<name>>', 'json', { tokenizeVariables: true })).text()).toBe(
-    'APIKEY NAME'
-  );
+  it('should tokenize multiple variables per line', () => {
+    expect(mount(syntaxHighlighter('<<apiKey>> <<name>>', 'json', { tokenizeVariables: true })).text()).toBe(
+      'APIKEY NAME'
+    );
+  });
 });
 
 describe('Supported languages', () => {

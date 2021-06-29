@@ -373,11 +373,11 @@ Object {
 }
 `;
 
-exports[`should tokenize variables outside of quotes over multiple lines 1`] = `
+exports[`variable substitution should tokenize variables outside of quotes over multiple lines 1`] = `
 "
-  const foo = APIKEY;
-  const bar = NAME;
+    const foo = APIKEY;
+    const bar = NAME;
 
-  fetch({ foo, bar, baz: TOKEN });
-"
+    fetch({ foo, bar, baz: TOKEN });
+  "
 `;
