@@ -1,7 +1,7 @@
 import CodeMirror from 'codemirror';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Variable, { VARIABLE_REGEXP, VariablesContext } from '@readme/variable';
+import { Variable, VARIABLE_REGEXP, VariablesContext } from '@readme/markdown';
 import { getMode } from '../utils/modes';
 
 import '../utils/cm-mode-imports';
