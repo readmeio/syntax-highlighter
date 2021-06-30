@@ -13,7 +13,7 @@
   "scripts": {
     "build": "webpack",
     "lint": "eslint . --ext .jsx --ext .js",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "pretest": "npm run lint",
     "prettier": "prettier --list-different --write \"./**/**.{js,jsx}\"",
     "start": "webpack-dev-server --open --config ./webpack.config.dev.js",
@@ -37,7 +37,6 @@
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "@readme/eslint-config": "^5.0.0",
-    "@readme/markdown": "^6.28.1",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
