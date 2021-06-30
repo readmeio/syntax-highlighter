@@ -19,8 +19,5 @@ jobs:
       - name: Build bundles
         run: npm run build
 
-      - name: node-sass hack
-        run: npm rebuild node-sass
-
       - name: Analyze Bundle
         run: npx bundlewatch
