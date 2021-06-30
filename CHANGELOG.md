@@ -1,3 +1,9 @@
+## 10.10.0 (2021-06-30)
+
+* chore: removing @readme/markdown as a devDep (#137) ([29af620](https://github.com/readmeio/syntax-highlighter/commit/29af620)), closes [#137](https://github.com/readmeio/syntax-highlighter/issues/137)
+
+
+
 ## 10.9.0 (2021-06-30)
 
 * feat: swap out @readme/variable for @readme/markdown (#136) ([8277f06](https://github.com/readmeio/syntax-highlighter/commit/8277f06)), closes [#136](https://github.com/readmeio/syntax-highlighter/issues/136)
