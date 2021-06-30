@@ -39,7 +39,7 @@ const base = {
       amd: 'react-dom',
       umd: 'react-dom',
     },
-    '@readme/variable': '@readme/variable',
+    '@readme/markdown': '@readme/markdown',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
