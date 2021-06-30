@@ -1,3 +1,9 @@
+## 10.9.0 (2021-06-30)
+
+* feat: swap out @readme/variable for @readme/markdown (#136) ([8277f06](https://github.com/readmeio/syntax-highlighter/commit/8277f06)), closes [#136](https://github.com/readmeio/syntax-highlighter/issues/136)
+
+
+
 ## 10.8.0 (2021-06-24)
 
 * chore(deps-dev): bump @babel/preset-env from 7.13.12 to 7.13.15 (#108) ([0462a05](https://github.com/readmeio/syntax-highlighter/commit/0462a05)), closes [#108](https://github.com/readmeio/syntax-highlighter/issues/108)
