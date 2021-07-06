@@ -1,3 +1,15 @@
+## <small>10.10.1 (2021-07-06)</small>
+
+* chore: bringing back @readme/variable and dumping @readme/markdown ([eab8ffe](https://github.com/readmeio/syntax-highlighter/commit/eab8ffe))
+* chore: upgrading husky ([8811afc](https://github.com/readmeio/syntax-highlighter/commit/8811afc))
+* chore(deps-dev): bump @readme/eslint-config from 5.0.5 to 5.1.0 (#146) ([9014e30](https://github.com/readmeio/syntax-highlighter/commit/9014e30)), closes [#146](https://github.com/readmeio/syntax-highlighter/issues/146)
+* chore(deps-dev): bump eslint from 7.27.0 to 7.29.0 (#147) ([69de709](https://github.com/readmeio/syntax-highlighter/commit/69de709)), closes [#147](https://github.com/readmeio/syntax-highlighter/issues/147)
+* chore(deps-dev): bump prettier from 2.3.0 to 2.3.2 (#139) ([81d1041](https://github.com/readmeio/syntax-highlighter/commit/81d1041)), closes [#139](https://github.com/readmeio/syntax-highlighter/issues/139)
+* chore(deps): bump actions/setup-node from 2.1.5 to 2.2.0 (#138) ([9726400](https://github.com/readmeio/syntax-highlighter/commit/9726400)), closes [#138](https://github.com/readmeio/syntax-highlighter/issues/138)
+* chore(deps): bump codemirror from 5.61.1 to 5.62.0 (#141) ([a74e819](https://github.com/readmeio/syntax-highlighter/commit/a74e819)), closes [#141](https://github.com/readmeio/syntax-highlighter/issues/141)
+
+
+
 ## 10.10.0 (2021-06-30)
 
 * chore: removing @readme/markdown as a devDep (#137) ([29af620](https://github.com/readmeio/syntax-highlighter/commit/29af620)), closes [#137](https://github.com/readmeio/syntax-highlighter/issues/137)
