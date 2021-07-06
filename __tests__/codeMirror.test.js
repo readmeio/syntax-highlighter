@@ -2,10 +2,8 @@ import { mount, shallow } from 'enzyme';
 import path from 'path';
 import glob from 'glob';
 import { promises as fs } from 'fs';
-import { utils as markdownUtils } from '@readme/markdown';
+import Variable from '@readme/variable';
 import syntaxHighlighter, { uppercase, canonical } from '../src';
-
-const { Variable } = markdownUtils;
 
 const fixtures = glob.sync(path.join(__dirname, '/__fixtures__/*'));
 
