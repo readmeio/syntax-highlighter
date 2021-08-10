@@ -1,7 +1,7 @@
 {
   "name": "@readme/syntax-highlighter",
   "description": "ReadMe's React-based syntax highlighter",
-  "version": "10.10.1",
+  "version": "10.11.0",
   "main": "dist/index.node.js",
   "browser": "dist/index.js",
   "license": "ISC",
@@ -17,9 +17,9 @@
     "prepublishOnly": "npm run build",
     "pretest": "npm run lint",
     "prettier": "prettier --list-different --write \"./**/**.{js,jsx}\"",
+    "release": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md",
     "start": "webpack-dev-server --open --config ./webpack.config.dev.js",
     "test": "jest --coverage --runInBand",
-    "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md",
     "watch": "webpack -w --progress"
   },
   "dependencies": {
