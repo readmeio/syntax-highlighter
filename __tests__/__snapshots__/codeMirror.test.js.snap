@@ -151,6 +151,19 @@ exports[`Supported languages JSON should syntax highlight an example 1`] = `
 </div>"
 `;
 
+exports[`Supported languages JSX should syntax highlight an example 1`] = `
+"<div class=\\"cm-s-neo\\"><span class=\\"cm-keyword\\">import</span> <span class=\\"cm-def\\">React</span> <span class=\\"cm-keyword\\">from</span> <span class=\\"cm-string\\">&#x27;react&#x27;</span>;
+
+<span class=\\"cm-keyword\\">const</span> <span class=\\"cm-def\\">HelloWorld</span> <span class=\\"cm-operator\\">=</span> <span class=\\"cm-keyword\\">function</span>() {
+  <span class=\\"cm-keyword\\">return</span> <span class=\\"cm-tag cm-bracket\\">&lt;</span><span class=\\"cm-tag\\">span</span><span class=\\"cm-tag cm-bracket\\">&gt;</span>Hello World<span class=\\"cm-tag cm-bracket\\">&lt;/</span><span class=\\"cm-tag\\">span</span><span class=\\"cm-tag cm-bracket\\">&gt;</span>;
+};
+
+<span class=\\"cm-variable\\">HelloWorld</span>.<span class=\\"cm-property\\">displayName</span> <span class=\\"cm-operator\\">=</span> <span class=\\"cm-string\\">&#x27;HelloWorld&#x27;</span>;
+
+<span class=\\"cm-variable\\">console</span>.<span class=\\"cm-property\\">log</span>(<span class=\\"cm-variable\\">React</span>.<span class=\\"cm-property\\">renderToString</span>(<span class=\\"cm-tag cm-bracket\\">&lt;</span><span class=\\"cm-tag\\">HelloWorld</span> <span class=\\"cm-tag cm-bracket\\">/&gt;</span>));
+</div>"
+`;
+
 exports[`Supported languages Java should syntax highlight an example 1`] = `
 "<div class=\\"cm-s-neo\\"><span class=\\"cm-keyword\\">public</span> <span class=\\"cm-keyword\\">class</span> <span class=\\"cm-def\\">Java</span> {
   <span class=\\"cm-keyword\\">public</span> <span class=\\"cm-keyword\\">static</span> <span class=\\"cm-type\\">void</span> <span class=\\"cm-variable\\">main</span>(<span class=\\"cm-type\\">String</span>[] <span class=\\"cm-variable\\">args</span>) {

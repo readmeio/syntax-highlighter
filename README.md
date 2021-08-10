@@ -80,7 +80,7 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, 
 | HTML/XML | `html`, `xhtml`, `xml` |
 | HTTP | `http` |
 | Java | `java` |
-| JavaScript | `coffeescript`, `ecmascript`, `javascript`, `js`, `node` |
+| JavaScript | `coffeescript`, `ecmascript`, `javascript`, `js`, `jsx`, `node` |
 | JSON | `json` |
 | Julia | `jl`, `julia` |
 | Kotlin | `kotlin`, `kt` |
@@ -94,6 +94,7 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, 
 | PowerShell | `powershell`, `ps1` |
 | Python | `py`, `python` |
 | R | `r` |
+| React | `jsx` |
 | Ruby | `jruby`, `macruby`, `rake`, `rb`, `rbx`, `ruby` |
 | Rust | `rs`, `rust` |
 | Scala | `scala` |

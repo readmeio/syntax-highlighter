@@ -40,6 +40,7 @@ const codeTypes = {
   jruby: 'JRuby',
   js: 'JavaScript',
   json: 'JSON',
+  jsx: 'JSX',
   julia: 'Julia',
   kotlin: 'Kotlin',
   kt: 'Kotlin',
