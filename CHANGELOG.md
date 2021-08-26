@@ -1,3 +1,14 @@
+## <small>10.11.1 (2021-08-26)</small>
+
+* chore(deps-dev): bump @babel/preset-env from 7.14.9 to 7.15.0 (#163) ([0a7fa76](https://github.com/readmeio/syntax-highlighter/commit/0a7fa76)), closes [#163](https://github.com/readmeio/syntax-highlighter/issues/163)
+* chore(deps-dev): bump husky from 7.0.1 to 7.0.2 (#161) ([2f2e733](https://github.com/readmeio/syntax-highlighter/commit/2f2e733)), closes [#161](https://github.com/readmeio/syntax-highlighter/issues/161)
+* chore(deps-dev): bump webpack-dev-server from 3.11.2 to 4.0.0 (#162) ([da74e27](https://github.com/readmeio/syntax-highlighter/commit/da74e27)), closes [#162](https://github.com/readmeio/syntax-highlighter/issues/162)
+* chore(deps): bump actions/setup-node from 2.3.0 to 2.4.0 (#160) ([93dad46](https://github.com/readmeio/syntax-highlighter/commit/93dad46)), closes [#160](https://github.com/readmeio/syntax-highlighter/issues/160)
+* chore(deps): bump codemirror from 5.62.2 to 5.62.3 (#164) ([f3b2a19](https://github.com/readmeio/syntax-highlighter/commit/f3b2a19)), closes [#164](https://github.com/readmeio/syntax-highlighter/issues/164)
+* ci: updating the dependabot label ([95916d2](https://github.com/readmeio/syntax-highlighter/commit/95916d2))
+
+
+
 ## <small>10.10.1 (2021-07-06)</small>
 
 * chore: bringing back @readme/variable and dumping @readme/markdown ([eab8ffe](https://github.com/readmeio/syntax-highlighter/commit/eab8ffe))
