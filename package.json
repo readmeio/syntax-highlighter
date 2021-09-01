@@ -17,7 +17,7 @@
     "prepublishOnly": "npm run build",
     "pretest": "npm run lint",
     "prettier": "prettier --list-different --write \"./**/**.{js,jsx}\"",
-    "release": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "release": "npx conventional-changelog-cli -i CHANGELOG.md -s && git add CHANGELOG.md",
     "start": "webpack-dev-server --open --config ./webpack.config.dev.js",
     "test": "jest --coverage --runInBand",
     "watch": "webpack -w --progress"
@@ -41,7 +41,6 @@
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
-    "conventional-changelog-cli": "^2.1.0",
     "css-loader": "^5.2.4",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
