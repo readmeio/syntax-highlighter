@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+  mode: 'development',
   entry: ['./public/index.js'],
   module: {
     rules: [
@@ -35,10 +36,8 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 3400,
     hot: true,
-    watchContentBase: true,
   },
 };
