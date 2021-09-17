@@ -1,3 +1,16 @@
+## 10.12.0 (2021-09-17)
+
+* chore(deps-dev): bump babel-jest from 27.0.6 to 27.1.0 (#166) ([7a91a4b](https://github.com/readmeio/syntax-highlighter/commit/7a91a4b)), closes [#166](https://github.com/readmeio/syntax-highlighter/issues/166)
+* chore(deps-dev): bump webpack-dev-server from 4.0.0 to 4.1.0 (#167) ([fdf4234](https://github.com/readmeio/syntax-highlighter/commit/fdf4234)), closes [#167](https://github.com/readmeio/syntax-highlighter/issues/167)
+* chore(deps-dev): removing conventional-changelog-cli in favor of npx ([f292486](https://github.com/readmeio/syntax-highlighter/commit/f292486))
+* chore(deps-dev): upgrading jest (#172) ([762f300](https://github.com/readmeio/syntax-highlighter/commit/762f300)), closes [#172](https://github.com/readmeio/syntax-highlighter/issues/172)
+* chore(deps): updating the @readme/variable peerDep ([8cef90c](https://github.com/readmeio/syntax-highlighter/commit/8cef90c))
+* feat: upgrading our builds to use webpack 5 (#168) ([c2e334d](https://github.com/readmeio/syntax-highlighter/commit/c2e334d)), closes [#168](https://github.com/readmeio/syntax-highlighter/issues/168)
+* ci: setting up codeql ([5ffb922](https://github.com/readmeio/syntax-highlighter/commit/5ffb922))
+* docs: adding a security policy ([cce4ec7](https://github.com/readmeio/syntax-highlighter/commit/cce4ec7))
+
+
+
 ## <small>10.11.1 (2021-08-26)</small>
 
 * chore(deps-dev): bump @babel/preset-env from 7.14.9 to 7.15.0 (#163) ([0a7fa76](https://github.com/readmeio/syntax-highlighter/commit/0a7fa76)), closes [#163](https://github.com/readmeio/syntax-highlighter/issues/163)

@@ -1,7 +1,7 @@
 {
   "name": "@readme/syntax-highlighter",
   "description": "ReadMe's React-based syntax highlighter",
-  "version": "10.11.1",
+  "version": "10.12.0",
   "main": "dist/index.node.js",
   "browser": "dist/index.js",
   "license": "ISC",
