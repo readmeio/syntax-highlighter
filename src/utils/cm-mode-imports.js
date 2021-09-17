@@ -26,3 +26,4 @@ require('codemirror/mode/sql/sql');
 require('codemirror/mode/swift/swift');
 require('codemirror/mode/toml/toml');
 require('codemirror/mode/yaml/yaml');
+require('codemirror-graphql/mode');

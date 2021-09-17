@@ -75,6 +75,7 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, 
 | Docker | `dockerfile` |
 | Erlang | `erl`, `erlang` |
 | Go | `go` |
+| GraphQL | `gql`, `graphql` |
 | Groovy | `gradle`, `groovy` |
 | Handlebars | `handlebars`, `hbs` |
 | HTML/XML | `html`, `xhtml`, `xml` |

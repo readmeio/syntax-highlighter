@@ -31,6 +31,7 @@ const modes = {
   erl: 'erlang',
   go: ['go', 'text/x-go'],
   gradle: 'groovy',
+  gql: 'graphql',
   handlebars: 'htmlmixed',
   hbs: 'htmlmixed',
   html: 'htmlmixed',

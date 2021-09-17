@@ -112,6 +112,29 @@ exports[`Supported languages Go should syntax highlight an example 1`] = `
 </div>"
 `;
 
+exports[`Supported languages GraphQL should syntax highlight an example 1`] = `
+"<div class=\\"cm-s-neo\\"><span class=\\"cm-punctuation\\">{</span>
+<span class=\\"cm-ws\\">  </span><span class=\\"cm-property\\">person</span><span class=\\"cm-punctuation\\">(</span><span class=\\"cm-attribute\\">id</span><span class=\\"cm-punctuation\\">:</span><span class=\\"cm-ws\\"> </span><span class=\\"cm-number\\">4</span><span class=\\"cm-punctuation\\">)</span><span class=\\"cm-ws\\"> </span><span class=\\"cm-punctuation\\">{</span>
+<span class=\\"cm-ws\\">    </span><span class=\\"cm-property\\">name</span>
+<span class=\\"cm-ws\\">  </span><span class=\\"cm-punctuation\\">}</span>
+<span class=\\"cm-ws\\">  </span><span class=\\"cm-property\\">allFilms</span><span class=\\"cm-ws\\"> </span><span class=\\"cm-punctuation\\">{</span>
+<span class=\\"cm-ws\\">    </span><span class=\\"cm-property\\">totalCount</span>
+<span class=\\"cm-ws\\">    </span><span class=\\"cm-property\\">films</span><span class=\\"cm-ws\\"> </span><span class=\\"cm-punctuation\\">{</span>
+<span class=\\"cm-ws\\">      </span><span class=\\"cm-property\\">releaseDate</span>
+<span class=\\"cm-ws\\">      </span><span class=\\"cm-property\\">planetConnection</span><span class=\\"cm-ws\\"> </span><span class=\\"cm-punctuation\\">{</span>
+<span class=\\"cm-ws\\">        </span><span class=\\"cm-property\\">planets</span><span class=\\"cm-ws\\"> </span><span class=\\"cm-punctuation\\">{</span>
+<span class=\\"cm-ws\\">          </span><span class=\\"cm-property\\">id</span>
+<span class=\\"cm-ws\\">          </span><span class=\\"cm-property\\">surfaceWater</span>
+<span class=\\"cm-ws\\">          </span><span class=\\"cm-property\\">climates</span>
+<span class=\\"cm-ws\\">          </span><span class=\\"cm-property\\">terrains</span>
+<span class=\\"cm-ws\\">        </span><span class=\\"cm-punctuation\\">}</span>
+<span class=\\"cm-ws\\">      </span><span class=\\"cm-punctuation\\">}</span>
+<span class=\\"cm-ws\\">    </span><span class=\\"cm-punctuation\\">}</span>
+<span class=\\"cm-ws\\">  </span><span class=\\"cm-punctuation\\">}</span>
+<span class=\\"cm-punctuation\\">}</span>
+</div>"
+`;
+
 exports[`Supported languages Groovy should syntax highlight an example 1`] = `
 "<div class=\\"cm-s-neo\\"><span class=\\"cm-variable\\">println</span> <span class=\\"cm-string\\">&quot;Hello World&quot;</span>
 </div>"
