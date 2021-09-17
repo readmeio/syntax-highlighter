@@ -1,0 +1,19 @@
+{
+  person(id: 4) {
+    name
+  }
+  allFilms {
+    totalCount
+    films {
+      releaseDate
+      planetConnection {
+        planets {
+          id
+          surfaceWater
+          climates
+          terrains
+        }
+      }
+    }
+  }
+}

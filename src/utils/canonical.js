@@ -13,6 +13,7 @@ const modeAliases = {
   docker: 'dockerfile',
   ecmascript: 'javascript',
   erl: 'erlang',
+  gql: 'graphql',
   gradle: 'groovy',
   handlebars: 'html',
   hbs: 'html',
