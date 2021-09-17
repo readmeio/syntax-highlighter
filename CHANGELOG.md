@@ -1,3 +1,10 @@
+## 10.13.0 (2021-09-17)
+
+* docs: adding a code of conduct ([41d91b5](https://github.com/readmeio/syntax-highlighter/commit/41d91b5))
+* feat: adding highlight support for graphql (#173) ([8ffcb52](https://github.com/readmeio/syntax-highlighter/commit/8ffcb52)), closes [#173](https://github.com/readmeio/syntax-highlighter/issues/173)
+
+
+
 ## 10.12.0 (2021-09-17)
 
 * chore(deps-dev): bump babel-jest from 27.0.6 to 27.1.0 (#166) ([7a91a4b](https://github.com/readmeio/syntax-highlighter/commit/7a91a4b)), closes [#166](https://github.com/readmeio/syntax-highlighter/issues/166)
