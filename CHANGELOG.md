@@ -1,3 +1,19 @@
+## <small>10.13.1 (2021-10-04)</small>
+
+* chore(deps-dev): bump @commitlint/cli from 13.1.0 to 13.2.0 (#183) ([8197564](https://github.com/readmeio/syntax-highlighter/commit/8197564)), closes [#183](https://github.com/readmeio/syntax-highlighter/issues/183)
+* chore(deps-dev): bump @commitlint/config-conventional (#180) ([b782c12](https://github.com/readmeio/syntax-highlighter/commit/b782c12)), closes [#180](https://github.com/readmeio/syntax-highlighter/issues/180)
+* chore(deps-dev): bump babel-jest from 27.2.0 to 27.2.4 (#181) ([8d6d3f7](https://github.com/readmeio/syntax-highlighter/commit/8d6d3f7)), closes [#181](https://github.com/readmeio/syntax-highlighter/issues/181)
+* chore(deps-dev): bump css-loader from 6.2.0 to 6.3.0 (#177) ([51c459c](https://github.com/readmeio/syntax-highlighter/commit/51c459c)), closes [#177](https://github.com/readmeio/syntax-highlighter/issues/177)
+* chore(deps-dev): bump glob from 7.1.7 to 7.2.0 (#178) ([ecc5bc4](https://github.com/readmeio/syntax-highlighter/commit/ecc5bc4)), closes [#178](https://github.com/readmeio/syntax-highlighter/issues/178)
+* chore(deps-dev): bump jest from 27.2.0 to 27.2.4 (#179) ([9a0d987](https://github.com/readmeio/syntax-highlighter/commit/9a0d987)), closes [#179](https://github.com/readmeio/syntax-highlighter/issues/179)
+* chore(deps-dev): bump style-loader from 3.2.1 to 3.3.0 (#185) ([2767bab](https://github.com/readmeio/syntax-highlighter/commit/2767bab)), closes [#185](https://github.com/readmeio/syntax-highlighter/issues/185)
+* chore(deps-dev): bump webpack from 5.53.0 to 5.56.0 (#182) ([8bf530d](https://github.com/readmeio/syntax-highlighter/commit/8bf530d)), closes [#182](https://github.com/readmeio/syntax-highlighter/issues/182)
+* chore(deps-dev): bump webpack-dev-server from 4.2.1 to 4.3.0 (#184) ([c1a5f7f](https://github.com/readmeio/syntax-highlighter/commit/c1a5f7f)), closes [#184](https://github.com/readmeio/syntax-highlighter/issues/184)
+* chore(deps-dev): upgrading @readme/eslint-config ([4d72de3](https://github.com/readmeio/syntax-highlighter/commit/4d72de3))
+* chore(deps): bump actions/setup-node from 2.4.0 to 2.4.1 (#175) ([cf4e797](https://github.com/readmeio/syntax-highlighter/commit/cf4e797)), closes [#175](https://github.com/readmeio/syntax-highlighter/issues/175)
+
+
+
 ## 10.13.0 (2021-09-17)
 
 * docs: adding a code of conduct ([41d91b5](https://github.com/readmeio/syntax-highlighter/commit/41d91b5))
