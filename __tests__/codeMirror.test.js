@@ -113,7 +113,7 @@ describe('Supported languages', () => {
     });
 
     it('should have a properly formatted instruction set', () => {
-      expect(instructions).not.toBeUndefined();
+      expect(instructions).toBeDefined();
       expect(instructions).toStrictEqual({
         language: expect.any(String),
         mode: expect.objectContaining({
