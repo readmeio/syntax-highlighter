@@ -48,6 +48,7 @@ const modeAliases = {
   sass: 'css',
   scss: 'css',
   sh: 'shell',
+  solidity: 'sol',
   sqlite: 'sql',
   styl: 'css',
   stylus: 'css',

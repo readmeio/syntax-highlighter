@@ -87,6 +87,7 @@ const codeTypes = {
   sh: 'Shell',
   shell: 'Shell',
   smarty: 'Smarty',
+  solidity: 'Solidity',
   sql: 'SQL',
   sqlite: 'SQLite',
   stylus: 'Stylus',
