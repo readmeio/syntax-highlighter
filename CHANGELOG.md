@@ -1,3 +1,25 @@
+## 10.14.0 (2021-12-09)
+
+* chore(deps-dev): bump @babel/preset-env from 7.16.0 to 7.16.4 (#218) ([d85d66a](https://github.com/readmeio/syntax-highlighter/commit/d85d66a)), closes [#218](https://github.com/readmeio/syntax-highlighter/issues/218)
+* chore(deps-dev): bump @commitlint/cli from 14.1.0 to 15.0.0 (#212) ([1a26b3d](https://github.com/readmeio/syntax-highlighter/commit/1a26b3d)), closes [#212](https://github.com/readmeio/syntax-highlighter/issues/212)
+* chore(deps-dev): bump @commitlint/config-conventional (#216) ([704489a](https://github.com/readmeio/syntax-highlighter/commit/704489a)), closes [#216](https://github.com/readmeio/syntax-highlighter/issues/216)
+* chore(deps-dev): bump babel-jest from 27.3.1 to 27.4.2 (#208) ([5bbcd17](https://github.com/readmeio/syntax-highlighter/commit/5bbcd17)), closes [#208](https://github.com/readmeio/syntax-highlighter/issues/208)
+* chore(deps-dev): bump css-loader from 6.5.0 to 6.5.1 (#217) ([016a586](https://github.com/readmeio/syntax-highlighter/commit/016a586)), closes [#217](https://github.com/readmeio/syntax-highlighter/issues/217)
+* chore(deps-dev): bump jest from 27.3.1 to 27.4.3 (#211) ([df7d86d](https://github.com/readmeio/syntax-highlighter/commit/df7d86d)), closes [#211](https://github.com/readmeio/syntax-highlighter/issues/211)
+* chore(deps-dev): bump prettier from 2.4.1 to 2.5.0 (#209) ([c01570a](https://github.com/readmeio/syntax-highlighter/commit/c01570a)), closes [#209](https://github.com/readmeio/syntax-highlighter/issues/209)
+* chore(deps-dev): bump terser-webpack-plugin from 5.2.4 to 5.2.5 (#207) ([1665e51](https://github.com/readmeio/syntax-highlighter/commit/1665e51)), closes [#207](https://github.com/readmeio/syntax-highlighter/issues/207)
+* chore(deps-dev): bump webpack from 5.61.0 to 5.64.4 (#210) ([1a3db34](https://github.com/readmeio/syntax-highlighter/commit/1a3db34)), closes [#210](https://github.com/readmeio/syntax-highlighter/issues/210)
+* chore(deps-dev): bump webpack-dev-server from 4.4.0 to 4.6.0 (#215) ([590b736](https://github.com/readmeio/syntax-highlighter/commit/590b736)), closes [#215](https://github.com/readmeio/syntax-highlighter/issues/215)
+* chore(deps-dev): upgrading eslint and replacing babel-polyfill with corejs (#221) ([f51ac3b](https://github.com/readmeio/syntax-highlighter/commit/f51ac3b)), closes [#221](https://github.com/readmeio/syntax-highlighter/issues/221)
+* chore(deps): bump actions/checkout from 2.3.5 to 2.4.0 (#206) ([d185795](https://github.com/readmeio/syntax-highlighter/commit/d185795)), closes [#206](https://github.com/readmeio/syntax-highlighter/issues/206)
+* chore(deps): bump actions/setup-node from 2.4.1 to 2.5.0 (#205) ([15e0667](https://github.com/readmeio/syntax-highlighter/commit/15e0667)), closes [#205](https://github.com/readmeio/syntax-highlighter/issues/205)
+* chore(deps): bump codemirror from 5.62.3 to 5.64.0 (#214) ([9d5f2e9](https://github.com/readmeio/syntax-highlighter/commit/9d5f2e9)), closes [#214](https://github.com/readmeio/syntax-highlighter/issues/214)
+* chore(deps): bump codemirror-graphql from 1.0.3 to 1.2.5 (#213) ([bc6e48e](https://github.com/readmeio/syntax-highlighter/commit/bc6e48e)), closes [#213](https://github.com/readmeio/syntax-highlighter/issues/213)
+* feat: adding highlighting support for Solidity (#219) ([4a62bae](https://github.com/readmeio/syntax-highlighter/commit/4a62bae)), closes [#219](https://github.com/readmeio/syntax-highlighter/issues/219)
+* feat: adding support for Lua highlighting (#220) ([f11b3f8](https://github.com/readmeio/syntax-highlighter/commit/f11b3f8)), closes [#220](https://github.com/readmeio/syntax-highlighter/issues/220)
+
+
+
 ## <small>10.13.2 (2021-11-01)</small>
 
 * chore(deps-dev): bump @babel/preset-env from 7.15.6 to 7.16.0 (#187) ([15ac21e](https://github.com/readmeio/syntax-highlighter/commit/15ac21e)), closes [#187](https://github.com/readmeio/syntax-highlighter/issues/187)
