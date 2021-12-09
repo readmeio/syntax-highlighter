@@ -75,6 +75,8 @@ const modes = {
   scala: ['clike', 'text/x-scala'],
   scss: 'css',
   sh: 'shell',
+  sol: 'clike',
+  solidity: 'clike',
   sql: ['sql', 'text/x-sql'],
   sqlite: ['sql', 'text/x-sqlite'],
   styl: 'css',
