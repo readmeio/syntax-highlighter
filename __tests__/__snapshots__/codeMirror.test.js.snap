@@ -222,6 +222,22 @@ exports[`Supported languages Liquid should syntax highlight an example 1`] = `
 </div>"
 `;
 
+exports[`Supported languages Lua should syntax highlight an example 1`] = `
+"<div class=\\"cm-s-neo\\"><span class=\\"cm-comment\\">-- defines a factorial function</span>
+<span class=\\"cm-keyword\\">function</span> <span class=\\"cm-variable\\">fact</span> (<span class=\\"cm-variable\\">n</span>)
+<span class=\\"cm-keyword\\">if</span> <span class=\\"cm-variable\\">n</span> == <span class=\\"cm-number\\">0</span> <span class=\\"cm-keyword\\">then</span>
+    <span class=\\"cm-keyword\\">return</span> <span class=\\"cm-number\\">1</span>
+<span class=\\"cm-keyword\\">else</span>
+    <span class=\\"cm-keyword\\">return</span> <span class=\\"cm-variable\\">n</span> * <span class=\\"cm-variable\\">fact</span>(<span class=\\"cm-variable\\">n-1</span>)
+<span class=\\"cm-keyword\\">end</span>
+<span class=\\"cm-keyword\\">end</span>
+
+<span class=\\"cm-builtin\\">print</span>(<span class=\\"cm-string\\">&quot;enter a number:&quot;</span>)
+<span class=\\"cm-variable\\">a</span> = <span class=\\"cm-builtin\\">io.read</span>(<span class=\\"cm-string\\">&quot;*number&quot;</span>)        <span class=\\"cm-comment\\">-- read a number</span>
+<span class=\\"cm-builtin\\">print</span>(<span class=\\"cm-variable\\">fact</span>(<span class=\\"cm-variable\\">a</span>))
+</div>"
+`;
+
 exports[`Supported languages Markdown should syntax highlight an example 1`] = `
 "<div class=\\"cm-s-neo\\"># Hello World
 </div>"

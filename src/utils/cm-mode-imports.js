@@ -13,6 +13,7 @@ require('codemirror/mode/http/http');
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/jsx/jsx');
 require('codemirror/mode/julia/julia');
+require('codemirror/mode/lua/lua');
 require('codemirror/mode/mllike/mllike');
 require('codemirror/mode/perl/perl');
 require('codemirror/mode/php/php');

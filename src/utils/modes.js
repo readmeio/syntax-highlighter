@@ -45,6 +45,7 @@ const modes = {
   kt: ['clike', 'text/x-kotlin'],
   less: 'css',
   liquid: 'htmlmixed',
+  lua: 'lua',
   node: 'javascript',
   macruby: 'ruby',
   markdown: 'gfm',
