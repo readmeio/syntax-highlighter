@@ -202,7 +202,7 @@ exports[`Supported languages JavaScript should syntax highlight an example 1`] =
 `;
 
 exports[`Supported languages Julia should syntax highlight an example 1`] = `
-"<div class=\\"cm-s-neo\\"><span class=\\"cm-variable\\">println</span>(<span class=\\"cm-string\\">&quot;Hello World&quot;</span>)
+"<div class=\\"cm-s-neo\\"><span class=\\"cm-builtin\\">println</span>(<span class=\\"cm-string\\">&quot;Hello World&quot;</span>)
 </div>"
 `;
 
@@ -345,7 +345,7 @@ exports[`Supported languages Shell should syntax highlight an example 1`] = `
 `;
 
 exports[`Supported languages Solidity should syntax highlight an example 1`] = `
-"<div class=\\"cm-s-neo\\"><span class=\\"cm-variable\\">pragma</span> <span class=\\"cm-variable\\">solidity</span> <span class=\\"cm-variable\\">^0</span><span class=\\"cm-number\\">.8.9</span>;
+"<div class=\\"cm-s-neo\\"><span class=\\"cm-variable\\">pragma</span> <span class=\\"cm-variable\\">solidity</span> <span class=\\"cm-variable\\">^0</span>.<span class=\\"cm-number\\">8.9</span>;
 
 <span class=\\"cm-variable\\">contract</span> <span class=\\"cm-variable\\">HelloWorld</span> {
     <span class=\\"cm-variable\\">function</span> <span class=\\"cm-variable\\">render</span> () <span class=\\"cm-variable\\">public</span> <span class=\\"cm-variable\\">pure</span> <span class=\\"cm-variable\\">returns</span> (<span class=\\"cm-variable\\">string</span> <span class=\\"cm-variable\\">memory</span>) {
