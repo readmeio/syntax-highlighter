@@ -1,3 +1,9 @@
+## <small>10.14.2 (2021-12-14)</small>
+
+* chore(deps): upgrading codemirror to 5.62.3 ([a5fe6cc](https://github.com/readmeio/syntax-highlighter/commit/a5fe6cc))
+
+
+
 ## 10.14.0 (2021-12-09)
 
 * chore(deps-dev): bump @babel/preset-env from 7.16.0 to 7.16.4 (#218) ([d85d66a](https://github.com/readmeio/syntax-highlighter/commit/d85d66a)), closes [#218](https://github.com/readmeio/syntax-highlighter/issues/218)
