@@ -1,3 +1,10 @@
+## <small>10.14.3 (2021-12-14)</small>
+
+* test: updating some broken test snapshots ([0c93e08](https://github.com/readmeio/syntax-highlighter/commit/0c93e08))
+* fix: bumping codemirror back down to 5.54.0 ([f6b95ca](https://github.com/readmeio/syntax-highlighter/commit/f6b95ca))
+
+
+
 ## <small>10.14.2 (2021-12-14)</small>
 
 * chore(deps): upgrading codemirror to 5.62.3 ([a5fe6cc](https://github.com/readmeio/syntax-highlighter/commit/a5fe6cc))
