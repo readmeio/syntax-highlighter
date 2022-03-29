@@ -31,16 +31,16 @@ jobs:
     - name: Install React v${{ matrix.react }}
       run: npm i react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
-    # - name: Install React 16 Enzyme adapter
-    #   if: matrix.react == '16'
-    #   run: |
-    #     npm remove @wojtekmaj/enzyme-adapter-react-17
-    #     npm install enzyme-adapter-react-16
+    - name: Install React 16 Enzyme adapter
+      if: matrix.react == '16'
+      run: |
+        npm remove @wojtekmaj/enzyme-adapter-react-17
+        npm install enzyme-adapter-react-16
 
-    # - name: Run tests
-    #   if: matrix.react == '16'
-    #   run: REACT_VERSION=16 npm test
+    - name: Run tests
+      if: matrix.react == '16'
+      run: REACT_VERSION=16 npm test
 
-    # - name: Run tests
-    #   if: matrix.react == '17'
-    #   run: REACT_VERSION=17 npm test
+    - name: Run tests
+      if: matrix.react == '17'
+      run: npm test
