@@ -30,8 +30,8 @@
   },
   "peerDependencies": {
     "@readme/variable": "*",
-    "react": "16.x||17.x",
-    "react-dom": "16.x||17.x"
+    "react": "16.x || 17.x",
+    "react-dom": "16.x || 17.x"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.15.6",

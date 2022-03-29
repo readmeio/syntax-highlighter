@@ -27,7 +27,18 @@ jobs:
       run: npm ci
 
     - name: Install React v${{ matrix.react-version }}
-      run: npm i react@${{ matrix.react-version }}
+      run: npm i react@${{ matrix.react-version react-dom@${{ matrix.react-version }}
+
+    - name: Install React 16 Enzyme adapter
+      if: matrix.react-version == '16.x'
+      run: |
+        npm remove @wojtekmaj/enzyme-adapter-react-17
+        npm install enzyme-adapter-react-16
 
     - name: Run tests
-      run: npm test
+      if: matrix.react-version == '16.x'
+      run: REACT_VERSION=16 npm test
+
+    - name: Run tests
+      if: matrix.react-version == '17.x'
+      run: REACT_VERSION=17 npm test
