@@ -1,5 +1,10 @@
 # Contributing
-For general contributing guidelines for this repository, consult the root [contributing guide](https://github.com/readmeio/syntax-highlighter/blob/master/CONTRIBUTING.md).
+
+<img align="right" width="25%" style="margin-bottom: 2em" src="https://owlbert.io/images/owlberts-png/camp.png.png">
+
+## Commit Conventions
+
+For our general commit conventions please consult our organization contributing guidelines [here](https://github.com/readmeio/.github/blob/main/.github/CONTRIBUTING.md#commit-conventions).
 
 ## Adding support for a new language
 
