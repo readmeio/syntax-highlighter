@@ -37,10 +37,10 @@ jobs:
         npm remove @wojtekmaj/enzyme-adapter-react-17
         npm install enzyme-adapter-react-16
 
-    - name: Run tests
+    - name: Run tests on React 16
       if: matrix.react == '16'
       run: REACT_VERSION=16 npm test
 
-    - name: Run tests
+    - name: Run tests on React 17
       if: matrix.react == '17'
       run: npm test
