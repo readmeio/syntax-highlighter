@@ -10,6 +10,9 @@
     "url": "https://github.com/readmeio/syntax-highlighter.git"
   },
   "homepage": "https://readmeio.github.io/syntax-highlighter/",
+  "engines": {
+    "node": "^14 || ^16"
+  },
   "scripts": {
     "build": "webpack --progress",
     "lint": "eslint . --ext .jsx --ext .js",

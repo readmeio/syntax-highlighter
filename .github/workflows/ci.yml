@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
         react: [16, 17]
 
     name: build (${{ matrix.node-version }} w/ React ${{ matrix.react }}
