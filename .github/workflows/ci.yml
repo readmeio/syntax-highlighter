@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x]
+        react-version: [16.x, 17.x]
 
     steps:
     - uses: actions/checkout@v2.4.0
@@ -24,6 +25,9 @@ jobs:
 
     - name: Install dependencies
       run: npm ci
+
+    - name: Install React v${{ matrix.react-version }}
+      run: npm i react@${{ matrix.react-version }}
 
     - name: Run tests
       run: npm test
