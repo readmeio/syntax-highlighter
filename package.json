@@ -26,7 +26,7 @@
     "watch": "webpack -w --progress"
   },
   "dependencies": {
-    "codemirror": "5.54.0",
+    "codemirror": "5.65.3",
     "codemirror-graphql": "1.0.2",
     "prop-types": "^15.7.2",
     "react-codemirror2": "^7.2.1"
