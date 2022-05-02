@@ -24,13 +24,13 @@ module.exports = {
     // This is the primary language mode.
     primary: 'js',
 
-    // This is a canonical, human-friendly, reference that can be used the entire language. You can omit this if it's
-    // the same value as `primary`.
+    // This is a canonical, human-friendly, reference that can be used the entire language. You can
+    // omit this if it's the same value as `primary`.
     canonical: 'javascript',
 
     aliases: {
-      // Any additional extension modes that this language might utilize or be known under (SQL variantes for example).
-      // Consult the CodeMirror meta file for this list.
+      // Any additional extension modes that this language might utilize or be known under (SQL
+      // variants for example). Consult the CodeMirror meta file for this list.
       languageModeAlias: 'Language Name'
     },
   },

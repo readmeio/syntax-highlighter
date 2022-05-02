@@ -13,7 +13,8 @@ module.exports = {
     '^.+\\.jsx?$': 'babel-jest',
   },
   transformIgnorePatterns: [
-    // Since `@readme/variable` doesn't ship any transpiled code, we need to transform it as we're running tests.
+    // Since `@readme/variable` doesn't ship any transpiled code, we need to transform it as we're
+    // running tests.
     '<rootDir>/node_modules/@readme/variable/^.+\\.jsx?$',
   ],
 };

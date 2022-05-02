@@ -45,7 +45,12 @@ Access to a full code Mirror instance. See configuration settings in the [`react
 
 ```js
 const syntaxHighlighter = require('@readme/syntax-highlighter');
-const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, editable: true }, { ...editorProps });
+const ele = syntaxHighlighter(
+  'console.log("Hello, world!");',
+  'js',
+  { ...opts, editable: true },
+  { ...editorProps }
+);
 ```
 
 ### Available Options
