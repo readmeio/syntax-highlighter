@@ -210,7 +210,8 @@ describe('highlight mode', () => {
 
 describe('runmode', () => {
   let node;
-  const code = `CURL *hnd = curl_easy_init();\n\nurl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");\n\ncurl_easy_setopt(hnd, CURLOPT_URL, "http://httpbin.orgpet/");`;
+  const code =
+    'CURL *hnd = curl_easy_init();\n\nurl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");\n\ncurl_easy_setopt(hnd, CURLOPT_URL, "http://httpbin.orgpet/");';
 
   beforeEach(() => {
     node = mount(
