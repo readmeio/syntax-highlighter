@@ -1,3 +1,25 @@
+## <small>12.0.1 (2022-07-19)</small>
+
+* fix: updating out of date dev deps (#328) ([024d9a5](https://github.com/readmeio/syntax-highlighter/commit/024d9a5)), closes [#328](https://github.com/readmeio/syntax-highlighter/issues/328)
+* chore(deps-dev): bump @babel/preset-env from 7.18.2 to 7.18.6 (#323) ([6d5cc6f](https://github.com/readmeio/syntax-highlighter/commit/6d5cc6f)), closes [#323](https://github.com/readmeio/syntax-highlighter/issues/323)
+* chore(deps-dev): bump @babel/preset-react from 7.17.12 to 7.18.6 (#325) ([06a7d00](https://github.com/readmeio/syntax-highlighter/commit/06a7d00)), closes [#325](https://github.com/readmeio/syntax-highlighter/issues/325)
+* chore(deps-dev): bump @commitlint/cli from 17.0.2 to 17.0.3 (#316) ([e20d726](https://github.com/readmeio/syntax-highlighter/commit/e20d726)), closes [#316](https://github.com/readmeio/syntax-highlighter/issues/316)
+* chore(deps-dev): bump @commitlint/config-conventional (#312) ([7563b52](https://github.com/readmeio/syntax-highlighter/commit/7563b52)), closes [#312](https://github.com/readmeio/syntax-highlighter/issues/312)
+* chore(deps-dev): bump @readme/eslint-config from 8.7.5 to 8.8.0 (#317) ([556e6a8](https://github.com/readmeio/syntax-highlighter/commit/556e6a8)), closes [#317](https://github.com/readmeio/syntax-highlighter/issues/317)
+* chore(deps-dev): bump babel-jest from 28.1.0 to 28.1.2 (#321) ([17765e7](https://github.com/readmeio/syntax-highlighter/commit/17765e7)), closes [#321](https://github.com/readmeio/syntax-highlighter/issues/321)
+* chore(deps-dev): bump core-js from 3.22.7 to 3.23.3 (#326) ([2f73e6a](https://github.com/readmeio/syntax-highlighter/commit/2f73e6a)), closes [#326](https://github.com/readmeio/syntax-highlighter/issues/326)
+* chore(deps-dev): bump eslint from 8.16.0 to 8.18.0 (#320) ([b1ab1cf](https://github.com/readmeio/syntax-highlighter/commit/b1ab1cf)), closes [#320](https://github.com/readmeio/syntax-highlighter/issues/320)
+* chore(deps-dev): bump jest from 28.1.0 to 28.1.2 (#324) ([9c608ae](https://github.com/readmeio/syntax-highlighter/commit/9c608ae)), closes [#324](https://github.com/readmeio/syntax-highlighter/issues/324)
+* chore(deps-dev): bump jest-environment-jsdom from 28.1.0 to 28.1.2 (#318) ([92901d6](https://github.com/readmeio/syntax-highlighter/commit/92901d6)), closes [#318](https://github.com/readmeio/syntax-highlighter/issues/318)
+* chore(deps-dev): bump prettier from 2.6.2 to 2.7.1 (#313) ([89229fb](https://github.com/readmeio/syntax-highlighter/commit/89229fb)), closes [#313](https://github.com/readmeio/syntax-highlighter/issues/313)
+* chore(deps-dev): bump sass-loader from 13.0.0 to 13.0.2 (#327) ([9e40dec](https://github.com/readmeio/syntax-highlighter/commit/9e40dec)), closes [#327](https://github.com/readmeio/syntax-highlighter/issues/327)
+* chore(deps-dev): bump terser-webpack-plugin from 5.3.1 to 5.3.3 (#322) ([d6c1324](https://github.com/readmeio/syntax-highlighter/commit/d6c1324)), closes [#322](https://github.com/readmeio/syntax-highlighter/issues/322)
+* chore(deps-dev): bump webpack from 5.72.1 to 5.73.0 (#314) ([b2781d6](https://github.com/readmeio/syntax-highlighter/commit/b2781d6)), closes [#314](https://github.com/readmeio/syntax-highlighter/issues/314)
+* chore(deps-dev): bump webpack-cli from 4.9.2 to 4.10.0 (#315) ([ebe7fcf](https://github.com/readmeio/syntax-highlighter/commit/ebe7fcf)), closes [#315](https://github.com/readmeio/syntax-highlighter/issues/315)
+* chore(deps-dev): bump webpack-dev-server from 4.9.1 to 4.9.3 (#319) ([da999aa](https://github.com/readmeio/syntax-highlighter/commit/da999aa)), closes [#319](https://github.com/readmeio/syntax-highlighter/issues/319)
+
+
+
 ## 12.0.0 (2022-06-01)
 
 * feat: supporting node 18, dropping node 12 (#295) ([d713434](https://github.com/readmeio/syntax-highlighter/commit/d713434)), closes [#295](https://github.com/readmeio/syntax-highlighter/issues/295)
