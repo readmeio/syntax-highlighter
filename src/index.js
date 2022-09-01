@@ -1,9 +1,10 @@
 import React from 'react';
-import codemirror, { VariablesContext as cmVariableContext } from './codeMirror';
+
 import codeEditor from './codeEditor';
-import uppercase from './utils/uppercase';
+import codemirror, { VariablesContext as cmVariableContext } from './codeMirror';
 import canonical from './utils/canonical';
 import { modes } from './utils/modes';
+import uppercase from './utils/uppercase';
 
 const SyntaxHighlighter = (
   code,
