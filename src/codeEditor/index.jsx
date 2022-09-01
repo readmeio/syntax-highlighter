@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import { getMode } from '../utils/modes';
-import defaults from './cm.options';
+
 import '../utils/cm-mode-imports';
+import { getMode } from '../utils/modes';
+
+import defaults from './cm.options';
 import './style.scss';
 
 const CodeEditor = ({ className, code, lang, options, children, theme, ...attr }) => {

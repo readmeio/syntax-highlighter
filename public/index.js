@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import syntaxHighlighter, { cmVariableContext } from '../src/index';
 
 const exampleCode = `curl --request POST

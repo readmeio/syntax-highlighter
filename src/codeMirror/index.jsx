@@ -1,15 +1,16 @@
-import CodeMirror from 'codemirror';
-import React from 'react';
-import PropTypes from 'prop-types';
 import Variable, { VARIABLE_REGEXP, VariablesContext } from '@readme/variable';
-import { getMode } from '../utils/modes';
-
-import '../utils/cm-mode-imports';
-import './style.scss';
+import CodeMirror from 'codemirror';
 import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/runmode/runmode';
 import 'codemirror/mode/meta';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import '../utils/cm-mode-imports';
+import { getMode } from '../utils/modes';
+
+import './style.scss';
 
 // Pre output conversion
 // CodeMirror "Gutter" -> Apply line numbers to styled lines
