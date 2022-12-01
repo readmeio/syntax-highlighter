@@ -42,7 +42,7 @@
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@readme/eslint-config": "^10.1.0",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "babel-jest": "^29.0.1",
     "babel-loader": "^8.2.4",
     "core-js": "^3.23.5",
