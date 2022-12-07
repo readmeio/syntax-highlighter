@@ -24,3 +24,16 @@ updates:
     commit-message:
       prefix: chore(deps)
       prefix-development: chore(deps-dev)
+    ignore:
+      - dependency-name: codemirror
+        versions:
+          - ">= 6"
+      - dependency-name: codemirror-graphql
+        versions:
+          - ">= 2"
+      - dependency-name: react
+        versions:
+          - ">= 18"
+      - dependency-name: react-dom
+        versions:
+          - ">= 18"
