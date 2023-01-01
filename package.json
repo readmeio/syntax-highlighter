@@ -44,7 +44,7 @@
     "@readme/eslint-config": "^10.1.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "babel-jest": "^29.0.1",
-    "babel-loader": "^8.2.4",
+    "babel-loader": "^9.1.0",
     "core-js": "^3.23.5",
     "css-loader": "^6.7.1",
     "enzyme": "^3.11.0",
