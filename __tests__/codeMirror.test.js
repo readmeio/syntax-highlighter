@@ -3,11 +3,11 @@ import path from 'path';
 
 import Variable from '@readme/variable';
 import { mount, shallow } from 'enzyme';
-import glob from 'glob';
+import { globSync } from 'glob';
 
 import syntaxHighlighter, { uppercase, canonical } from '../src';
 
-const fixtures = glob.sync(path.join(__dirname, '/__fixtures__/*'));
+const fixtures = globSync(path.join(__dirname, '/__fixtures__/*'));
 
 test('should highlight a block of code', () => {
   const code = shallow(syntaxHighlighter('var a = 1;', 'javascript'));
