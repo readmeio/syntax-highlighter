@@ -3,6 +3,8 @@ import CodeMirror from 'codemirror';
 import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/runmode/runmode';
+import 'codemirror/addon/scroll/simplescrollbars';
+import 'codemirror/addon/scroll/simplescrollbars.css';
 import 'codemirror/mode/meta';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -195,7 +197,7 @@ const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlig
   const mode = getMode(lang);
   const output = [];
 
-  const [codeWithoutVars, reinsertVariables] = extractVariables(code, opts);
+  const [codeWithoutVars, reinsertVariables] = extractVariables(code, { scrollbarStyle: 'overlay', ...opts });
 
   let curStyle = null;
   let accum = '';

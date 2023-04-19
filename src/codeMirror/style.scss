@@ -58,6 +58,20 @@ $lightHighlight: rgba($lightColor, 0.1);
   }
 }
 
+// Custom scrollbar styles
+// see: https://codemirror.net/5/demo/simplescrollbars.html
+.CodeMirror {
+  &-scrollbar-filler {
+    display: none !important;
+  }
+  &-overlayscroll {
+    &-horizontal div,
+    &-vertical div {
+      background: rgba(#cacaca, 0.5) !important;
+    }
+  }
+}
+
 .cm-linerow {
   position: relative;
   text-indent: $gutterWidth + 4px;
