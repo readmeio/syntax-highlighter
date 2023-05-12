@@ -345,11 +345,160 @@ exports[`Supported languages Shell should syntax highlight an example 1`] = `
 `;
 
 exports[`Supported languages Solidity should syntax highlight an example 1`] = `
-"<div class="cm-s-neo"><span class="cm-variable">pragma</span> <span class="cm-variable">solidity</span> <span class="cm-variable">^0</span>.<span class="cm-number">8.9</span>;
+"<div class="cm-s-neo"><span class="cm-comment">// SPDX-License-Identifier: GPL-3.0</span>
+<span class="cm-keyword">pragma</span> <span class="cm-keyword">solidity</span> <span class="cm-version">&gt;=0.7.0 &lt;0.9.0</span>;
+<span class="cm-doc">/// </span><span class="cm-docReserve">@title</span> <span class="cm-doc">Voting</span> <span class="cm-doc">with</span> <span class="cm-doc">delegation</span><span class="cm-number">.</span>
+<span class="cm-keyword">contract</span> <span class="cm-variable">Ballot</span> {
+    <span class="cm-comment">// This declares a new complex type which will</span>
+    <span class="cm-comment">// be used for variables later.</span>
+    <span class="cm-comment">// It will represent a single voter.</span>
+    <span class="cm-keyword">struct</span> <span class="cm-variable">Voter</span> {
+        <span class="cm-keyword">uint</span> <span class="cm-variable">weight</span>; <span class="cm-comment">// weight is accumulated by delegation</span>
+        <span class="cm-keyword">bool</span> <span class="cm-variable">voted</span>;  <span class="cm-comment">// if true, that person already voted</span>
+        <span class="cm-keyword">address</span> <span class="cm-variable">delegate</span>; <span class="cm-comment">// person delegated to</span>
+        <span class="cm-keyword">uint</span> <span class="cm-variable">vote</span>;   <span class="cm-comment">// index of the voted proposal</span>
+    }
 
-<span class="cm-variable">contract</span> <span class="cm-variable">HelloWorld</span> {
-    <span class="cm-variable">function</span> <span class="cm-variable">render</span> () <span class="cm-variable">public</span> <span class="cm-variable">pure</span> <span class="cm-variable">returns</span> (<span class="cm-variable">string</span> <span class="cm-variable">memory</span>) {
-        <span class="cm-variable">return</span> <span class="cm-string">&#x27;Hello World&#x27;</span>;
+    <span class="cm-comment">// This is a type for a single proposal.</span>
+    <span class="cm-keyword">struct</span> <span class="cm-variable">Proposal</span> {
+        <span class="cm-keyword">bytes32</span> <span class="cm-variable">name</span>;   <span class="cm-comment">// short name (up to 32 bytes)</span>
+        <span class="cm-keyword">uint</span> <span class="cm-variable">voteCount</span>; <span class="cm-comment">// number of accumulated votes</span>
+    }
+
+    <span class="cm-keyword">address</span> <span class="cm-keyword">public</span> <span class="cm-variable">chairperson</span>;
+
+    <span class="cm-comment">// This declares a state variable that</span>
+    <span class="cm-comment">// stores a \`Voter\` struct for each possible address.</span>
+    <span class="cm-keyword">mapping</span>(<span class="cm-keyword">address</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable">Voter</span>) <span class="cm-keyword">public</span> <span class="cm-variable">voters</span>;
+
+    <span class="cm-comment">// A dynamically-sized array of \`Proposal\` structs.</span>
+    <span class="cm-variable">Proposal</span>[] <span class="cm-keyword">public</span> <span class="cm-variable">proposals</span>;
+
+    <span class="cm-doc">/// Create a new ballot to choose one of \`proposalNames\`.</span>
+    <span class="cm-keyword">constructor</span>(<span class="cm-keyword">bytes32</span>[] <span class="cm-keyword">memory</span> <span class="cm-variable">proposalNames</span>) {
+        <span class="cm-variable">chairperson</span> <span class="cm-operator">=</span> <span class="cm-variable-2">msg.sender</span>;
+        <span class="cm-variable">voters</span>[<span class="cm-variable">chairperson</span>]<span class="cm-number">.</span><span class="cm-variable">weight</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;
+
+        <span class="cm-comment">// For each of the provided proposal names,</span>
+        <span class="cm-comment">// create a new proposal object and add it</span>
+        <span class="cm-comment">// to the end of the array.</span>
+        <span class="cm-keyword">for</span> (<span class="cm-keyword">uint</span> <span class="cm-variable">i</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>; <span class="cm-variable">i</span> <span class="cm-operator">&lt;</span> <span class="cm-variable">proposalNames</span><span class="cm-number">.</span><span class="cm-variable">length</span>; <span class="cm-variable">i</span><span class="cm-operator">++</span>) {
+            <span class="cm-comment">// \`Proposal({...})\` creates a temporary</span>
+            <span class="cm-comment">// Proposal object and \`proposals.push(...)\`</span>
+            <span class="cm-comment">// appends it to the end of \`proposals\`.</span>
+            <span class="cm-variable">proposals</span><span class="cm-number">.</span><span class="cm-variable">push</span>(<span class="cm-variable">Proposal</span>({
+                <span class="cm-variable">name</span>: <span class="cm-variable">proposalNames</span>[<span class="cm-variable">i</span>],
+                <span class="cm-variable">voteCount</span>: <span class="cm-number">0</span>
+            }));
+        }
+    }
+
+    <span class="cm-comment">// Give \`voter\` the right to vote on this ballot.</span>
+    <span class="cm-comment">// May only be called by \`chairperson\`.</span>
+    <span class="cm-keyword">function</span> <span class="cm-functionName">giveRightToVote</span>(<span class="cm-keyword">address</span> <span class="cm-parameterValue">voter</span>) <span class="cm-keyword">external</span> {
+        <span class="cm-comment">// If the first argument of \`require\` evaluates</span>
+        <span class="cm-comment">// to \`false\`, execution terminates and all</span>
+        <span class="cm-comment">// changes to the state and to Ether balances</span>
+        <span class="cm-comment">// are reverted.</span>
+        <span class="cm-comment">// This used to consume all gas in old EVM versions, but</span>
+        <span class="cm-comment">// not anymore.</span>
+        <span class="cm-comment">// It is often a good idea to use \`require\` to check if</span>
+        <span class="cm-comment">// functions are called correctly.</span>
+        <span class="cm-comment">// As a second argument, you can also provide an</span>
+        <span class="cm-comment">// explanation about what went wrong.</span>
+        <span class="cm-errorHandling">require</span>(
+            <span class="cm-variable-2">msg.sender</span> <span class="cm-operator">==</span> <span class="cm-variable">chairperson</span>,
+            <span class="cm-string">&quot;Only chairperson can give right to vote.&quot;</span>
+        );
+        <span class="cm-errorHandling">require</span>(
+            <span class="cm-operator">!</span><span class="cm-variable">voters</span>[<span class="cm-variable">voter</span>]<span class="cm-number">.</span><span class="cm-variable">voted</span>,
+            <span class="cm-string">&quot;The voter already voted.&quot;</span>
+        );
+        <span class="cm-errorHandling">require</span>(<span class="cm-variable">voters</span>[<span class="cm-variable">voter</span>]<span class="cm-number">.</span><span class="cm-variable">weight</span> <span class="cm-operator">==</span> <span class="cm-number">0</span>);
+        <span class="cm-variable">voters</span>[<span class="cm-variable">voter</span>]<span class="cm-number">.</span><span class="cm-variable">weight</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;
+    }
+
+    <span class="cm-doc">/// Delegate your vote to the voter \`to\`.</span>
+    <span class="cm-keyword">function</span> <span class="cm-functionName">delegate</span>(<span class="cm-keyword">address</span> <span class="cm-parameterValue">to</span>) <span class="cm-keyword">external</span> {
+        <span class="cm-comment">// assigns reference</span>
+        <span class="cm-variable">Voter</span> <span class="cm-keyword">storage</span> <span class="cm-variable">sender</span> <span class="cm-operator">=</span> <span class="cm-variable">voters</span>[<span class="cm-variable-2">msg.sender</span>];
+        <span class="cm-errorHandling">require</span>(<span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">weight</span> <span class="cm-operator">!=</span> <span class="cm-number">0</span>, <span class="cm-string">&quot;You have no right to vote&quot;</span>);
+        <span class="cm-errorHandling">require</span>(<span class="cm-operator">!</span><span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">voted</span>, <span class="cm-string">&quot;You already voted.&quot;</span>);
+
+        <span class="cm-errorHandling">require</span>(<span class="cm-variable">to</span> <span class="cm-operator">!=</span> <span class="cm-variable-2">msg.sender</span>, <span class="cm-string">&quot;Self-delegation is disallowed.&quot;</span>);
+
+        <span class="cm-comment">// Forward the delegation as long as</span>
+        <span class="cm-comment">// \`to\` also delegated.</span>
+        <span class="cm-comment">// In general, such loops are very dangerous,</span>
+        <span class="cm-comment">// because if they run too long, they might</span>
+        <span class="cm-comment">// need more gas than is available in a block.</span>
+        <span class="cm-comment">// In this case, the delegation will not be executed,</span>
+        <span class="cm-comment">// but in other situations, such loops might</span>
+        <span class="cm-comment">// cause a contract to get &quot;stuck&quot; completely.</span>
+        <span class="cm-keyword">while</span> (<span class="cm-variable">voters</span>[<span class="cm-variable">to</span>]<span class="cm-number">.</span><span class="cm-variable">delegate</span> <span class="cm-operator">!=</span> <span class="cm-keyword">address</span>(<span class="cm-number">0</span>)) {
+            <span class="cm-variable">to</span> <span class="cm-operator">=</span> <span class="cm-variable">voters</span>[<span class="cm-variable">to</span>]<span class="cm-number">.</span><span class="cm-variable">delegate</span>;
+
+            <span class="cm-comment">// We found a loop in the delegation, not allowed.</span>
+            <span class="cm-errorHandling">require</span>(<span class="cm-variable">to</span> <span class="cm-operator">!=</span> <span class="cm-variable-2">msg.sender</span>, <span class="cm-string">&quot;Found loop in delegation.&quot;</span>);
+        }
+
+        <span class="cm-variable">Voter</span> <span class="cm-keyword">storage</span> <span class="cm-variable">delegate_</span> <span class="cm-operator">=</span> <span class="cm-variable">voters</span>[<span class="cm-variable">to</span>];
+
+        <span class="cm-comment">// Voters cannot delegate to accounts that cannot vote.</span>
+        <span class="cm-errorHandling">require</span>(<span class="cm-variable">delegate_</span><span class="cm-number">.</span><span class="cm-variable">weight</span> <span class="cm-operator">&gt;=</span> <span class="cm-number">1</span>);
+
+        <span class="cm-comment">// Since \`sender\` is a reference, this</span>
+        <span class="cm-comment">// modifies \`voters[msg.sender]\`.</span>
+        <span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">voted</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;
+        <span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">delegate</span> <span class="cm-operator">=</span> <span class="cm-variable">to</span>;
+
+        <span class="cm-keyword">if</span> (<span class="cm-variable">delegate_</span><span class="cm-number">.</span><span class="cm-variable">voted</span>) {
+            <span class="cm-comment">// If the delegate already voted,</span>
+            <span class="cm-comment">// directly add to the number of votes</span>
+            <span class="cm-variable">proposals</span>[<span class="cm-variable">delegate_</span><span class="cm-number">.</span><span class="cm-variable">vote</span>]<span class="cm-number">.</span><span class="cm-variable">voteCount</span> <span class="cm-operator">+=</span> <span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">weight</span>;
+        } <span class="cm-keyword">else</span> {
+            <span class="cm-comment">// If the delegate did not vote yet,</span>
+            <span class="cm-comment">// add to her weight.</span>
+            <span class="cm-variable">delegate_</span><span class="cm-number">.</span><span class="cm-variable">weight</span> <span class="cm-operator">+=</span> <span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">weight</span>;
+        }
+    }
+
+    <span class="cm-doc">/// Give your vote (including votes delegated to you)</span>
+    <span class="cm-doc">/// to proposal \`proposals[proposal].name\`.</span>
+    <span class="cm-keyword">function</span> <span class="cm-functionName">vote</span>(<span class="cm-keyword">uint</span> <span class="cm-parameterValue">proposal</span>) <span class="cm-keyword">external</span> {
+        <span class="cm-variable">Voter</span> <span class="cm-keyword">storage</span> <span class="cm-variable">sender</span> <span class="cm-operator">=</span> <span class="cm-variable">voters</span>[<span class="cm-variable-2">msg.sender</span>];
+        <span class="cm-errorHandling">require</span>(<span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">weight</span> <span class="cm-operator">!=</span> <span class="cm-number">0</span>, <span class="cm-string">&quot;Has no right to vote&quot;</span>);
+        <span class="cm-errorHandling">require</span>(<span class="cm-operator">!</span><span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">voted</span>, <span class="cm-string">&quot;Already voted.&quot;</span>);
+        <span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">voted</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;
+        <span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">vote</span> <span class="cm-operator">=</span> <span class="cm-variable">proposal</span>;
+
+        <span class="cm-comment">// If \`proposal\` is out of the range of the array,</span>
+        <span class="cm-comment">// this will throw automatically and revert all</span>
+        <span class="cm-comment">// changes.</span>
+        <span class="cm-variable">proposals</span>[<span class="cm-variable">proposal</span>]<span class="cm-number">.</span><span class="cm-variable">voteCount</span> <span class="cm-operator">+=</span> <span class="cm-variable">sender</span><span class="cm-number">.</span><span class="cm-variable">weight</span>;
+    }
+
+    <span class="cm-doc">/// </span><span class="cm-docReserve">@dev</span> <span class="cm-doc">Computes</span> <span class="cm-doc">the</span> <span class="cm-doc">winning</span> <span class="cm-doc">proposal</span> <span class="cm-doc">taking</span> <span class="cm-doc">all</span>
+    <span class="cm-doc">/// previous votes into account.</span>
+    <span class="cm-keyword">function</span> <span class="cm-functionName">winningProposal</span>() <span class="cm-keyword">public</span> <span class="cm-keyword">view</span>
+            <span class="cm-keyword">returns</span> (<span class="cm-keyword">uint</span> <span class="cm-parameterValue">winningProposal_</span>)
+    {
+        <span class="cm-keyword">uint</span> <span class="cm-variable">winningVoteCount</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>;
+        <span class="cm-keyword">for</span> (<span class="cm-keyword">uint</span> <span class="cm-variable">p</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>; <span class="cm-variable">p</span> <span class="cm-operator">&lt;</span> <span class="cm-variable">proposals</span><span class="cm-number">.</span><span class="cm-variable">length</span>; <span class="cm-variable">p</span><span class="cm-operator">++</span>) {
+            <span class="cm-keyword">if</span> (<span class="cm-variable">proposals</span>[<span class="cm-variable">p</span>]<span class="cm-number">.</span><span class="cm-variable">voteCount</span> <span class="cm-operator">&gt;</span> <span class="cm-variable">winningVoteCount</span>) {
+                <span class="cm-variable">winningVoteCount</span> <span class="cm-operator">=</span> <span class="cm-variable">proposals</span>[<span class="cm-variable">p</span>]<span class="cm-number">.</span><span class="cm-variable">voteCount</span>;
+                <span class="cm-variable">winningProposal_</span> <span class="cm-operator">=</span> <span class="cm-variable">p</span>;
+            }
+        }
+    }
+
+    <span class="cm-comment">// Calls winningProposal() function to get the index</span>
+    <span class="cm-comment">// of the winner contained in the proposals array and then</span>
+    <span class="cm-comment">// returns the name of the winner</span>
+    <span class="cm-keyword">function</span> <span class="cm-functionName">winnerName</span>() <span class="cm-keyword">external</span> <span class="cm-keyword">view</span>
+            <span class="cm-keyword">returns</span> (<span class="cm-keyword">bytes32</span> <span class="cm-parameterValue">winnerName_</span>)
+    {
+        <span class="cm-variable">winnerName_</span> <span class="cm-operator">=</span> <span class="cm-variable">proposals</span>[<span class="cm-variable">winningProposal</span>()]<span class="cm-number">.</span><span class="cm-variable">name</span>;
     }
 }
 </div>"
