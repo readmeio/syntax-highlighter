@@ -1,3 +1,10 @@
+## <small>12.1.1 (2023-05-15)</small>
+
+* feat: improved syntax highlighting for the `solidity` language (#435) ([3ec99cf](https://github.com/readmeio/syntax-highlighter/commit/3ec99cf)), closes [#435](https://github.com/readmeio/syntax-highlighter/issues/435)
+* chore(deps-dev): bumping out of date deps ([8a56e5e](https://github.com/readmeio/syntax-highlighter/commit/8a56e5e))
+
+
+
 ## 12.1.0 (2023-04-19)
 
 * chore: bumping out of date deps ([a2e58d8](https://github.com/readmeio/syntax-highlighter/commit/a2e58d8))
