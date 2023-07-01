@@ -10,9 +10,9 @@ jobs:
     strategy:
       matrix:
         node:
-          - 14
           - 16
           - 18
+          - 20
         react: [16, 17]
 
     name: build (${{ matrix.node }} w/ React ${{ matrix.react }}
@@ -24,11 +24,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node }}
-
-    # Node 14 still ships with npm@6 which doesn't install peerDeps by default.
-    - name: Install npm@7
-      if: matrix.node == '14'
-      run: npm install -g npm@7
 
     - name: Install dependencies
       run: npm ci
