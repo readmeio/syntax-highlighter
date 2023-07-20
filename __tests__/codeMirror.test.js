@@ -97,6 +97,12 @@ describe('variable substitution', () => {
       'APIKEY NAME'
     );
   });
+
+  it('should NOT tokenize escaped variables', () => {
+    expect(mount(syntaxHighlighter('\\<<wat>>', 'json', { tokenizeVariables: true })).text()).toBe('<<wat>>');
+    expect(mount(syntaxHighlighter('<<wat\\>>', 'json', { tokenizeVariables: true })).text()).toBe('<<wat>>');
+    expect(mount(syntaxHighlighter('\\<<wat\\>>', 'json', { tokenizeVariables: true })).text()).toBe('<<wat>>');
+  });
 });
 
 describe('Supported languages', () => {
