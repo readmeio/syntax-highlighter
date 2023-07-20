@@ -52,7 +52,7 @@ StructuredOutput.propTypes = {
 /**
  * Generate an array of classNames
  *
- * @arg \{[][]{line: Int}} ranges
+ * @arg {[][]{line: Int}} ranges
  * @return {[String]} Consumable classNames
  */
 const highlightedLines = (ranges, totalLength) => {
