@@ -169,9 +169,14 @@ const extractVariables = (code, opts) => {
   let offsetDelta = 0;
   const variables = [];
 
-  const extracter = ({ length }, capture, offset) => {
+  const extracter = (match, capture, offset) => {
+    const unescaped = match.replace(/^\\<</, '<<').replace(/\\>>$/, '>>');
+    if (unescaped !== match) {
+      return unescaped;
+    }
+
     variables.push({ text: capture, offset: offset - offsetDelta });
-    offsetDelta += length;
+    offsetDelta += match.length;
 
     return '';
   };
