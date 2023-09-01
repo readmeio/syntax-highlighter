@@ -18,7 +18,7 @@ const SyntaxHighlighter = (
     inline: false,
     tokenizeVariables: false,
   },
-  editorProps = {}
+  editorProps = {},
 ) => {
   let theme = opts.dark ? 'material-palenight' : 'neo';
   if (opts.customTheme) {
@@ -57,7 +57,7 @@ const SyntaxHighlighter = (
   return React.createElement(
     wrapper,
     { className: classes.join(' ') },
-    codemirror(typeof code === 'string' ? code : '', lang, opts)
+    codemirror(typeof code === 'string' ? code : '', lang, opts),
   );
 };
 

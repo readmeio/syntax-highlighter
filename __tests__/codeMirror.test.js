@@ -14,7 +14,7 @@ test('should highlight a block of code', () => {
 
   expect(code.hasClass('cm-s-neo')).toBe(true);
   expect(code.html()).toBe(
-    '<div class="cm-s-neo"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>'
+    '<div class="cm-s-neo"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>',
   );
 });
 
@@ -38,7 +38,7 @@ test('should concat the same style items', () => {
 
 test('should work with modes', () => {
   expect(shallow(syntaxHighlighter('{ "a": 1 }', 'json')).html()).toBe(
-    '<div class="cm-s-neo">{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</div>'
+    '<div class="cm-s-neo">{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</div>',
   );
 });
 
@@ -47,29 +47,29 @@ test('should keep trailing json bracket if highlightMode is enabled', () => {
     shallow(
       syntaxHighlighter('{ "a": 1 }', 'json', {
         highlightMode: true,
-      })
-    ).html()
+      }),
+    ).html(),
   ).toBe(
-    '<div class="cm-s-neo CodeEditor"><div class="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</div></div></div>'
+    '<div class="cm-s-neo CodeEditor"><div class="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</div></div></div>',
   );
 });
 
 test('should have a dark theme', () => {
   expect(shallow(syntaxHighlighter('{ "a": 1 }', 'json', { dark: true })).hasClass('cm-s-material-palenight')).toBe(
-    true
+    true,
   );
 });
 
 describe('variable substitution', () => {
   it('should tokenize variables (double quotes)', () => {
     expect(mount(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(
-      1
+      1,
     );
   });
 
   it('should tokenize variables (single quotes)', () => {
     expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(
-      1
+      1,
     );
   });
 
@@ -94,7 +94,7 @@ describe('variable substitution', () => {
 
   it('should tokenize multiple variables per line', () => {
     expect(mount(syntaxHighlighter('<<apiKey>> <<name>>', 'json', { tokenizeVariables: true })).text()).toBe(
-      'APIKEY NAME'
+      'APIKEY NAME',
     );
   });
 
@@ -195,7 +195,7 @@ describe('highlight mode', () => {
             { ch: 0, line: 1 },
           ],
         ],
-      })
+      }),
     );
   });
 
@@ -233,7 +233,7 @@ describe('runmode', () => {
             { ch: 0, line: 1 },
           ],
         ],
-      })
+      }),
     );
   });
 
@@ -265,7 +265,7 @@ describe('code folding', () => {
 
   it('relevant options in the props matches snapshot', () => {
     const { options } = shallow(
-      syntaxHighlighter('{ "a": { "b": { "c": 1 } }', 'json', { foldGutter: true, readOnly: true })
+      syntaxHighlighter('{ "a": { "b": { "c": 1 } }', 'json', { foldGutter: true, readOnly: true }),
     ).props();
     expect(options).toMatchSnapshot();
   });

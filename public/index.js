@@ -164,5 +164,5 @@ ReactDOM.render(
       {syntaxHighlighter(exampleJson, 'json', { foldGutter: true, readOnly: true, dark: false })}
     </pre>
   </div>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

@@ -2,7 +2,6 @@
 /* eslint-disable prefer-template */
 /* eslint-disable object-shorthand */
 /* eslint-disable no-return-assign */
-/* eslint-disable unicorn/no-unsafe-regex */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable consistent-return */
 /* eslint-disable no-prototype-builtins */
