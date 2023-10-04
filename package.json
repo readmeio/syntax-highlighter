@@ -11,7 +11,7 @@
   },
   "homepage": "https://readmeio.github.io/syntax-highlighter/",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "scripts": {
     "build": "webpack --progress",
