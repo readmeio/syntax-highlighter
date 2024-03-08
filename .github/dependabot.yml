@@ -1,0 +1,48 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    reviewers:
+      - erunion
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 10
+    reviewers:
+      - erunion
+    labels:
+      - dependencies
+    groups:
+      minor-development-deps:
+        dependency-type: 'development'
+        update-types:
+          - minor
+          - patch
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
+    ignore:
+      - dependency-name: codemirror
+        versions:
+          - '>= 6.0'
+      - dependency-name: codemirror-graphql
+        versions:
+          - '>= 2.0'
+      - dependency-name: react
+        versions:
+          - '>= 18'
+      - dependency-name: react-dom
+        versions:
+          - '>= 18'
+      - dependency-name: sass-loader
+        versions:
+          - '>= 14'
