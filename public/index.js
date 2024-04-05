@@ -74,7 +74,7 @@ curabitur aute aptent. Ultrices orci wisi dui ipsum praesent, pharetra felis eu 
 maxime sem dapibus et eget, mi enim dignissim nec pretium, augue vehicula, volutpat proin. Et occaecati
 lobortis viverra, cum in sed, vivamus tellus. Libero at malesuada est vivamus leo tortor.`;
 
-ReactDOM.render(
+('createRoot' in ReactDOM ? ReactDOM.createRoot : ReactDOM.render)(
   <div style={{ margin: '20px' }}>
     <h1>Core Syntax Highlighter</h1>
 
