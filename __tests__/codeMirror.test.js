@@ -1,8 +1,10 @@
+/* eslint-disable testing-library/no-node-access */
+/* eslint-disable testing-library/no-container */
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import Variable from '@readme/variable';
-import { mount, shallow } from 'enzyme';
+// eslint-disable-next-line testing-library/no-manual-cleanup
+import { render, screen, cleanup } from '@testing-library/react';
 import { globSync } from 'glob';
 
 import syntaxHighlighter, { uppercase, canonical } from '../src';
@@ -10,11 +12,10 @@ import syntaxHighlighter, { uppercase, canonical } from '../src';
 const fixtures = globSync(path.join(__dirname, '/__fixtures__/*'));
 
 test('should highlight a block of code', () => {
-  const code = shallow(syntaxHighlighter('var a = 1;', 'javascript'));
+  render(syntaxHighlighter('var a = 1;', 'javascript'));
 
-  expect(code.hasClass('cm-s-neo')).toBe(true);
-  expect(code.html()).toBe(
-    '<div class="cm-s-neo"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>',
+  expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toBe(
+    '<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>',
   );
 });
 
@@ -23,62 +24,64 @@ test('should work when passed a non-string value', () => {
 });
 
 test('should sanitize plain text language', () => {
-  expect(shallow(syntaxHighlighter('& < > " \' /', 'text')).html()).toContain('&amp; &lt; &gt; &quot; &#x27; /');
+  render(syntaxHighlighter('& < > " \' /', 'text'));
+  expect(screen.getByText('& < > " \' /')).toBeVisible();
 });
 
 test('should sanitize mode', () => {
-  expect(shallow(syntaxHighlighter('&', 'json')).html()).toContain('&amp;');
-  expect(shallow(syntaxHighlighter('<', 'json')).html()).toContain('&lt;');
+  render(syntaxHighlighter('&', 'json'));
+  expect(screen.getByText('&')).toBeVisible();
+
+  render(syntaxHighlighter('<', 'json'));
+  expect(screen.getByText('<')).toBeVisible();
 });
 
 test('should concat the same style items', () => {
   // This is testing the `accum += text;` line
-  expect(shallow(syntaxHighlighter('====', 'javascript')).text()).toContain('====');
+  render(syntaxHighlighter('====', 'javascript'));
+  expect(screen.getByText('====')).toBeVisible();
 });
 
 test('should work with modes', () => {
-  expect(shallow(syntaxHighlighter('{ "a": 1 }', 'json')).html()).toBe(
-    '<div class="cm-s-neo">{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</div>',
+  render(syntaxHighlighter('{ "a": 1 }', 'json'));
+
+  expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toBe(
+    '<div class="cm-s-neo" data-testid="SyntaxHighlighter">{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div>',
   );
 });
 
 test('should keep trailing json bracket if highlightMode is enabled', () => {
-  expect(
-    shallow(
-      syntaxHighlighter('{ "a": 1 }', 'json', {
-        highlightMode: true,
-      }),
-    ).html(),
-  ).toBe(
-    '<div class="cm-s-neo CodeEditor"><div class="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">&quot;a&quot;</span>: <span class="cm-number">1</span> }</div></div></div>',
+  render(syntaxHighlighter('{ "a": 1 }', 'json', { highlightMode: true }));
+
+  expect(screen.getByTestId('CodeMirror').outerHTML).toBe(
+    '<div class="CodeMirror" data-testid="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div></div>',
   );
 });
 
 test('should have a dark theme', () => {
-  expect(shallow(syntaxHighlighter('{ "a": 1 }', 'json', { dark: true })).hasClass('cm-s-material-palenight')).toBe(
-    true,
-  );
+  render(syntaxHighlighter('{ "a": 1 }', 'json', { dark: true }));
+  expect(screen.getByTestId('SyntaxHighlighter')).toHaveClass('cm-s-material-palenight');
 });
 
 describe('variable substitution', () => {
   it('should tokenize variables (double quotes)', () => {
-    expect(mount(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(
-      1,
-    );
+    render(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
   });
 
   it('should tokenize variables (single quotes)', () => {
-    expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).find(Variable)).toHaveLength(
-      1,
-    );
+    render(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
   });
 
   it('should keep enclosing characters around the variable', () => {
-    expect(mount(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true })).text()).toBe("'APIKEY'");
+    render(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent("'APIKEY'");
   });
 
   it('should tokenize variables outside of quotes', () => {
-    expect(mount(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true })).text()).toBe('APIKEY');
+    render(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
   });
 
   it('should tokenize variables outside of quotes over multiple lines', () => {
@@ -89,19 +92,18 @@ describe('variable substitution', () => {
     fetch({ foo, bar, baz: <<token>> });
   `;
 
-    expect(mount(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true })).text()).toMatchSnapshot();
+    render(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true }));
+    expect(screen.getByTestId('SyntaxHighlighter').textContent).toMatchSnapshot();
   });
 
   it('should tokenize multiple variables per line', () => {
-    expect(mount(syntaxHighlighter('<<apiKey>> <<name>>', 'json', { tokenizeVariables: true })).text()).toBe(
-      'APIKEY NAME',
-    );
+    render(syntaxHighlighter('<<apiKey>> <<name>>', 'json', { tokenizeVariables: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('APIKEY NAME');
   });
 
-  it('should NOT tokenize escaped variables', () => {
-    expect(mount(syntaxHighlighter('\\<<wat>>', 'json', { tokenizeVariables: true })).text()).toBe('<<wat>>');
-    expect(mount(syntaxHighlighter('<<wat\\>>', 'json', { tokenizeVariables: true })).text()).toBe('<<wat>>');
-    expect(mount(syntaxHighlighter('\\<<wat\\>>', 'json', { tokenizeVariables: true })).text()).toBe('<<wat>>');
+  it.each(['\\<<wat>>', '<<wat\\>>', '\\<<wat\\>>'])('should NOT tokenize escaped variables %s', code => {
+    render(syntaxHighlighter(code, 'json', { tokenizeVariables: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('<<wat>>');
   });
 });
 
@@ -132,8 +134,8 @@ describe('Supported languages', () => {
     });
 
     it('should syntax highlight an example', () => {
-      const highlighted = shallow(syntaxHighlighter(testCase, instructions.mode.primary)).html();
-      expect(highlighted).toMatchSnapshot();
+      render(syntaxHighlighter(testCase, instructions.mode.primary));
+      expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toMatchSnapshot();
     });
 
     if (Object.keys(instructions.mode.aliases).length > 0) {
@@ -142,8 +144,12 @@ describe('Supported languages', () => {
       describe('Mode aliases', () => {
         describe.each(aliases)('%s', (alias, aliasName) => {
           it('should support the mode alias', () => {
-            const highlighted = shallow(syntaxHighlighter(testCase, instructions.mode.primary)).html();
-            expect(shallow(syntaxHighlighter(testCase, alias)).html()).toBe(highlighted);
+            render(syntaxHighlighter(testCase, instructions.mode.primary));
+            const highlighted = screen.getByTestId('SyntaxHighlighter').outerHTML;
+            cleanup();
+
+            render(syntaxHighlighter(testCase, alias));
+            expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toBe(highlighted);
           });
 
           it('should uppercase the mode alias', () => {
@@ -166,25 +172,29 @@ describe('Supported languages', () => {
     if (instructions.mode.primary === 'html') {
       it('should highlight handlebars templates', () => {
         const code = '<p>{{firstname}} {{lastname}}</p>';
-        expect(shallow(syntaxHighlighter(code, 'handlebars')).html()).toContain('cm-bracket');
+        const { container } = render(syntaxHighlighter(code, 'handlebars'));
+
+        expect(container.querySelector('.cm-bracket')).toBeVisible();
       });
     } else if (instructions.mode.primary === 'php') {
       it('should highlight if missing an opening `<?php` tag', () => {
-        expect(shallow(syntaxHighlighter('echo "Hello World";', 'php')).html()).toContain('cm-keyword');
+        const code = 'echo "Hello World";';
+        const { container } = render(syntaxHighlighter(code, 'php'));
+
+        expect(container.querySelector('.cm-keyword')).toBeVisible();
       });
     }
   });
 });
 
 describe('highlight mode', () => {
-  let node;
   const code = `curl --request POST
   --url <<url>>
   --header 'authorization: Bearer 123'
   --header 'content-type: application/json'`;
 
-  beforeEach(() => {
-    node = mount(
+  const defaultRender = () =>
+    render(
       syntaxHighlighter(code, 'curl', {
         dark: true,
         highlightMode: true,
@@ -197,32 +207,34 @@ describe('highlight mode', () => {
         ],
       }),
     );
-  });
 
   it('should return line numbers by default', () => {
-    expect(node.find('span').first().hasClass('cm-lineNumber')).toBe(true);
+    const { container } = defaultRender();
+    expect(container.querySelector('.cm-lineNumber')).toBeVisible();
   });
 
-  it('should convert variable regex matches to a component instance', () => {
-    expect(node.find(Variable)).toHaveLength(1);
+  it('should highlight variables', () => {
+    defaultRender();
+    expect(screen.getByText('URL')).toBeVisible();
   });
 
   it('should highlight based on range input', () => {
-    expect(node.find('.cm-linerow.cm-highlight')).toHaveLength(2);
+    const { container } = defaultRender();
+    expect(container.querySelector('.cm-linerow.cm-highlight')).toHaveTextContent('1curl --request POST');
   });
 
   it('should add an overlay to non-highlighted in lines when ranges are applied', () => {
-    expect(node.find('.cm-linerow.cm-overlay')).toHaveLength(6);
+    const { container } = defaultRender();
+    expect(container.querySelectorAll('.cm-linerow.cm-overlay')).toHaveLength(3);
   });
 });
 
 describe('runmode', () => {
-  let node;
   const code =
     'CURL *hnd = curl_easy_init();\n\nurl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");\n\ncurl_easy_setopt(hnd, CURLOPT_URL, "http://httpbin.orgpet/");';
 
-  beforeEach(() => {
-    node = mount(
+  it('should display the correct number of lines with multiple linebreaks', () => {
+    render(
       syntaxHighlighter(code, 'c', {
         dark: true,
         highlightMode: true,
@@ -235,13 +247,8 @@ describe('runmode', () => {
         ],
       }),
     );
-  });
 
-  it('should display the correct number of lines with multiple linebreaks', () => {
-    const checkLineBreaks = parseInt(node.find('.cm-linerow').last().find('.cm-lineNumber').text(), 10);
-    const totalLines = code.split('\n');
-
-    expect(checkLineBreaks).toStrictEqual(totalLines.length);
+    expect(screen.getAllByText(/\d/)).toHaveLength(5);
   });
 });
 
@@ -263,10 +270,11 @@ describe('code folding', () => {
     };
   });
 
-  it('relevant options in the props matches snapshot', () => {
-    const { options } = shallow(
+  it('renders folders in the gutter', () => {
+    const { container } = render(
       syntaxHighlighter('{ "a": { "b": { "c": 1 } }', 'json', { foldGutter: true, readOnly: true }),
-    ).props();
-    expect(options).toMatchSnapshot();
+    );
+
+    expect(container.querySelector('.CodeMirror-foldgutter')).toBeVisible();
   });
 });

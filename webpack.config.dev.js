@@ -4,7 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: ['./public/index.js'],
+  entry: [['16', '18'].includes(process.env.REACT_VERSION) ? './public/index.legacy.js' : './public.index.js'],
   module: {
     rules: [
       {

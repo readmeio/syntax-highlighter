@@ -6,9 +6,9 @@ module.exports = {
   moduleNameMapper: {
     '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
   },
-  setupFiles: [path.join(__dirname, '/lib/enzyme')],
+  setupFilesAfterEnv: [path.join(__dirname, '__tests__/jest.setup.js')],
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['<rootDir>/__tests__/__fixtures__/'],
+  testPathIgnorePatterns: ['<rootDir>/__tests__/__fixtures__/', '<rootDir>/__tests__/jest.setup.js'],
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
   },

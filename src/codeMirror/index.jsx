@@ -61,6 +61,7 @@ const highlightedLines = (ranges, totalLength) => {
   ranges.forEach(([anchor, head]) => {
     const end = head.line;
     let position = anchor.line;
+
     while (position < end) {
       highlights[position] = 'cm-highlight';
       position += 1;
@@ -125,7 +126,7 @@ const StyledSyntaxHighlighter = ({ output, ranges }) => {
 
   const highlights = ranges && ranges.length ? highlightedLines(ranges, gutteredOutput.length) : [];
   return (
-    <div className="CodeMirror">
+    <div className="CodeMirror" data-testid="CodeMirror">
       <StructuredOutput gutteredInput={gutteredOutput} highlights={highlights} />
     </div>
   );
