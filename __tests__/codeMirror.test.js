@@ -3,7 +3,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import Variable from '@readme/variable';
 // eslint-disable-next-line testing-library/no-manual-cleanup
 import { render, screen, cleanup } from '@testing-library/react';
 import { globSync } from 'glob';
