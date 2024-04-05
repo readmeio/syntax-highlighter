@@ -26,19 +26,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Compatible @testing-library/react
+        if: matrix.react == '16'
+        run: |
+          npm install @testing-library/react@12
+
       - name: Install React v${{ matrix.react }}
         run: npm i react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
-      - name: Install React 16 Enzyme adapter
-        if: matrix.react == '16'
-        run: |
-          npm remove @wojtekmaj/enzyme-adapter-react-17
-          npm install enzyme-adapter-react-16
-
-      - name: Run tests on React 16
-        if: matrix.react == '16'
-        run: REACT_VERSION=16 npm test
-
       - name: Run tests on React ${{ matrix.react }}
-        if: matrix.react == '17' || matrix.react == '18'
         run: npm test
