@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Install Compatible @testing-library/react
-        if: matrix.react == '16'
+        if: matrix.react == '16' || matrix.react == '17'
         run: |
           npm install @testing-library/react@12
 
