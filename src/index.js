@@ -56,7 +56,7 @@ const SyntaxHighlighter = (
 
   return React.createElement(
     wrapper,
-    { className: classes.join(' ') },
+    { className: classes.join(' '), 'data-testid': 'SyntaxHighlighter' },
     codemirror(typeof code === 'string' ? code : '', lang, opts),
   );
 };

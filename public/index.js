@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import syntaxHighlighter, { cmVariableContext } from '../src/index';
 
@@ -74,7 +75,7 @@ curabitur aute aptent. Ultrices orci wisi dui ipsum praesent, pharetra felis eu 
 maxime sem dapibus et eget, mi enim dignissim nec pretium, augue vehicula, volutpat proin. Et occaecati
 lobortis viverra, cum in sed, vivamus tellus. Libero at malesuada est vivamus leo tortor.`;
 
-('createRoot' in ReactDOM ? ReactDOM.createRoot : ReactDOM.render)(
+const App = () => (
   <div style={{ margin: '20px' }}>
     <h1>Core Syntax Highlighter</h1>
 
@@ -163,6 +164,13 @@ lobortis viverra, cum in sed, vivamus tellus. Libero at malesuada est vivamus le
     <pre id="hub-reference">
       {syntaxHighlighter(exampleJson, 'json', { foldGutter: true, readOnly: true, dark: false })}
     </pre>
-  </div>,
-  document.getElementById('root'),
+  </div>
 );
+
+if (typeof createRoot === 'function') {
+  const root = createRoot(document.getElementById('root'));
+  root.render(<App />);
+} else {
+  // eslint-disable-next-line react/no-deprecated
+  ReactDOM.render(<App />, document.getElementById('root'));
+}
