@@ -10,10 +10,10 @@ For our general commit conventions please consult our organization contributing 
 
 To add a new language:
 
-* Create a new directory in the fixtures directory for the language (for example): `__tests__/__fixtures__/js/`
-* Add a `sample.js` file into `__tests__/__fixtures__/js/` containing a code snippet of the language you're targeting
-    * https://github.com/leachim6/hello-world/ is a helpful resource covering most every language
-* Add a `index.js` file in `__tests__/__fixtures__/js/` that matches the following structure:
+- Create a new directory in the fixtures directory for the language (for example): `__tests__/__fixtures__/js/`
+- Add a `sample.js` file into `__tests__/__fixtures__/js/` containing a code snippet of the language you're targeting
+  - https://github.com/leachim6/hello-world/ is a helpful resource covering most every language
+- Add a `index.js` file in `__tests__/__fixtures__/js/` that matches the following structure:
 
 ```js
 module.exports = {
@@ -31,13 +31,13 @@ module.exports = {
     aliases: {
       // Any additional extension modes that this language might utilize or be known under (SQL
       // variants for example). Consult the CodeMirror meta file for this list.
-      languageModeAlias: 'Language Name'
+      languageModeAlias: 'Language Name',
     },
   },
 };
 ```
 
-* Update `canonical.js` and add any mode aliases you've added into your test, mapping them back to the canonical version
-  * `yml` → `yaml`, `ts` → `typescript`, etc.
-* Update `uppercase.js` for any new language names, or aliases, you've added.
-* Lastly, make sure that the README is updated! 🚀
+- Update `canonical.js` and add any mode aliases you've added into your test, mapping them back to the canonical version
+  - `yml` → `yaml`, `ts` → `typescript`, etc.
+- Update `uppercase.js` for any new language names, or aliases, you've added.
+- Lastly, make sure that the README is updated! 🚀

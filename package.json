@@ -17,8 +17,8 @@
     "build": "webpack --progress",
     "lint": "eslint . --ext .jsx --ext .js",
     "prepack": "npm run build",
-    "pretest": "npm run lint",
-    "prettier": "prettier --list-different --write \"./**/**.{js,jsx}\"",
+    "pretest": "npm run lint && npm run prettier",
+    "prettier": "prettier --list-different --write .",
     "start": "webpack serve --open --config ./webpack.config.dev.js",
     "test": "jest --coverage --runInBand",
     "watch": "webpack -w --progress"
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
-    "@readme/eslint-config": "^13.5.0",
+    "@readme/eslint-config": "^14.0.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.2",
     "babel-jest": "^29.7.0",

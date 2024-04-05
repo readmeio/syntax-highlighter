@@ -13,19 +13,23 @@ npm install --save @readme/syntax-highlighter
 ```
 
 ## Usage
+
 ### Read Only Mode
+
 ```js
 const syntaxHighlighter = require('@readme/syntax-highlighter');
 const ele = syntaxHighlighter('console.log("Hello, world!");', 'js');
 ```
 
 ### Read Only with Line Numbers
+
 ```js
 const syntaxHighlighter = require('@readme/syntax-highlighter');
 const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, highlightMode: true });
 ```
 
 ### Read Only with Line Numbers and Highlighted Ranges
+
 ```js
 const syntaxHighlighter = require('@readme/syntax-highlighter');
 const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', {
@@ -41,19 +45,17 @@ const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', {
 ```
 
 ### Full CodeMirror
+
 Access to a full code Mirror instance. See configuration settings in the [`react-codemirror2` library][react-codemirror#props]
 
 ```js
 const syntaxHighlighter = require('@readme/syntax-highlighter');
-const ele = syntaxHighlighter(
-  'console.log("Hello, world!");',
-  'js',
-  { ...opts, editable: true },
-  { ...editorProps }
-);
+const ele = syntaxHighlighter('console.log("Hello, world!");', 'js', { ...opts, editable: true }, { ...editorProps });
 ```
 
 ### Available Options
+
+<!-- prettier-ignore-start -->
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | `customTheme` | String | Highlighting theme. One of `neo`, `material-palenight`, or `tomorrow-night`. (Setting this will override the `dark` mode option.)
@@ -63,9 +65,11 @@ const ele = syntaxHighlighter(
 | `inline` | String | Wrap code in a `<span>` tag, instead of a `<div>`. |
 | `ranges` | Array | Ranges of line numbers to apply highlighting to. Requires `highlightMode` enabled |
 | `tokenizeVariables` | Boolean | Match and render [ReadMe variables](rdme-variable) in your markdown. |
+<!-- prettier-ignore-end -->
 
 ## Languages Supported
 
+<!-- prettier-ignore-start -->
 | Language | Available language mode(s) |
 | :--- | :--- |
 | ASP.NET | `asp`, `aspx` |
@@ -110,7 +114,7 @@ const ele = syntaxHighlighter(
 | TOML | `toml` |
 | TypeScript | `ts`, `typescript` |
 | YAML | `yaml`, `yml` |
-
+<!-- prettier-ignore-end -->
 
 [rdme-variable]: https://github.com/readmeio/api-explorer/tree/next/packages/variable
 [codemirror]: https://github.com/codemirror/CodeMirror

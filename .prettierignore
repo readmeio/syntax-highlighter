@@ -2,3 +2,5 @@ __tests__/__fixtures__/
 __tests__/__snapshots__/
 coverage/
 dist/
+*.html
+*.scss
