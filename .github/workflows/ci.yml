@@ -35,4 +35,4 @@ jobs:
         run: npm i react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
       - name: Run tests on React ${{ matrix.react }}
-        run: npm test
+        run: REACT_VERSION=${{ matrix.react }} npm test

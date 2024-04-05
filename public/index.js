@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client';
 
 import syntaxHighlighter, { cmVariableContext } from '../src/index';
+
+let createRoot;
+if (process.env.REACT_VERSION === '18') {
+  // eslint-disable-next-line global-require
+  ({ createRoot } = require('react-dom/client'));
+}
 
 const exampleCode = `curl --request POST
   --url <<url>>
