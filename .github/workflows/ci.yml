@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -12,34 +11,34 @@ jobs:
         node:
           - 18
           - 20
-        react: [16, 17]
+        react: [16, 17, 18]
 
     name: build (${{ matrix.node }} w/ React ${{ matrix.react }}
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node }}
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Install React v${{ matrix.react }}
-      run: npm i react@${{ matrix.react }} react-dom@${{ matrix.react }}
+      - name: Install React v${{ matrix.react }}
+        run: npm i react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
-    - name: Install React 16 Enzyme adapter
-      if: matrix.react == '16'
-      run: |
-        npm remove @wojtekmaj/enzyme-adapter-react-17
-        npm install enzyme-adapter-react-16
+      - name: Install React 16 Enzyme adapter
+        if: matrix.react == '16'
+        run: |
+          npm remove @wojtekmaj/enzyme-adapter-react-17
+          npm install enzyme-adapter-react-16
 
-    - name: Run tests on React 16
-      if: matrix.react == '16'
-      run: REACT_VERSION=16 npm test
+      - name: Run tests on React 16
+        if: matrix.react == '16'
+        run: REACT_VERSION=16 npm test
 
-    - name: Run tests on React 17
-      if: matrix.react == '17'
-      run: npm test
+      - name: Run tests on React ${{ matrix.react }}
+        if: matrix.react == '17' || matrix.react == '18'
+        run: npm test
