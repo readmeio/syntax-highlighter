@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createRoot from 'react-dom/client';
 
 import syntaxHighlighter, { cmVariableContext } from '../src/index';
 
@@ -167,5 +166,4 @@ const App = () => (
   </div>
 );
 
-const root = createRoot(document.getElementById('root'));
-root.render(<App />);
+ReactDOM.render(<App />, document.getElementById('root'));
