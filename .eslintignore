@@ -1,5 +1,5 @@
 node_modules/
 coverage/
 dist/
-public/index.legacy.js
+public/index*
 __tests__/__fixtures__/**/sample.*
