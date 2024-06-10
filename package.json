@@ -52,6 +52,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "node-sass": "^9.0.0",
     "prettier": "^3.2.5",
+    "prettier-2": "npm:prettier@^2.8.8",
     "regenerator-runtime": "^0.14.1",
     "sass-loader": "^13.3.2",
     "style-loader": "^4.0.0",

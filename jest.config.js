@@ -6,6 +6,7 @@ module.exports = {
   moduleNameMapper: {
     '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
   },
+  prettierPath: require.resolve('prettier-2'),
   setupFilesAfterEnv: [path.join(__dirname, '__tests__/jest.setup.js')],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['<rootDir>/__tests__/__fixtures__/', '<rootDir>/__tests__/jest.setup.js'],

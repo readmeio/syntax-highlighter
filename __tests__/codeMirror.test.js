@@ -15,7 +15,7 @@ test('should highlight a block of code', () => {
   render(syntaxHighlighter('var a = 1;', 'javascript'));
 
   expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toBe(
-    '<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>',
+    '<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>'
   );
 });
 
@@ -46,7 +46,7 @@ test('should work with modes', () => {
   render(syntaxHighlighter('{ "a": 1 }', 'json'));
 
   expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toBe(
-    '<div class="cm-s-neo" data-testid="SyntaxHighlighter">{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div>',
+    '<div class="cm-s-neo" data-testid="SyntaxHighlighter">{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div>'
   );
 });
 
@@ -54,7 +54,7 @@ test('should keep trailing json bracket if highlightMode is enabled', () => {
   render(syntaxHighlighter('{ "a": 1 }', 'json', { highlightMode: true }));
 
   expect(screen.getByTestId('CodeMirror').outerHTML).toBe(
-    '<div class="CodeMirror" data-testid="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div></div>',
+    '<div class="CodeMirror" data-testid="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div></div>'
   );
 });
 
@@ -104,6 +104,62 @@ describe('variable substitution', () => {
   it.each(['\\<<wat>>', '<<wat\\>>', '\\<<wat\\>>'])('should NOT tokenize escaped variables %s', code => {
     render(syntaxHighlighter(code, 'json', { tokenizeVariables: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('<<wat>>');
+  });
+});
+
+describe.only('variable substitution { mdx: true }', () => {
+  it('should tokenize variables (double quotes)', () => {
+    render(syntaxHighlighter('"{user.apiKey}"', 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
+  });
+
+  it('should tokenize variables (single quotes)', () => {
+    render(syntaxHighlighter("'{user.apiKey}'", 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
+  });
+
+  it('should keep enclosing characters around the variable', () => {
+    render(syntaxHighlighter("'{user.apiKey}'", 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent("'APIKEY'");
+  });
+
+  it('should tokenize variables outside of quotes', () => {
+    render(syntaxHighlighter('{user.apiKey}', 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
+  });
+
+  it('should tokenize variables outside of quotes over multiple lines', () => {
+    const codeBlock = `
+    const foo = {user.apiKey};
+    const bar = {user.name};
+
+    fetch({ foo, bar, baz: {user.token} });
+  `;
+
+    render(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter').textContent).toMatchInlineSnapshot(`
+      "
+          const foo = APIKEY;
+          const bar = NAME;
+
+          fetch({ foo, bar, baz: TOKEN });
+        "
+    `);
+  });
+
+  it('should tokenize multiple variables per line', () => {
+    render(syntaxHighlighter('{user.apiKey} {user.name}', 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('APIKEY NAME');
+  });
+
+  it('should not tokenize bracket style', () => {
+    render(syntaxHighlighter('<<wat>>', 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('<<wat>>');
+  });
+
+  it.each(['\\{user.wat}', '{user.wat\\}', '\\{user.wat\\}'])('should NOT tokenize escaped variables %s', code => {
+    render(syntaxHighlighter(code, 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('{user.wat}');
   });
 });
 
@@ -205,7 +261,7 @@ describe('highlight mode', () => {
             { ch: 0, line: 1 },
           ],
         ],
-      }),
+      })
     );
 
   it('should return line numbers by default', () => {
@@ -245,7 +301,7 @@ describe('runmode', () => {
             { ch: 0, line: 1 },
           ],
         ],
-      }),
+      })
     );
 
     expect(screen.getAllByText(/\d/)).toHaveLength(5);
@@ -272,7 +328,7 @@ describe('code folding', () => {
 
   it('renders folders in the gutter', () => {
     const { container } = render(
-      syntaxHighlighter('{ "a": { "b": { "c": 1 } }', 'json', { foldGutter: true, readOnly: true }),
+      syntaxHighlighter('{ "a": { "b": { "c": 1 } }', 'json', { foldGutter: true, readOnly: true })
     );
 
     expect(container.querySelector('.CodeMirror-foldgutter')).toBeVisible();
