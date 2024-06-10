@@ -20,6 +20,7 @@ const SyntaxHighlighter = (
   },
   props = {},
 ) => {
+  // eslint-disable-next-line react/prop-types
   const { mdx, ...editorProps } = props;
   let theme = opts.dark ? 'material-palenight' : 'neo';
   if (opts.customTheme) {
