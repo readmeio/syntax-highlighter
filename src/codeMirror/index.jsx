@@ -185,8 +185,6 @@ const extractVariables = (code, opts) => {
   const regexp = opts.mdx ? MDX_VARIABLE_REGEXP : VARIABLE_REGEXP;
   const codeWithoutVars = code.replace(new RegExp(regexp, 'g'), extracter);
 
-  console.log(regexp);
-
   return [codeWithoutVars, makeReinserter(variables)];
 };
 

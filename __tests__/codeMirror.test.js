@@ -15,7 +15,7 @@ test('should highlight a block of code', () => {
   render(syntaxHighlighter('var a = 1;', 'javascript'));
 
   expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toBe(
-    '<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>'
+    '<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-keyword">var</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>;</div>',
   );
 });
 
@@ -46,7 +46,7 @@ test('should work with modes', () => {
   render(syntaxHighlighter('{ "a": 1 }', 'json'));
 
   expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toBe(
-    '<div class="cm-s-neo" data-testid="SyntaxHighlighter">{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div>'
+    '<div class="cm-s-neo" data-testid="SyntaxHighlighter">{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div>',
   );
 });
 
@@ -54,7 +54,7 @@ test('should keep trailing json bracket if highlightMode is enabled', () => {
   render(syntaxHighlighter('{ "a": 1 }', 'json', { highlightMode: true }));
 
   expect(screen.getByTestId('CodeMirror').outerHTML).toBe(
-    '<div class="CodeMirror" data-testid="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div></div>'
+    '<div class="CodeMirror" data-testid="CodeMirror"><div class="cm-linerow "><span class="cm-lineNumber">1</span>{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div></div>',
   );
 });
 
@@ -107,7 +107,7 @@ describe('variable substitution', () => {
   });
 });
 
-describe.only('variable substitution { mdx: true }', () => {
+describe('variable substitution { mdx: true }', () => {
   it('should tokenize variables (double quotes)', () => {
     render(syntaxHighlighter('"{user.apiKey}"', 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByText('APIKEY')).toBeVisible();
@@ -261,7 +261,7 @@ describe('highlight mode', () => {
             { ch: 0, line: 1 },
           ],
         ],
-      })
+      }),
     );
 
   it('should return line numbers by default', () => {
@@ -301,7 +301,7 @@ describe('runmode', () => {
             { ch: 0, line: 1 },
           ],
         ],
-      })
+      }),
     );
 
     expect(screen.getAllByText(/\d/)).toHaveLength(5);
@@ -328,7 +328,7 @@ describe('code folding', () => {
 
   it('renders folders in the gutter', () => {
     const { container } = render(
-      syntaxHighlighter('{ "a": { "b": { "c": 1 } }', 'json', { foldGutter: true, readOnly: true })
+      syntaxHighlighter('{ "a": { "b": { "c": 1 } }', 'json', { foldGutter: true, readOnly: true }),
     );
 
     expect(container.querySelector('.CodeMirror-foldgutter')).toBeVisible();
