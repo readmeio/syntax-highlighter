@@ -107,6 +107,62 @@ describe('variable substitution', () => {
   });
 });
 
+describe('variable substitution { mdx: true }', () => {
+  it('should tokenize variables (double quotes)', () => {
+    render(syntaxHighlighter('"{user.apiKey}"', 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
+  });
+
+  it('should tokenize variables (single quotes)', () => {
+    render(syntaxHighlighter("'{user.apiKey}'", 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
+  });
+
+  it('should keep enclosing characters around the variable', () => {
+    render(syntaxHighlighter("'{user.apiKey}'", 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent("'APIKEY'");
+  });
+
+  it('should tokenize variables outside of quotes', () => {
+    render(syntaxHighlighter('{user.apiKey}', 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
+  });
+
+  it('should tokenize variables outside of quotes over multiple lines', () => {
+    const codeBlock = `
+    const foo = {user.apiKey};
+    const bar = {user.name};
+
+    fetch({ foo, bar, baz: {user.token} });
+  `;
+
+    render(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter').textContent).toMatchInlineSnapshot(`
+      "
+          const foo = APIKEY;
+          const bar = NAME;
+
+          fetch({ foo, bar, baz: TOKEN });
+        "
+    `);
+  });
+
+  it('should tokenize multiple variables per line', () => {
+    render(syntaxHighlighter('{user.apiKey} {user.name}', 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('APIKEY NAME');
+  });
+
+  it('should not tokenize bracket style', () => {
+    render(syntaxHighlighter('<<wat>>', 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('<<wat>>');
+  });
+
+  it.each(['\\{user.wat}', '{user.wat\\}', '\\{user.wat\\}'])('should NOT tokenize escaped variables %s', code => {
+    render(syntaxHighlighter(code, 'json', { tokenizeVariables: true }, { mdx: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('{user.wat}');
+  });
+});
+
 describe('Supported languages', () => {
   const languages = fixtures.map(fixture => {
     return [uppercase(path.basename(fixture)), fixture];

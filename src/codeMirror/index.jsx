@@ -1,4 +1,4 @@
-import Variable, { VARIABLE_REGEXP, VariablesContext } from '@readme/variable';
+import Variable, { MDX_VARIABLE_REGEXP, VARIABLE_REGEXP, VariablesContext } from '@readme/variable';
 import CodeMirror from 'codemirror';
 import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/foldgutter';
@@ -170,11 +170,17 @@ const extractVariables = (code, opts) => {
   let offsetDelta = 0;
   const variables = [];
 
-  const extracter = (match, capture, offset) => {
-    const unescaped = match.replace(/^\\<</, '<<').replace(/\\>>$/, '>>');
+  const extracter = (match, ...rest) => {
+    const unescaped = opts.mdx
+      ? match.replace(/^\\{/, '{').replace(/\\}$/, '}')
+      : match.replace(/^\\<</, '<<').replace(/\\>>$/, '>>');
+
     if (unescaped !== match) {
       return unescaped;
     }
+
+    const capture = rest[opts.mdx ? 1 : 0];
+    const offset = rest[opts.mdx ? 3 : 1];
 
     variables.push({ text: capture, offset: offset - offsetDelta });
     offsetDelta += match.length;
@@ -182,7 +188,8 @@ const extractVariables = (code, opts) => {
     return '';
   };
 
-  const codeWithoutVars = code.replace(new RegExp(VARIABLE_REGEXP, 'g'), extracter);
+  const regexp = opts.mdx ? MDX_VARIABLE_REGEXP : VARIABLE_REGEXP;
+  const codeWithoutVars = code.replace(new RegExp(regexp, 'g'), extracter);
 
   return [codeWithoutVars, makeReinserter(variables)];
 };
@@ -199,11 +206,16 @@ StyledSyntaxHighlighter.propTypes = {
  * @arg {{}} opts
  * @return {[Element]} Array of DOM Elements
  */
-const ReadmeCodeMirror = (code, lang, opts = { tokenizeVariables: false, highlightMode: false, ranges: [] }) => {
+const ReadmeCodeMirror = (
+  code,
+  lang,
+  opts = { tokenizeVariables: false, highlightMode: false, ranges: [] },
+  { mdx = false } = {},
+) => {
   const mode = getMode(lang);
   const output = [];
 
-  const [codeWithoutVars, reinsertVariables] = extractVariables(code, { scrollbarStyle: 'overlay', ...opts });
+  const [codeWithoutVars, reinsertVariables] = extractVariables(code, { scrollbarStyle: 'overlay', mdx, ...opts });
 
   let curStyle = null;
   let accum = '';
