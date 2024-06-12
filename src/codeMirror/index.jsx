@@ -49,6 +49,12 @@ StructuredOutput.propTypes = {
   highlights: PropTypes.arrayOf(PropTypes.string),
 };
 
+/**
+ * Generate an array of classNames
+ *
+ * @arg {[][]{line: Int}} ranges
+ * @return {[String]} Consumable classNames
+ */
 const highlightedLines = (ranges, totalLength) => {
   const highlights = [];
 
@@ -193,6 +199,13 @@ StyledSyntaxHighlighter.propTypes = {
   ranges: PropTypes.arrayOf(PropTypes.any),
 };
 
+/**
+ * Core Syntax Highlighter
+ * @arg {String} code
+ * @arg {String} lang
+ * @arg {{}} opts
+ * @return {[Element]} Array of DOM Elements
+ */
 const ReadmeCodeMirror = (
   code,
   lang,
@@ -245,16 +258,3 @@ const ReadmeCodeMirror = (
 
 export default ReadmeCodeMirror;
 export { VariablesContext };
-/**
- * Generate an array of classNames
- *
- * @arg {[][]{line: Int}} ranges
- * @return {[String]} Consumable classNames
- */
-/**
- * Core Syntax Highlighter
- * @arg {String} code
- * @arg {String} lang
- * @arg {{}} opts
- * @return {[Element]} Array of DOM Elements
- */
