@@ -52,6 +52,7 @@ const codeTypes = {
   macruby: 'MacRuby',
   markdown: 'Markdown',
   md: 'Markdown',
+  mermaid: 'Mermaid',
   ml: 'OCaml',
   mssql: 'SQL Server',
   mysql: 'MySQL',
