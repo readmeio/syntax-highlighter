@@ -52,7 +52,7 @@ const codeTypes = {
   macruby: 'MacRuby',
   markdown: 'Markdown',
   md: 'Markdown',
-  mermaid: 'Mermaid',
+  mermaid: 'Mermaid', // syntax highlighting not supported yet
   ml: 'OCaml',
   mssql: 'SQL Server',
   mysql: 'MySQL',
