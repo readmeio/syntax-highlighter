@@ -9,9 +9,10 @@ jobs:
     strategy:
       matrix:
         node:
-          - 18
-          - 20
-        react: [16, 17, 18]
+          - lts/-1
+          - lts/*
+          - latest
+        react: [18, 19]
 
     name: build (${{ matrix.node }} w/ React ${{ matrix.react }}
 
@@ -25,11 +26,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Install Compatible @testing-library/react
-        if: matrix.react == '16' || matrix.react == '17'
-        run: |
-          npm install @testing-library/react@12
 
       - name: Install React v${{ matrix.react }}
         run: npm i react@${{ matrix.react }} react-dom@${{ matrix.react }}
