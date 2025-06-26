@@ -11,7 +11,7 @@ jobs:
         node:
           - lts/-1
           - lts/*
-          #- latest
+          - latest
         react: [18]
 
     name: build (${{ matrix.node }} w/ React ${{ matrix.react }}
