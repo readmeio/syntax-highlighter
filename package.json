@@ -30,7 +30,7 @@
     "react-codemirror2": "^8.0.0"
   },
   "peerDependencies": {
-    "@readme/variable": "^17.0.0",
+    "@readme/variable": "^18.0.0",
     "react": "18.x",
     "react-dom": "18.x"
   },
