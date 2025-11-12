@@ -31,7 +31,7 @@
     "pretest": "npm run lint && npm run prettier",
     "prettier": "prettier --list-different --write .",
     "start": "webpack serve --open --config ./webpack.config.dev.js",
-    "test": "vitest --coverage",
+    "test": "vitest run --coverage",
     "watch": "webpack -w --progress"
   },
   "dependencies": {
