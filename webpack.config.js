@@ -1,7 +1,5 @@
 const path = require('path');
 
-const TerserPlugin = require('terser-webpack-plugin');
-
 const base = {
   mode: 'production',
   module: {
@@ -17,7 +15,12 @@ const base = {
       },
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        },
         exclude: /node_modules/,
       },
       {
@@ -43,6 +46,9 @@ const base = {
     },
     '@readme/variable': '@readme/variable',
   },
+  optimization: {
+    minimize: false,
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
@@ -51,7 +57,7 @@ const base = {
 const serverConfig = {
   ...base,
   target: 'node',
-  entry: ['./src/index.node.ts'],
+  entry: ['./src/index.node.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.node.js',
@@ -63,10 +69,6 @@ const clientConfig = {
   ...base,
   target: 'web',
   entry: ['./src/index.js'],
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
-  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
