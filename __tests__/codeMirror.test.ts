@@ -4,19 +4,15 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 // eslint-disable-next-line testing-library/no-manual-cleanup
-import { render, screen, cleanup } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { globSync } from 'glob';
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import syntaxHighlighter, { uppercase, canonical } from '../src';
 
 const fixtures = globSync(path.join(__dirname, '/__fixtures__/*'));
 
 describe('codemirror', () => {
-  afterEach(() => {
-    cleanup();
-  });
-
   it('should highlight a block of code', () => {
     render(syntaxHighlighter('var a = 1;', 'javascript'));
 
@@ -54,7 +50,6 @@ describe('codemirror', () => {
     expect(screen.getByTestId('SyntaxHighlighter').outerHTML).toBe(
       '<div class="cm-s-neo" data-testid="SyntaxHighlighter">{ <span class="cm-property">"a"</span>: <span class="cm-number">1</span> }</div>',
     );
-    cleanup();
   });
 
   it('should keep trailing json bracket if highlightMode is enabled', () => {
@@ -70,7 +65,6 @@ describe('codemirror', () => {
     // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter('{ "a": 1 }', 'json', { dark: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveClass('cm-s-material-palenight');
-    cleanup();
   });
 
   describe('variable substitution', () => {

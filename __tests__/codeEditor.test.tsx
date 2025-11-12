@@ -1,6 +1,4 @@
-// https://testing-library.com/docs/react-testing-library/setup#auto-cleanup-in-vitest
-// eslint-disable-next-line testing-library/no-manual-cleanup
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, vi, it } from 'vitest';
 
@@ -26,7 +24,6 @@ describe('<CodeEditor/>', () => {
     Range.prototype.getBoundingClientRect = originalGetBoundingClientRect;
     Range.prototype.getClientRects = originalGetClientRects;
     getClientRectSpy.mockRestore();
-    cleanup();
   });
 
   it('should display a <CodeEditor> element', () => {
