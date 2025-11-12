@@ -30,7 +30,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "webpack --progress && rm -rf dist-utils && tsc",
+    "build": "webpack --progress && tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx && tsc --noEmit",
     "prebuild": "rm -rf dist && rm -rf dist-utils",
     "prepack": "npm run build",
