@@ -1,11 +1,10 @@
 /* eslint-disable testing-library/no-node-access */
 /* eslint-disable testing-library/no-container */
-import { promises as fs } from 'fs';
+import { promises as fs, globSync } from 'fs';
 import path from 'path';
 
 // eslint-disable-next-line testing-library/no-manual-cleanup
 import { cleanup, render, screen } from '@testing-library/react';
-import { globSync } from 'glob';
 import { beforeAll, beforeEach, describe, expect, it, vi, test } from 'vitest';
 
 import syntaxHighlighter, { uppercase, canonical } from '../src';
