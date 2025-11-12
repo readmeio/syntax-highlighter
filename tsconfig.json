@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "module": "node20",
+    "outDir": "dist-utils",
+    "strict": true,
+    "target": "es2020"
+  },
+  "include": ["src/utils/*.ts"]
+}

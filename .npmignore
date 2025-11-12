@@ -3,4 +3,4 @@ __tests__/
 coverage/
 .eslint*
 .prettier*
-jest.config.js
+vitest*

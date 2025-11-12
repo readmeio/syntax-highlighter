@@ -55,9 +55,11 @@ const modeAliases = {
   xhtml: 'html',
   yml: 'yaml',
   zsh: 'shell',
-};
+} as const;
 
-module.exports = language => {
+const canonical = (language: keyof typeof modeAliases) => {
   if (language in modeAliases) return modeAliases[language];
   return language;
 };
+
+export default canonical;

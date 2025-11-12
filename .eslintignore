@@ -1,5 +1,6 @@
 node_modules/
 coverage/
 dist/
+dist-utils/
 public/index*
 __tests__/__fixtures__/**/sample.*

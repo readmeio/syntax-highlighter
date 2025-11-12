@@ -1,11 +1,11 @@
 /* eslint-disable testing-library/no-node-access */
 /* eslint-disable testing-library/no-container */
-import { promises as fs } from 'fs';
+import { promises as fs, globSync } from 'fs';
 import path from 'path';
 
 // eslint-disable-next-line testing-library/no-manual-cleanup
-import { render, screen, cleanup } from '@testing-library/react';
-import { globSync } from 'glob';
+import { cleanup, render, screen } from '@testing-library/react';
+import { beforeAll, beforeEach, describe, expect, it, vi, test } from 'vitest';
 
 import syntaxHighlighter, { uppercase, canonical } from '../src';
 
@@ -51,6 +51,7 @@ test('should work with modes', () => {
 });
 
 test('should keep trailing json bracket if highlightMode is enabled', () => {
+  // @ts-expect-error this component's types are currently ill-defined
   render(syntaxHighlighter('{ "a": 1 }', 'json', { highlightMode: true }));
 
   expect(screen.getByTestId('CodeMirror').outerHTML).toBe(
@@ -59,27 +60,32 @@ test('should keep trailing json bracket if highlightMode is enabled', () => {
 });
 
 test('should have a dark theme', () => {
+  // @ts-expect-error this component's types are currently ill-defined
   render(syntaxHighlighter('{ "a": 1 }', 'json', { dark: true }));
   expect(screen.getByTestId('SyntaxHighlighter')).toHaveClass('cm-s-material-palenight');
 });
 
 describe('variable substitution', () => {
   it('should tokenize variables (double quotes)', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true }));
     expect(screen.getByText('APIKEY')).toBeVisible();
   });
 
   it('should tokenize variables (single quotes)', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true }));
     expect(screen.getByText('APIKEY')).toBeVisible();
   });
 
   it('should keep enclosing characters around the variable', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter("'<<apiKey>>'", 'json', { tokenizeVariables: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent("'APIKEY'");
   });
 
   it('should tokenize variables outside of quotes', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter('<<apiKey>>', 'json', { tokenizeVariables: true }));
     expect(screen.getByText('APIKEY')).toBeVisible();
   });
@@ -92,16 +98,19 @@ describe('variable substitution', () => {
     fetch({ foo, bar, baz: <<token>> });
   `;
 
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true }));
     expect(screen.getByTestId('SyntaxHighlighter').textContent).toMatchSnapshot();
   });
 
   it('should tokenize multiple variables per line', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter('<<apiKey>> <<name>>', 'json', { tokenizeVariables: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('APIKEY NAME');
   });
 
   it.each(['\\<<wat>>', '<<wat\\>>', '\\<<wat\\>>'])('should NOT tokenize escaped variables %s', code => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter(code, 'json', { tokenizeVariables: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('<<wat>>');
   });
@@ -109,21 +118,25 @@ describe('variable substitution', () => {
 
 describe('variable substitution { mdx: true }', () => {
   it('should tokenize variables (double quotes)', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter('"{user.apiKey}"', 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByText('APIKEY')).toBeVisible();
   });
 
   it('should tokenize variables (single quotes)', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter("'{user.apiKey}'", 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByText('APIKEY')).toBeVisible();
   });
 
   it('should keep enclosing characters around the variable', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter("'{user.apiKey}'", 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent("'APIKEY'");
   });
 
   it('should tokenize variables outside of quotes', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter('{user.apiKey}', 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByText('APIKEY')).toBeVisible();
   });
@@ -136,6 +149,7 @@ describe('variable substitution { mdx: true }', () => {
     fetch({ foo, bar, baz: {user.token} });
   `;
 
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByTestId('SyntaxHighlighter').textContent).toMatchInlineSnapshot(`
       "
@@ -148,16 +162,19 @@ describe('variable substitution { mdx: true }', () => {
   });
 
   it('should tokenize multiple variables per line', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter('{user.apiKey} {user.name}', 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('APIKEY NAME');
   });
 
   it('should not tokenize bracket style', () => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter('<<wat>>', 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('<<wat>>');
   });
 
   it.each(['\\{user.wat}', '{user.wat\\}', '\\{user.wat\\}'])('should NOT tokenize escaped variables %s', code => {
+    // @ts-expect-error this component's types are currently ill-defined
     render(syntaxHighlighter(code, 'json', { tokenizeVariables: true }, { mdx: true }));
     expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('{user.wat}');
   });
@@ -169,9 +186,9 @@ describe('Supported languages', () => {
   });
 
   describe.each(languages)('%s', (language, fixtureDir) => {
-    let testCase;
+    let testCase: string;
 
-    // eslint-disable-next-line global-require, import/no-dynamic-require
+    // eslint-disable-next-line global-require, import/no-dynamic-require, @typescript-eslint/no-require-imports
     const instructions = require(path.join(fixtureDir, 'index.js'));
 
     beforeEach(async () => {
@@ -253,6 +270,7 @@ describe('highlight mode', () => {
     render(
       syntaxHighlighter(code, 'curl', {
         dark: true,
+        // @ts-expect-error this component's types are currently ill-defined
         highlightMode: true,
         tokenizeVariables: true,
         ranges: [
@@ -293,6 +311,7 @@ describe('runmode', () => {
     render(
       syntaxHighlighter(code, 'c', {
         dark: true,
+        // @ts-expect-error this component's types are currently ill-defined
         highlightMode: true,
         tokenizeVariables: true,
         ranges: [
@@ -315,9 +334,12 @@ describe('code folding', () => {
     document.createRange = () => {
       const range = new Range();
 
-      range.getBoundingClientRect = jest.fn();
+      // eslint-disable-next-line @vitest/require-mock-type-parameters
+      range.getBoundingClientRect = vi.fn();
 
-      range.getClientRects = jest.fn(() => ({
+      // @ts-expect-error this component's types are currently ill-defined
+      // eslint-disable-next-line @vitest/require-mock-type-parameters
+      range.getClientRects = vi.fn(() => ({
         item: () => null,
         length: 0,
       }));
@@ -328,6 +350,7 @@ describe('code folding', () => {
 
   it('renders folders in the gutter', () => {
     const { container } = render(
+      // @ts-expect-error this component's types are currently ill-defined
       syntaxHighlighter('{ "a": { "b": { "c": 1 } }', 'json', { foldGutter: true, readOnly: true }),
     );
 

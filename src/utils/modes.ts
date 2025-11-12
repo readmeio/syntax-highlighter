@@ -8,7 +8,7 @@
 // There are 2 types of lookup, single and array. e.g. `html` needs to be rendered using
 // `htmlmixed`, but `java`, needs to be rendered using the `clike` mode.
 //
-const modes = {
+export const modes = {
   asp: 'clike',
   aspx: 'clike',
   bash: 'shell',
@@ -88,18 +88,16 @@ const modes = {
   xhtml: 'htmlmixed',
   yml: 'yaml',
   zsh: 'shell',
-};
+} as const;
 
-function getMode(lang) {
-  let mode = lang;
+export function getMode(lang: string): string {
+  let mode: string | readonly [string, string] = lang;
   if (mode in modes) {
-    mode = modes[mode];
+    mode = modes[mode as keyof typeof modes];
     if (Array.isArray(mode)) {
       [, mode] = mode;
     }
   }
 
-  return mode;
+  return mode as string;
 }
-
-module.exports = { modes, getMode };

@@ -1,13 +1,11 @@
 const path = require('path');
 
-const TerserPlugin = require('terser-webpack-plugin');
-
 const base = {
   mode: 'production',
   module: {
     rules: [
       {
-        test: /\.js(x?)$/,
+        test: /\.(j|t)s(x?)$/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -16,14 +14,23 @@ const base = {
         },
       },
       {
+        test: /\.tsx?$/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        },
+        exclude: /node_modules/,
+      },
+      {
         test: /\.s?css$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
   optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimize: false,
   },
   externals: {
     react: {
@@ -43,14 +50,14 @@ const base = {
     '@readme/variable': '@readme/variable',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };
 
 const serverConfig = {
   ...base,
   target: 'node',
-  entry: ['./src/index.node.js'],
+  entry: ['./src/index.node.ts'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.node.js',
