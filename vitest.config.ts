@@ -3,9 +3,6 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    alias: {
-      '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
-    },
     coverage: {
       exclude: ['__tests__/__fixtures__/**'],
     },
