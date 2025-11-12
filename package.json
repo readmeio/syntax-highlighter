@@ -35,7 +35,7 @@
     "prebuild": "rm -rf dist && rm -rf dist-utils",
     "prepack": "npm run build",
     "pretest": "npm run lint && npm run prettier",
-    "prettier": "prettier --list-different --write .",
+    "prettier": "prettier --check .",
     "start": "webpack serve --open --config ./webpack.config.dev.js",
     "test": "vitest run --coverage",
     "watch": "webpack -w --progress"
