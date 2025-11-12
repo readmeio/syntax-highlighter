@@ -16,7 +16,16 @@ const CodeEditor: React.FC<{
   lang?: string;
   options?: ICodeMirror['options'];
   theme?: 'material-palenight' | 'neo' | 'tomorrow-night';
-}> = ({ code, lang, options, children, theme, ...attr }) => {
+}> = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  className = '', // unused, I think on purpose? but not sure
+  code = '',
+  lang,
+  options = {},
+  children,
+  theme = 'material-palenight',
+  ...attr
+}) => {
   const [value, setValue] = useState(children && typeof children === 'string' ? children : code);
   const [mode, setMode] = useState(getMode(lang as string));
 
@@ -42,13 +51,6 @@ const CodeEditor: React.FC<{
       value={value as string}
     />
   );
-};
-
-CodeEditor.defaultProps = {
-  className: '',
-  code: '',
-  options: {},
-  theme: 'material-palenight',
 };
 
 export default CodeEditor;
