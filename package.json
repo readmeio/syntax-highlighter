@@ -16,10 +16,16 @@
   "exports": {
     ".": {
       "browser": "./dist/index.js",
-      "require": "./dist/index.node.js"
+      "require": "./dist/index.node.js",
+      "node": "./dist/index.node.js"
+    },
+    "./browser": {
+      "browser": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./utils": {
-      "require": "./dist/utils/index.js"
+      "require": "./dist-utils/index.js",
+      "default": "./dist-utils/index.js"
     },
     "./package.json": "./package.json"
   },
