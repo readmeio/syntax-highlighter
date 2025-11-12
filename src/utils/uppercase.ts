@@ -103,9 +103,9 @@ const codeTypes = {
   yaml: 'YAML',
   yml: 'YAML',
   zsh: 'Zsh',
-};
+} as const;
 
-module.exports = function uppercase(language) {
-  if (language in codeTypes) return codeTypes[language];
+export default function uppercase(language: string) {
+  if (language in codeTypes) return codeTypes[language as keyof typeof codeTypes];
   return language;
-};
+}

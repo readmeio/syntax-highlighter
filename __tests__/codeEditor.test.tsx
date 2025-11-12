@@ -1,12 +1,33 @@
-import { render, screen, waitFor } from '@testing-library/react';
+// https://testing-library.com/docs/react-testing-library/setup#auto-cleanup-in-vitest
+// eslint-disable-next-line testing-library/no-manual-cleanup
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
+import { afterEach, beforeEach, describe, expect, vi, it } from 'vitest';
 
 import CodeEditor from '../src/codeEditor';
 
 describe('<CodeEditor/>', () => {
-  const getClientRectSpy = jest.fn(() => ({ width: 100 }));
-  Range.prototype.getBoundingClientRect = getClientRectSpy;
-  Range.prototype.getClientRects = getClientRectSpy;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let originalGetBoundingClientRect: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let originalGetClientRects: any;
+  const getClientRectSpy = vi.fn(() => ({ width: 100 }));
+
+  beforeEach(() => {
+    originalGetBoundingClientRect = Range.prototype.getBoundingClientRect;
+    originalGetClientRects = Range.prototype.getClientRects;
+    // @ts-expect-error mock types
+    Range.prototype.getBoundingClientRect = getClientRectSpy;
+    // @ts-expect-error mock types
+    Range.prototype.getClientRects = getClientRectSpy;
+  });
+
+  afterEach(() => {
+    Range.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+    Range.prototype.getClientRects = originalGetClientRects;
+    getClientRectSpy.mockRestore();
+    cleanup();
+  });
 
   it('should display a <CodeEditor> element', () => {
     render(<CodeEditor code="console.log('Hello, world.');" lang="javascript" />);

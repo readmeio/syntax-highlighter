@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import '../utils/cm-mode-imports';
-import { getMode } from '../utils/modes';
+import { getMode } from '../utils/modes.ts';
 
 import './style.scss';
 
