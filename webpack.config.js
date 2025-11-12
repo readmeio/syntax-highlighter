@@ -29,6 +29,9 @@ const base = {
       },
     ],
   },
+  optimization: {
+    minimize: false,
+  },
   externals: {
     react: {
       root: 'React',
@@ -45,9 +48,6 @@ const base = {
       umd: 'react-dom',
     },
     '@readme/variable': '@readme/variable',
-  },
-  optimization: {
-    minimize: false,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
