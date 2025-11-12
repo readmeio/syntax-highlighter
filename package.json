@@ -19,8 +19,7 @@
       "require": "./dist/index.node.js"
     },
     "./utils": {
-      "types": "./src/utils/index.d.ts",
-      "require": "./src/utils/index.js"
+      "require": "./dist/utils/index.js"
     },
     "./package.json": "./package.json"
   },
