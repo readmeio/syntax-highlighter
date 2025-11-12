@@ -334,9 +334,11 @@ describe('code folding', () => {
     document.createRange = () => {
       const range = new Range();
 
+      // eslint-disable-next-line @vitest/require-mock-type-parameters
       range.getBoundingClientRect = vi.fn();
 
       // @ts-expect-error this component's types are currently ill-defined
+      // eslint-disable-next-line @vitest/require-mock-type-parameters
       range.getClientRects = vi.fn(() => ({
         item: () => null,
         length: 0,

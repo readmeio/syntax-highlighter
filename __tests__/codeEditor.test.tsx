@@ -9,6 +9,7 @@ describe('<CodeEditor/>', () => {
   let originalGetBoundingClientRect: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let originalGetClientRects: any;
+  // eslint-disable-next-line @vitest/require-mock-type-parameters
   const getClientRectSpy = vi.fn(() => ({ width: 100 }));
 
   beforeEach(() => {
@@ -53,7 +54,7 @@ describe('<CodeEditor/>', () => {
     expect(screen.getByText('console')).toHaveClass('cm-variable');
   });
 
-  it.skip('should set new language via props', () => {
+  it.todo('should set new language via props', () => {
     const { rerender } = render(<CodeEditor code="console.log('Hello, world.');" />);
     expect(screen.getByText("console.log('Hello, world.');")).toBeVisible();
 
