@@ -57,7 +57,7 @@ const base = {
 const serverConfig = {
   ...base,
   target: 'node',
-  entry: ['./src/index.node.js'],
+  entry: ['./src/index.node.ts'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.node.js',

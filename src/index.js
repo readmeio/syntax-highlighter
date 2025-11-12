@@ -1,6 +1,6 @@
 import React from 'react';
 
-import codeEditor from './codeEditor';
+import codeEditor from './codeEditor/index.tsx';
 import codemirror, { VariablesContext as cmVariableContext } from './codeMirror';
 import canonical from './utils/canonical.ts';
 import { modes } from './utils/modes.ts';
