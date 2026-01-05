@@ -31,10 +31,12 @@ const CodeEditor: React.FC<{
 
   useEffect(() => {
     const incValue = children && typeof children === 'string' ? children : code;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- @fixme
     setValue(incValue);
   }, [code, children]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- @fixme
     setMode(prevMode => {
       const newMode = getMode(lang as string);
       if (newMode !== prevMode) return newMode;
