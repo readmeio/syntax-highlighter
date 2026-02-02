@@ -5,7 +5,6 @@ const config: KnipConfig = {
   ignore: ['__tests__/__fixtures__/**'],
   ignoreDependencies: [
     '@csstools/css-parser-algorithms', // required in order to get vitest/jsdom running in CI
-    'jsdom', // this is installed via vitest
   ],
 };
 
