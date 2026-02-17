@@ -170,17 +170,36 @@ const extractVariables = (code, opts) => {
   let offsetDelta = 0;
   const variables = [];
 
+  const extractOffset = rest => {
+    if (typeof rest[rest.length - 2] === 'number') return rest[rest.length - 2];
+    return rest[rest.length - 3];
+  };
+
+  const getCapture = (match, variableSyntax) => {
+    const parsed = new RegExp(variableSyntax === 'mdx' ? MDX_VARIABLE_REGEXP : VARIABLE_REGEXP).exec(match);
+
+    if (!parsed) return '';
+    return variableSyntax === 'mdx' ? parsed[2] : parsed[1];
+  };
+
+  const syntax = match => {
+    if (match.startsWith('{') || match.startsWith('\\{')) return 'mdx';
+    return 'default';
+  };
+
   const extracter = (match, ...rest) => {
-    const unescaped = opts.mdx
-      ? match.replace(/^\\{/, '{').replace(/\\}$/, '}')
-      : match.replace(/^\\<</, '<<').replace(/\\>>$/, '>>');
+    const variableSyntax = opts.mdxish ? syntax(match) : opts.mdx ? 'mdx' : 'default';
+    const unescaped =
+      variableSyntax === 'mdx'
+        ? match.replace(/^\\{/, '{').replace(/\\}$/, '}')
+        : match.replace(/^\\<</, '<<').replace(/\\>>$/, '>>');
 
     if (unescaped !== match) {
       return unescaped;
     }
 
-    const capture = rest[opts.mdx ? 1 : 0];
-    const offset = rest[opts.mdx ? 3 : 1];
+    const capture = getCapture(match, variableSyntax);
+    const offset = extractOffset(rest);
 
     variables.push({ text: capture, offset: offset - offsetDelta });
     offsetDelta += match.length;
@@ -188,7 +207,11 @@ const extractVariables = (code, opts) => {
     return '';
   };
 
-  const regexp = opts.mdx ? MDX_VARIABLE_REGEXP : VARIABLE_REGEXP;
+  const regexp = opts.mdxish
+    ? `(?:${MDX_VARIABLE_REGEXP})|(?:${VARIABLE_REGEXP})`
+    : opts.mdx
+      ? MDX_VARIABLE_REGEXP
+      : VARIABLE_REGEXP;
   const codeWithoutVars = code.replace(new RegExp(regexp, 'g'), extracter);
 
   return [codeWithoutVars, makeReinserter(variables)];
@@ -210,12 +233,17 @@ const ReadmeCodeMirror = (
   code,
   lang,
   opts = { tokenizeVariables: false, highlightMode: false, ranges: [] },
-  { mdx = false } = {},
+  { mdx = false, mdxish = false } = {},
 ) => {
   const mode = getMode(lang);
   const output = [];
 
-  const [codeWithoutVars, reinsertVariables] = extractVariables(code, { scrollbarStyle: 'overlay', mdx, ...opts });
+  const [codeWithoutVars, reinsertVariables] = extractVariables(code, {
+    scrollbarStyle: 'overlay',
+    mdx,
+    mdxish,
+    ...opts,
+  });
 
   let curStyle = null;
   let accum = '';

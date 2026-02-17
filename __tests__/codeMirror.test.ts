@@ -180,6 +180,59 @@ describe('variable substitution { mdx: true }', () => {
   });
 });
 
+describe('variable substitution { mdxish: true }', () => {
+  it('should tokenize bracket style variables', () => {
+    // @ts-expect-error this component's types are currently ill-defined
+    render(syntaxHighlighter('"<<apiKey>>"', 'json', { tokenizeVariables: true }, { mdxish: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
+  });
+
+  it('should tokenize mdx style variables', () => {
+    // @ts-expect-error this component's types are currently ill-defined
+    render(syntaxHighlighter('"{user.apiKey}"', 'json', { tokenizeVariables: true }, { mdxish: true }));
+    expect(screen.getByText('APIKEY')).toBeVisible();
+  });
+
+  it('should tokenize mixed styles on the same line', () => {
+    // @ts-expect-error this component's types are currently ill-defined
+    render(syntaxHighlighter('<<apiKey>> {user.name}', 'json', { tokenizeVariables: true }, { mdxish: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent('APIKEY NAME');
+  });
+
+  it('should tokenize mixed styles over multiple lines', () => {
+    const codeBlock = `
+    const foo = <<apiKey>>;
+    const bar = {user.name};
+
+    fetch({ foo, bar, baz: <<token>>, qux: {user.region} });
+  `;
+
+    // @ts-expect-error this component's types are currently ill-defined
+    render(syntaxHighlighter(codeBlock, 'json', { tokenizeVariables: true }, { mdxish: true }));
+    expect(screen.getByTestId('SyntaxHighlighter').textContent).toMatchInlineSnapshot(`
+      "
+          const foo = APIKEY;
+          const bar = NAME;
+
+          fetch({ foo, bar, baz: TOKEN, qux: REGION });
+        "
+    `);
+  });
+
+  it.each([
+    ['\\<<wat>>', '<<wat>>'],
+    ['<<wat\\>>', '<<wat>>'],
+    ['\\<<wat\\>>', '<<wat>>'],
+    ['\\{user.wat}', '{user.wat}'],
+    ['{user.wat\\}', '{user.wat}'],
+    ['\\{user.wat\\}', '{user.wat}'],
+  ])('should NOT tokenize escaped variables %s', (code, expected) => {
+    // @ts-expect-error this component's types are currently ill-defined
+    render(syntaxHighlighter(code, 'json', { tokenizeVariables: true }, { mdxish: true }));
+    expect(screen.getByTestId('SyntaxHighlighter')).toHaveTextContent(expected);
+  });
+});
+
 describe('Supported languages', () => {
   const languages = fixtures.map(fixture => {
     return [uppercase(path.basename(fixture)), fixture];
