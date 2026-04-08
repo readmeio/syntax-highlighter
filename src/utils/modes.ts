@@ -49,6 +49,7 @@ export const modes = {
   node: 'javascript',
   macruby: 'ruby',
   markdown: 'gfm',
+  md: 'gfm',
   ml: ['mllike', 'text/x-ocaml'],
   mssql: ['sql', 'text/x-mssql'],
   mysql: ['sql', 'text/x-mysql'],

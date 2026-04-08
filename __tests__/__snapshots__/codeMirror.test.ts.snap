@@ -239,7 +239,7 @@ exports[`Supported languages > Lua > should syntax highlight an example 1`] = `
 `;
 
 exports[`Supported languages > Markdown > should syntax highlight an example 1`] = `
-"<div class="cm-s-neo" data-testid="SyntaxHighlighter"># Hello World
+"<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-header cm-header-1"># Hello World</span>
 </div>"
 `;
 
