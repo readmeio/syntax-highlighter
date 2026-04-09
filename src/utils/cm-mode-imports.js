@@ -7,6 +7,7 @@ require('codemirror/mode/diff/diff');
 require('codemirror/mode/dockerfile/dockerfile');
 require('codemirror/mode/erlang/erlang');
 require('codemirror/mode/go/go');
+require('codemirror/mode/gfm/gfm');
 require('codemirror/mode/groovy/groovy');
 require('codemirror/mode/htmlmixed/htmlmixed');
 require('codemirror/mode/http/http');
