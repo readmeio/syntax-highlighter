@@ -5,6 +5,7 @@
     "jsx": "react-jsx",
     "module": "node20",
     "outDir": "dist-utils",
+    "rootDir": "src/",
     "strict": true,
     "target": "es2020"
   },
