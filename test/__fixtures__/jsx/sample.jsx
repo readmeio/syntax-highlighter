@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HelloWorld = function() {
+const HelloWorld = function HelloWorld() {
   return <span>Hello World</span>;
 };
 
