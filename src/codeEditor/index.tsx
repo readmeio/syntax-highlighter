@@ -17,7 +17,6 @@ const CodeEditor: React.FC<{
   options?: ICodeMirror['options'];
   theme?: 'material-palenight' | 'neo' | 'tomorrow-night';
 }> = ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   className = '', // unused, I think on purpose? but not sure
   code = '',
   lang,
@@ -31,12 +30,10 @@ const CodeEditor: React.FC<{
 
   useEffect(() => {
     const incValue = children && typeof children === 'string' ? children : code;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- @fixme
     setValue(incValue);
   }, [code, children]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- @fixme
     setMode(prevMode => {
       const newMode = getMode(lang as string);
       if (newMode !== prevMode) return newMode;

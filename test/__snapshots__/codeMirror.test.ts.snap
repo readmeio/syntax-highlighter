@@ -177,7 +177,7 @@ exports[`Supported languages > JSON > should syntax highlight an example 1`] = `
 exports[`Supported languages > JSX > should syntax highlight an example 1`] = `
 "<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-keyword">import</span> <span class="cm-def">React</span> <span class="cm-keyword">from</span> <span class="cm-string">'react'</span>;
 
-<span class="cm-keyword">const</span> <span class="cm-def">HelloWorld</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>() {
+<span class="cm-keyword">const</span> <span class="cm-def">HelloWorld</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">HelloWorld</span>() {
   <span class="cm-keyword">return</span> <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">span</span><span class="cm-tag cm-bracket">&gt;</span>Hello World<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">span</span><span class="cm-tag cm-bracket">&gt;</span>;
 };
 
@@ -547,7 +547,7 @@ exports[`Supported languages > TOML > should syntax highlight an example 1`] = `
 `;
 
 exports[`Supported languages > TypeScript > should syntax highlight an example 1`] = `
-"<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-keyword">let</span> { <span class="cm-def">a</span>, <span class="cm-def">b</span> }: { <span class="cm-property">a</span>: <span class="cm-type">string</span>, <span class="cm-property">b</span>: <span class="cm-type">number</span> } <span class="cm-operator">=</span> <span class="cm-variable">o</span>;
+"<div class="cm-s-neo" data-testid="SyntaxHighlighter"><span class="cm-keyword">const</span> { <span class="cm-def">a</span>, <span class="cm-def">b</span> }: { <span class="cm-property">a</span>: <span class="cm-type">string</span>, <span class="cm-property">b</span>: <span class="cm-type">number</span> } <span class="cm-operator">=</span> <span class="cm-variable">o</span>;
 </div>"
 `;
 

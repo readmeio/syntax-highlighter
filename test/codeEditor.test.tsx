@@ -5,11 +5,8 @@ import { afterEach, beforeEach, describe, expect, vi, it } from 'vitest';
 import CodeEditor from '../src/codeEditor';
 
 describe('<CodeEditor/>', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let originalGetBoundingClientRect: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let originalGetClientRects: any;
-  // eslint-disable-next-line @vitest/require-mock-type-parameters
   const getClientRectSpy = vi.fn(() => ({ width: 100 }));
 
   beforeEach(() => {
@@ -41,10 +38,8 @@ describe('<CodeEditor/>', () => {
 
   it('should set CodeMirror options', () => {
     render(<CodeEditor code="console.log('Hello, world.');" lang="javascript" theme="neo" />);
-    // eslint-disable-next-line testing-library/no-node-access
     const [editor] = document.getElementsByClassName('CodeEditor');
 
-    // eslint-disable-next-line testing-library/no-node-access
     expect(editor.children[0]).toHaveClass('cm-s-neo');
   });
 

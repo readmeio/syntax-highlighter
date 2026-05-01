@@ -1,8 +1,0 @@
-{
-  "extends": [
-    "@readme/eslint-config/testing/vitest",
-    "@readme/eslint-config/testing/jest-dom",
-    "@readme/eslint-config/testing/react",
-    "@readme/eslint-config/typescript",
-  ],
-}

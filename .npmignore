@@ -1,6 +1,6 @@
-__tests__/
 .github/
 coverage/
-.eslint*
-.prettier*
+test/
+oxfmt.config.ts
+oxlint.config.ts
 vitest*

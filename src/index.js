@@ -20,7 +20,6 @@ const SyntaxHighlighter = (
   },
   props = {},
 ) => {
-  // eslint-disable-next-line react/prop-types
   const { mdx, ...editorProps } = props;
   let theme = opts.dark ? 'material-palenight' : 'neo';
   if (opts.customTheme) {
@@ -30,8 +29,10 @@ const SyntaxHighlighter = (
   if (opts.foldGutter) {
     // `foldGutter` does not work with runmode and has to be done with the codeEditor component
     // NOTE: To disable editing, to still allow folding, `readOnly` must be `true`.
+    // oxlint-disable-next-line no-param-reassign
     opts.editable = true;
     // Default CSS classes
+    // oxlint-disable-next-line no-param-reassign
     opts.gutters = ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'];
   }
 

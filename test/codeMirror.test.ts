@@ -1,9 +1,6 @@
-/* eslint-disable testing-library/no-node-access */
-/* eslint-disable testing-library/no-container */
 import { promises as fs, globSync } from 'fs';
 import path from 'path';
 
-// eslint-disable-next-line testing-library/no-manual-cleanup
 import { cleanup, render, screen } from '@testing-library/react';
 import { beforeAll, beforeEach, describe, expect, it, vi, test } from 'vitest';
 
@@ -188,7 +185,7 @@ describe('Supported languages', () => {
   describe.each(languages)('%s', (language, fixtureDir) => {
     let testCase: string;
 
-    // eslint-disable-next-line global-require, import/no-dynamic-require, @typescript-eslint/no-require-imports
+    // oxlint-disable-next-line global-require, import/no-dynamic-require, @typescript-eslint/no-require-imports
     const instructions = require(path.join(fixtureDir, 'index.js'));
 
     beforeEach(async () => {
@@ -334,11 +331,11 @@ describe('code folding', () => {
     document.createRange = () => {
       const range = new Range();
 
-      // eslint-disable-next-line @vitest/require-mock-type-parameters
+      // oxlint-disable-next-line @vitest/require-mock-type-parameters
       range.getBoundingClientRect = vi.fn();
 
       // @ts-expect-error this component's types are currently ill-defined
-      // eslint-disable-next-line @vitest/require-mock-type-parameters
+      // oxlint-disable-next-line @vitest/require-mock-type-parameters
       range.getClientRects = vi.fn(() => ({
         item: () => null,
         length: 0,

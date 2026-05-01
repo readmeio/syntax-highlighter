@@ -1,3 +1,4 @@
+// oxlint-disable typescript/no-require-imports
 // Codemirror-specfic mode-integrations, used for styling syntax
 require('codemirror/mode/clike/clike');
 require('codemirror/mode/clojure/clojure');

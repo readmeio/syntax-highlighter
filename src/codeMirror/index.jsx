@@ -225,7 +225,7 @@ const ReadmeCodeMirror = (
     const token = reinsertVariables(accum);
 
     const styledToken = curStyle ? (
-      // eslint-disable-next-line no-plusplus
+      // oxlint-disable-next-line no-plusplus
       <span key={key++} className={`${curStyle.replace(/(^|\s+)/g, '$1cm-')}`}>
         {token}
       </span>

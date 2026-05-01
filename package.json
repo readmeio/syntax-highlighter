@@ -1,18 +1,15 @@
 {
   "name": "@readme/syntax-highlighter",
-  "description": "ReadMe's React-based syntax highlighter",
   "version": "15.0.0",
-  "main": "dist/index.node.js",
-  "browser": "dist/index.js",
+  "description": "ReadMe's React-based syntax highlighter",
+  "homepage": "https://readmeio.github.io/syntax-highlighter/",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/readmeio/syntax-highlighter.git"
   },
-  "homepage": "https://readmeio.github.io/syntax-highlighter/",
-  "engines": {
-    "node": ">=22"
-  },
+  "main": "dist/index.node.js",
+  "browser": "dist/index.js",
   "exports": {
     ".": {
       "browser": "./dist/index.js",
@@ -31,12 +28,11 @@
   },
   "scripts": {
     "build": "webpack --progress && tsc",
-    "format": "prettier --write . && eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "npx oxlint --fix && npx oxfmt --write",
+    "lint": "knip && npx oxlint && npx oxfmt --check",
     "prebuild": "rm -rf dist && rm -rf dist-utils",
     "prepack": "npm run build",
-    "pretest": "npm run lint && npm run prettier && tsc --noEmit && knip",
-    "prettier": "prettier --check .",
+    "pretest": "npm run lint && tsc --noEmit",
     "start": "webpack serve --open --config ./webpack.config.dev.js",
     "test": "vitest run --coverage",
     "watch": "webpack -w --progress"
@@ -47,27 +43,22 @@
     "prop-types": "^15.7.2",
     "react-codemirror2": "^8.0.0"
   },
-  "peerDependencies": {
-    "@readme/variable": "^18.0.0",
-    "react": "18.x",
-    "react-dom": "18.x"
-  },
   "devDependencies": {
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.24.1",
     "@csstools/css-parser-algorithms": "^4.0.0",
-    "@readme/eslint-config": "^14.8.1",
+    "@readme/oxlint-config": "^1.1.2",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^25.0.3",
     "@vitest/coverage-v8": "^4.1.5",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.1",
-    "eslint": "^8.57.0",
     "html-webpack-plugin": "^5.6.0",
     "jsdom": "^28.0.0",
-    "knip": "^5.69.0",
-    "prettier": "^3.2.5",
+    "knip": "^6.10.0",
+    "oxfmt": "^0.47.0",
+    "oxlint": "^1.62.0",
     "sass": "^1.89.2",
     "sass-loader": "^13.3.2",
     "style-loader": "^4.0.0",
@@ -78,5 +69,12 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.0.4"
   },
-  "prettier": "@readme/eslint-config/prettier"
+  "peerDependencies": {
+    "@readme/variable": "^18.0.0",
+    "react": "18.x",
+    "react-dom": "18.x"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }

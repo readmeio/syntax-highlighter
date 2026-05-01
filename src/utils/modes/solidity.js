@@ -1,14 +1,17 @@
-/* eslint-disable operator-assignment */
-/* eslint-disable prefer-template */
-/* eslint-disable object-shorthand */
-/* eslint-disable no-return-assign */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable consistent-return */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-useless-escape */
-/* eslint-disable eqeqeq */
-/* eslint-disable no-use-before-define */
-/* eslint-disable global-require */
+// oxlint-disable react/no-this-in-sfc
+// oxlint-disable unicorn/consistent-function-scoping
+// oxlint-disable curly
+// oxlint-disable no-param-reassign
+// oxlint-disable typescript/no-require-imports
+// oxlint-disable func-names
+// oxlint-disable operator-assignment
+// oxlint-disable prefer-template
+// oxlint-disable no-return-assign
+// oxlint-disable no-unused-expressions
+// oxlint-disable no-prototype-builtins
+// oxlint-disable no-useless-escape
+// oxlint-disable eqeqeq
+// oxlint-disable global-require
 
 /**
  * This mode has been adapted from the source of `codemirror-solidity` as the way that library is
@@ -23,13 +26,16 @@
   if (typeof exports === 'object' && typeof module === 'object') {
     // CommonJS
     mod(require('codemirror/lib/codemirror'));
-    // eslint-disable-next-line no-undef
+
+    // oxlint-disable-next-line no-undef
   } else if (typeof define === 'function' && define.amd) {
     // AMD
-    define(['codemirror/lib/codemirror'], mod); // eslint-disable-line no-undef
+    // oxlint-disable-next-line no-undef
+    define(['codemirror/lib/codemirror'], mod);
   } else {
     // Plain browser env
-    mod(CodeMirror); // eslint-disable-line no-undef
+    // oxlint-disable-next-line no-undef
+    mod(CodeMirror);
   }
 })(function (CodeMirror) {
   CodeMirror.defineMode('solidity', function (config) {
