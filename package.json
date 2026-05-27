@@ -1,6 +1,6 @@
 {
   "name": "@readme/syntax-highlighter",
-  "version": "15.0.0",
+  "version": "15.0.1",
   "description": "ReadMe's React-based syntax highlighter",
   "homepage": "https://readmeio.github.io/syntax-highlighter/",
   "license": "ISC",
