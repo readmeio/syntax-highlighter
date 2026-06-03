@@ -5,6 +5,7 @@
 // oxlint-disable typescript/no-require-imports
 // oxlint-disable func-names
 // oxlint-disable operator-assignment
+// oxlint-disable prefer-arrow-callback
 // oxlint-disable prefer-template
 // oxlint-disable no-return-assign
 // oxlint-disable no-unused-expressions
@@ -543,7 +544,7 @@
 
     // Interface
     return {
-      startState: function (basecolumn) {
+      startState(basecolumn) {
         return {
           tokenize: null,
           context: new Context((basecolumn || 0) - indentUnit, 0, 'top', false),
@@ -552,7 +553,7 @@
         };
       },
 
-      token: function (stream, state) {
+      token(stream, state) {
         const ctx = state.context;
         if (stream.sol()) {
           if (ctx.align == null) ctx.align = false;
@@ -578,7 +579,7 @@
         return style;
       },
 
-      indent: function (state, textAfter) {
+      indent(state, textAfter) {
         if (state.tokenize != tokenBase && state.tokenize != null) return CodeMirror.Pass;
         const ctx = state.context;
         const firstChar = textAfter && textAfter.charAt(0);
