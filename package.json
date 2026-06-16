@@ -21,8 +21,8 @@
       "default": "./dist/index.js"
     },
     "./utils": {
-      "require": "./dist-utils/index.js",
-      "default": "./dist-utils/index.js"
+      "require": "./dist-utils/utils/index.js",
+      "default": "./dist-utils/utils/index.js"
     },
     "./package.json": "./package.json"
   },
