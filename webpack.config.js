@@ -33,23 +33,40 @@ const base = {
   optimization: {
     minimize: true,
   },
-  externals: {
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react',
-      umd: 'react',
+  externals: [
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react',
+        umd: 'react',
+      },
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom',
+        umd: 'react-dom',
+      },
+      '@readme/variable': '@readme/variable',
+      codemirror: 'codemirror',
+      'react-codemirror2': 'react-codemirror2',
+      'prop-types': 'prop-types',
     },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs2: 'react-dom',
-      commonjs: 'react-dom',
-      amd: 'react-dom',
-      umd: 'react-dom',
+    // `codemirror`, `react-codemirror2`, and `prop-types` are runtime `dependencies` that every
+    // consumer already installs, so bundling them too is double-shipping. This externalizes deep
+    // requires as well (mode/addon files, `codemirror/lib/codemirror`), so the consumer's own
+    // bundler resolves them from its own `node_modules`. CSS imports (e.g.
+    // `codemirror/addon/scroll/simplescrollbars.css`) stay bundled via style-loader so consumers
+    // don't need their own CSS handling for our node_modules imports.
+    ({ request }, callback) => {
+      if (request.startsWith('codemirror/') && !request.endsWith('.css')) {
+        return callback(null, `commonjs2 ${request}`);
+      }
+      callback();
     },
-    '@readme/variable': '@readme/variable',
-  },
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
