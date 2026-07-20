@@ -8,6 +8,10 @@
     "type": "git",
     "url": "https://github.com/readmeio/syntax-highlighter.git"
   },
+  "files": [
+    "dist",
+    "dist-utils"
+  ],
   "main": "dist/index.node.js",
   "browser": "dist/index.js",
   "exports": {
@@ -39,7 +43,6 @@
   },
   "dependencies": {
     "codemirror": "^5.54.0",
-    "codemirror-graphql": "1.3.2",
     "prop-types": "^15.7.2",
     "react-codemirror2": "^8.0.0"
   },

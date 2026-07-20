@@ -5,7 +5,6 @@ import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/runmode/runmode';
 import 'codemirror/addon/scroll/simplescrollbars';
 import 'codemirror/addon/scroll/simplescrollbars.css';
-import 'codemirror/mode/meta';
 import PropTypes from 'prop-types';
 import React from 'react';
 
