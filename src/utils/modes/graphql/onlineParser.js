@@ -132,6 +132,7 @@ function getToken(stream, state, options) {
       // Pop from the stack of levels.
       // If the top of the stack is lower than the current level, lower the
       // current level to match.
+      // oxlint-disable-next-line no-multi-assign
       const levels = (state.levels = (state.levels || []).slice(0, -1));
       if (state.indentLevel && levels.length > 0 && levels.at(-1) < state.indentLevel) {
         state.indentLevel = levels.at(-1);

@@ -30,10 +30,12 @@ const CodeEditor: React.FC<{
 
   useEffect(() => {
     const incValue = children && typeof children === 'string' ? children : code;
+    // oxlint-disable-next-line react/set-state-in-effect
     setValue(incValue);
   }, [code, children]);
 
   useEffect(() => {
+    // oxlint-disable-next-line react/set-state-in-effect
     setMode(prevMode => {
       const newMode = getMode(lang as string);
       if (newMode !== prevMode) return newMode;
