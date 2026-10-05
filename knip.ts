@@ -14,7 +14,7 @@ const config: KnipConfig = {
     config: ['oxlint.config.ts'],
   },
   vitest: {
-    config: ['vitest.config.ts'],
+    config: ['vitest.config.mts'],
     entry: ['test/**/*.ts(x)?'],
   },
 };

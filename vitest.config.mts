@@ -6,6 +6,6 @@ export default defineConfig({
       exclude: ['test/__fixtures__/**'],
     },
     environment: 'jsdom',
-    setupFiles: './vitest.setup.ts',
+    setupFiles: './vitest.setup.mts',
   },
 });
