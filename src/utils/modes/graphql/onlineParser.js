@@ -5,6 +5,7 @@
 // oxlint-disable unicorn/no-instanceof-array
 // oxlint-disable unicorn/no-instanceof-builtins
 // oxlint-disable unicorn/no-useless-undefined
+// oxlint-disable no-use-before-define
 
 /**
  * Vendored from `graphql-language-service`'s `esm/parser/onlineParser.js`, stripped of its

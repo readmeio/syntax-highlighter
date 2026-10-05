@@ -5,7 +5,6 @@ const config: KnipConfig = {
   ignore: ['test/__fixtures__/**'],
   ignoreDependencies: [
     '@csstools/css-parser-algorithms', // required in order to get vitest/jsdom running in CI
-    'eslint-plugin-readme', // pulled in and used by oxlint
   ],
   oxfmt: {
     config: ['oxfmt.config.ts'],
