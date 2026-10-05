@@ -1,4 +1,5 @@
 // oxlint-disable no-param-reassign
+// oxlint-disable no-use-before-define
 // oxlint-disable unicorn/no-useless-undefined
 
 /**

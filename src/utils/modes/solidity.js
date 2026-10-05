@@ -1,4 +1,5 @@
 // oxlint-disable react/no-this-in-sfc
+// oxlint-disable no-use-before-define
 // oxlint-disable unicorn/consistent-function-scoping
 // oxlint-disable curly
 // oxlint-disable no-param-reassign
